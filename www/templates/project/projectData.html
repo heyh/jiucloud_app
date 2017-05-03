@@ -1,0 +1,34 @@
+<!--<ion-view hide-tabs="true" class="approval dataCollect" >-->
+    <!--顶部栏目 开始-->
+    <!--<ion-header-bar align-title="center" class="bar-positive">-->
+        <!--<div class="buttons">-->
+            <!--<button class="button icon button-clear ion-ios-arrow-back" ng-click="goBack()"></button>-->
+        <!--</div>-->
+        <!--<h1 class="title">分部分项</h1>-->
+    <!--</ion-header-bar>-->
+    <!--主内容区域栏目 开始-->
+    <!--<ion-content>-->
+        <div class="row header ">
+            <div class="col col-20">定额号</div>
+            <div class="col col-20">项目名称</div>
+            <!--<div class="col col-10">专业</div>-->
+            <div class="col col-10">类别</div>
+            <div class="col col-10">单位</div>
+            <div class="col col-10">工程量表达式</div>
+            <div class="col col-10">工程量</div>
+            <div class="col col-10">单价</div>
+        </div>
+        <div class="row" ng-repeat="projectData in projectDatas">
+            <div class="col col-20">{{projectData.deh}}</div>
+            <div class="col col-20">{{projectData.zmmc}}</div>
+            <!--<div class="col col-10">{{projectData.zy}}</div>-->
+            <div class="col col-10">{{projectData.lb}}</div>
+            <div class="col col-10">{{projectData.zmdw}}</div>
+            <div class="col col-10">{{projectData.gclbds}}</div>
+            <div class="col col-10">{{projectData.gcl}}</div>
+            <div class="col col-10">{{projectData.dj}}</div>
+        </div>
+    <!--</ion-content>-->
+
+<!--</ion-view>-->
+

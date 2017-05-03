@@ -1,0 +1,13 @@
+<ion-modal-view class="">
+    <ion-header-bar class="bar bar-header bar-stable">
+      <button class="button button-clear"><span class="positive">选择单位工程</span></button>
+      <h1 class="title"></h1>
+      <button class="button button-clear" ng-click="closeZjsprojectsModal()"><i style="color:#999" class="icon ion-android-cancel"></i></button>
+    </ion-header-bar>  <ion-content>
+      <div class="list">
+        <div class="item" value="{{_childZjsproject.id}}" ng-click="getChildZjsprojects(_childZjsproject)" ng-repeat="_childZjsproject in _childZjsprojects">{{_childZjsproject.name}}</div>
+      </div>
+    </ion-content>
+  </ion-modal-view>
+
+

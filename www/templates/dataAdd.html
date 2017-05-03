@@ -1,0 +1,104 @@
+<ion-view hide-nav-bar="true" hide-tabs="true" class="data_add">
+    <!--顶部栏目 开始-->
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div class="buttons">
+            <button class="button icon button-clear ion-ios-arrow-back" ng-click="goBack()"></button>
+        </div>
+        <h1 class="title" ng-if="pageData.type == 'data'">新增费用</h1>
+        <h1 class="title" ng-if="pageData.type == 'doc'">新增资料</h1>
+    </ion-header-bar>
+    <!--主内容区域栏目 开始-->
+    <ion-content class="has-header has-footer" padding="false">
+        <div class="list">
+            <label class="item item-icon-right" ng-click="openProjectModal()">
+                <span class="padding-right">工程名称</span>
+                <span class="item-note">{{pageData.fieldData.projectText||'请选择工程'}}</span>
+                <input type="hidden" data_key="pageData.fieldData.projectName" ng-model="pageData.fieldData.projectName">
+                <i class="icon ion-ios-arrow-right"></i>
+            </label>
+            <label class="item item-icon-right" ng-click="openCostsTypeModal()">
+                <span class="padding-right" ng-if="pageData.type == 'data'">费用类型</span>
+                <span class="padding-right" ng-if="pageData.type == 'doc'">资料类型</span>
+                <span class="item-note" data_key="pageData.fieldData.costType">{{pageData.fieldData.costType||'请选择费用'}}</span>
+                <input type="hidden" data_key="pageData.fieldData.nid" ng-model="pageData.fieldData.nid">
+                <i class="icon ion-ios-arrow-right"></i>
+            </label>
+            <label class="item item-icon-right" ng-click="openSectionModal()">
+                <span class="padding-right">标段</span>
+                <span class="item-note" data_key="pageData.fieldData.sectionName">{{pageData.fieldData.sectionName||'请选择标段'}}</span>
+                <input type="hidden" data_key="pageData.fieldData.section" ng-model="pageData.fieldData.section">
+                <i class="icon ion-ios-arrow-right"></i>
+            </label>
+            <label class="item item-input">
+                <span class="padding-right">名称</span>
+                <input class="text-right" type="text" placeholder="请输入名称" data_key="pageData.fieldData.dataName" ng-model="pageData.fieldData.dataName"/>
+            </label>
+            <label class="item item-input" ng-if="pageData.supInfos.length > 0" ng-click="openSupInfoModal()">
+                <button class="button button-light icon ion-ios-plus-outline"></button>
+            </label>
+
+        </div>
+
+        <div class="list" ng-if="pageData.type == 'data'" >
+            <label class="item item-icon-right" ng-click="openUnitModal()">
+                <span class="padding-right">单位</span>
+                <span class="item-note" data_key="pageData.fieldData.unit">{{pageData.fieldData.unit||'请选择单位'}}</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </label>
+            <label class="item item-input">
+                <span class="padding-right">数量</span>
+                <input class="text-right" type="number" placeholder="请输入数量" data_key="pageData.fieldData.count" ng-model="pageData.fieldData.count" ng-blur="cal()"/>
+            </label>
+            <label class="item item-input">
+                <span class="padding-right">单价</span>
+                <input class="text-right" type="number" placeholder="请输入单价" data_key="pageData.fieldData.price" ng-model="pageData.fieldData.price" ng-blur="cal()"/>
+            </label>
+            <label class="item">
+                <span class="padding-right">金额</span>
+                <span class="item-note" style="padding-right: 8px">{{pageData.fieldData.money||'0.00'|currency:'¥'}}</span>
+            </label>
+            <label class="item item-input">
+                <span class="padding-right">规格型号</span>
+                <input class="text-right" type="text" placeholder="请输入规格型号" data_key="pageData.fieldData.specifications" ng-model="pageData.fieldData.specifications"/>
+            </label>
+            <label class="item item-input" ng-if="pageData.fieldData.itemCode != null && pageData.fieldData.itemCode != '' && pageData.fieldData.itemCode.substring(0,3) == '700' ">
+                <span class="padding-right">供应商</span>
+                <input class="text-right" type="text" placeholder="请输入供应商信息" data_key="pageData.fieldData.supplier" ng-model="pageData.fieldData.supplier"/>
+            </label>
+        </div>
+        <div class="list">
+            <label class="item item-input mark_ins">
+                <span class="padding-right">备注说明</span>
+                <textarea class="text-right" style="padding-right: 24px;" placeholder="请输入备注说明" rows="5" data_key="pageData.fieldData.remark" ng-model="pageData.fieldData.remark"></textarea>
+            </label>
+        </div>
+        <div class="list">
+            <label class="item item-checkbox item-checkbox-right">
+                <span>需要审批</span>
+                <label class="checkbox checkbox-calm">
+                    <input type="checkbox" id="needApproved">
+                </label>
+            </label>
+        </div>
+        <div class="list infoUpload">
+            <dl class="takePic">
+                <dt>添加附件</dt>
+                <dd class="picsArea clearfix">
+                    <ul id="medicalRecord">
+                        <!--<li class="pics"></li>-->
+                        <li class="pics" on-hold="showDeleteBtn($event)">
+                            <span class="ion ion-ios-minus assertive del_btn" ng-click="delPic($event)"></span>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </ion-content>
+
+    <div class="bar bar-footer" style="padding:0;border-top:1px solid #ddd">
+        <div class="row" style="padding:0">
+            <button class="button button-block button-positive" style="margin:0; font-size: large" ng-click="addData($event)">提交</button>
+        </div>
+    </div>
+</ion-view>
+

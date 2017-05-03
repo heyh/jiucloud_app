@@ -1,0 +1,51 @@
+
+<ion-view hide-nav-bar="true" hide-tabs="true" class="approval dataCollect">
+    <!--顶部栏目 开始-->
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div class="buttons">
+            <button class="button icon button-clear ion-ios-arrow-back" ng-click="goBack()"></button>
+        </div>
+        <h1 class="title">交流讨论区</h1>
+    </ion-header-bar>
+
+    <!--主内容区域栏目 开始-->
+    <ion-content class="has-header has-tabs " padding="false">
+
+        <div ng-repeat="discuss in pageData.discussList">
+            <div style="padding-top: 5px" class="leftd" ng-if="discuss.isMyself == '0'">
+                <div>
+                    <span style="font-size: 12px;color:#999;">{{discuss.createUser}} &nbsp;&nbsp;{{discuss.createTime}}</span>
+                </div>
+                <span class="leftd_h">
+                    <img ng-src="images/other.png"/>
+                </span>
+
+                <div class="speech left" class="speech left">
+                    {{discuss.content}}
+                </div>
+            </div>
+            <div style="padding-top: 5px" class="rightd" ng-if="discuss.isMyself == '1'">
+                <div>
+                    <span style="font-size: 12px;color:#999;">{{discuss.createTime}}</span>
+                </div>
+                <span class="rightd_h">
+                    <img ng-src="images/me.png"/>
+                </span>
+                <div class="speech right" class="speech left">
+                    {{discuss.content}}
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+
+    <div class="bar bar-footer" >
+        <input type="hidden" data_key="pageData.discussType" ng-model="pageData.discussType">
+        <input type="hidden" data_key="pageData.discussId" ng-model="pageData.discussId">
+        <div class="row" style="padding:0">
+            <textarea style="width: 80%;"  data_key="pageData.content" ng-model="pageData.content"  placeholder="回复："></textarea>
+            <button class="button button-block button-positive" style="width:20%; margin:0; font-size:smaller" ng-click="addDiscuss($event)">添加评论</button>
+        </div>
+    </div>
+</ion-view>
+

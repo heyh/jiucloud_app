@@ -1,0 +1,16 @@
+{
+    "supportedPlatform":[
+        {
+            "platform":"SinaWeibo",
+            "code":1
+        },
+        {
+            "platform":"Wechat",
+            "code":997
+        },
+        {
+            "platform":"QQ",
+            "code":998
+        }
+    ]
+}

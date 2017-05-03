@@ -1,0 +1,141 @@
+{
+  "index": {
+    "url": "/index",
+    "templateUrl": "index.html",
+    "controller": ""
+  },
+  "login": {
+    "url": "/login",
+    "templateUrl": "templates/login.html",
+    "controller": "LoginCtrl"
+  },
+  "projectManage": {
+    "url": "/projectManage",
+    "templateUrl": "templates/projectManage.html",
+    "controller": "ProjectManageCtrl"
+  },
+  "dataCollect": {
+    "url": "/dataCollect",
+    "templateUrl": "templates/dataCollect.html",
+    "params": {
+      "type": null
+    },
+    "cache": false,
+    "controller": "DataCollectCtrl"
+  },
+  "dataDetails": {
+    "url": "/dataDetails",
+    "templateUrl": "templates/dataDetails.html",
+    "params": {
+      "fieldData": null,
+      "type": null
+    },
+    "cache": false,
+    "controller": "DataDetailsCtrl"
+  },
+  "dataAdd": {
+    "url": "/dataAdd",
+    "templateUrl": "templates/dataAdd.html",
+    "params": {
+      "type": null
+    },
+    "cache": false,
+    "controller": "DataAddCtrl"
+  },
+  "dataEdit": {
+    "url": "/dataEdit",
+    "templateUrl": "templates/dataEdit.html",
+    "params": {
+      "fieldData": null,
+      "type": null
+    },
+    "cache": false,
+    "controller": "DataEditCtrl"
+  },
+  "approval": {
+    "url": "/approval",
+    "templateUrl": "templates/approval.html",
+    "cache": false,
+    "controller": "ApprovalCtrl"
+  },
+  "approvalDetails": {
+    "url": "/approvalDetails",
+    "templateUrl": "templates/approvalDetails.html",
+    "params": {
+      "approvalFieldData": null
+    },
+    "cache": false,
+    "controller": "ApprovalDetailsCtrl"
+  },
+  "myApprovalProcess": {
+    "url": "/myApprovalProcess",
+    "templateUrl": "templates/myApprovalProcess.html",
+    "cache": false,
+    "controller": "MyApprovalProcessCtrl"
+  },
+  "myApprovalDetails": {
+    "url": "/myApprovalDetails",
+    "templateUrl": "templates/myApprovalDetails.html",
+    "params": {
+      "myApprovalData": null
+    },
+    "cache": false,
+    "controller": "MyApprovalDetailsCtrl"
+  },
+  "message": {
+    "url": "/message",
+    "templateUrl": "templates/message.html",
+    "cache": false,
+    "controller": "MessageCtrl"
+  },
+  "sysSet": {
+    "url": "/sysSet",
+    "templateUrl": "templates/sysSet.html",
+    "controller": "SysSetCtrl"
+  },
+  "projectPrice": {
+    "url": "/projectPrice",
+    "templateUrl": "templates/projectPrice.html",
+    "cache": false,
+    "controller": "ProjectPriceCtrl"
+  },
+  "projectAllInfo": {
+    "url": "/projectAllInfo",
+    "templateUrl": "templates/project/projectAllInfo.html",
+    "params": {
+      "mdbPath": null
+    },
+    "cache": false,
+    "controller": "ProjectAllInfoCtrl"
+  },
+  "projectData": {
+    "url": "/projectData",
+    "templateUrl": "templates/project/projectData.html",
+    "params": {
+      "projectDatas": null
+    },
+    "cache": false,
+    "controller": "ProjectDataCtrl"
+  },
+  "discuss": {
+    "url": "/discussShow",
+    "templateUrl": "templates/discussShow.html",
+    "params": {
+      "fieldData": null,
+      "type": null
+    },
+    "cache": false,
+    "controller": "DiscussCtrl"
+  },
+  "outStorage": {
+    "url": "/outStorage",
+    "templateUrl": "templates/outStorage.html",
+    "params": {
+      "fieldData": null,
+      "type": null
+    },
+    "cache": false,
+    "controller": "OutStorageCtrl"
+  }
+}
+

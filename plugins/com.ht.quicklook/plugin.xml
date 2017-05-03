@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="com.ht.quicklook"
+    version="1.0.0">
+    <name>Quicklook</name>
+    <description>Quick Look Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>Office,Quick look</keywords>
+
+      <!-- ios -->
+    <platform name="ios">
+        <js-module src="www/ios/quickLook.js" name="quickLook">
+            <clobbers target="cordova.plugins.QuickLook" />
+        </js-module>
+        <config-file target="config.xml" parent="/*">
+            <feature name="QuickLook">
+                <param name="ios-package" value="QuickLookPlugIn"/>
+            </feature>
+        </config-file>
+				<framework src="QuickLook.framework" weak="true" />
+        <header-file src="src/ios/QuickLookPlugIn.h" />
+        <source-file src="src/ios/QuickLookPlugIn.m" />
+     </platform>
+
+   </plugin>

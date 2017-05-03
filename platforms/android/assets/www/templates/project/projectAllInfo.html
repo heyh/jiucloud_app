@@ -1,0 +1,464 @@
+<ion-view hide-tabs="true" class="approval dataCollect">
+    <!--顶部栏目 开始-->
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div class="buttons">
+            <button class="button icon button-clear ion-ios-arrow-back" ng-click="goBack()"></button>
+        </div>
+        <h1 class="title">工程总览</h1>
+    </ion-header-bar>
+    <!--主内容区域栏目 开始-->
+    <ion-tabs class="tabs-positive tabs-striped tabs-top">
+        <ion-tab title="工程信息">
+            <ion-view>
+                <ion-content>
+                    <!--<button class="button button-full button-positive " ng-click="changeOriantationLandspace()">Change To Landspace Mode</button><br/>-->
+                    <!--<button class="button button-full button-positive " ng-click="changeOriantationPortrait ()">Change To Portrait Mode</button><br/>-->
+                    <div ng-repeat="projectInfo in projectInfos">
+                        <legend ng-if="projectInfo._isCategory == '1'">{{projectInfo._key}}</legend>
+                        <label ng-if="projectInfo._isCategory == '0'" class="item">
+                            <span>{{projectInfo._key}}</span>
+                            <span class="item-note">{{projectInfo._value}}</span>
+                        </label>
+                    </div>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="分部分项">
+            <ion-view>
+                <ion-content>
+                    <ion-scroll zooming="true" direction="xy" style="height: 200px">
+                        <div class="row header ">
+                            <div class="col col-20" align="center">清单、定额号</div>
+                            <div class="col col-40" align="center">项目名称</div>
+                            <div class="col col-10" align="center">专业</div>
+                            <div class="col col-10" align="center">类别</div>
+                            <div class="col col-10" align="center">单位</div>
+                            <div class="col col-20" align="center">工程量表达式</div>
+                            <div class="col col-20" align="center">工程量</div>
+                            <div class="col col-20" align="center">单价</div>
+                        </div>
+                        <div class="row" ng-repeat="projectData in projectDatas" ng-click="getProjectMachineInfo(projectData)">
+                            <div class="col col-20">{{projectData.deh}}</div>
+                            <div class="col col-40">{{projectData.zmmc}}</div>
+                            <div class="col col-10">{{projectData.zy}}</div>
+                            <div class="col col-10" align="center">{{projectData.lb}}</div>
+                            <div class="col col-10" align="center">{{projectData.zmdw}}</div>
+                            <div class="col col-20">{{projectData.gclbds}}</div>
+                            <div class="col col-20" align="right">{{projectData.gcl|number:6}}</div>
+                            <div class="col col-20" align="right">{{projectData.dj|number:2}}</div>
+                        </div>
+                    </ion-scroll>
+
+                    <!-- 辅助功能-->
+                    <div id="buttonBar" class="button-bar bar-stable" style="margin-top: 3px">
+                        <a class="button button-small button-calm" ng-click="showAssistant($event)">工料换算</a>
+                        <a class="button button-small" ng-click="showAssistant($event)">项目特征</a>
+                        <a class="button button-small" ng-click="showAssistant($event)">类别设置</a>
+                        <a class="button button-small" ng-click="showAssistant($event)">工程量公式</a>
+                        <a class="button button-small" ng-click="showAssistant($event)">计价程序</a>
+                    </div>
+                    <div id="content">
+                        <!-- 工料换算 -->
+                        <span style="display:block;">
+                            <ion-scroll zooming="true" direction="xy" style="height: 200px">
+                                <div class="row header ">
+                                    <div class="col col-20" align="center">编码</div>
+                                    <div class="col col-40" align="center">工料机名称</div>
+                                    <div class="col col-20" align="center">规格型号</div>
+                                    <div class="col col-10" align="center">单位</div>
+                                    <div class="col col-10" align="center">含税价</div>
+                                    <div class="col col-10" align="center">采保(%)</div>
+                                    <div class="col col-10" align="center">税率(%)</div>
+                                    <div class="col col-10" align="center">除税价</div>
+                                    <div class="col col-20" align="center">定额含量</div>
+                                    <div class="col col-20" align="center">预算含量</div>
+                                    <div class="col col-20" align="center">系数</div>
+                                    <div class="col col-20" align="center">含量</div>
+                                    <div class="col col-20" align="center">金额</div>
+                                </div>
+                                <div class="row" ng-repeat="projectMachineInfo in projectMachineInfos">
+                                    <div class="col col-20">{{projectMachineInfo.clbm}}</div>
+                                    <div class="col col-40">{{projectMachineInfo.clmc}}</div>
+                                    <div class="col col-20">{{projectMachineInfo.ggxh}}</div>
+                                    <div class="col col-10" align="center">{{projectMachineInfo.dw}}</div>
+                                    <div class="col col-10" align="right">{{projectMachineInfo.hsj|number:2}}</div>
+                                    <div class="col col-10" align="right">{{projectMachineInfo.cb}}</div>
+                                    <div class="col col-10" align="right">{{projectMachineInfo.taxrate}}</div>
+                                    <div class="col col-10" align="right">{{projectMachineInfo.csj|number:2}}</div>
+                                    <div class="col col-20" align="right">{{projectMachineInfo.dehl|number:4}}</div>
+                                    <div class="col col-20" align="right">{{projectMachineInfo.yshl|number:4}}</div>
+                                    <div class="col col-20" align="right">{{projectMachineInfo.xs}}</div>
+                                    <div class="col col-20" align="right">{{projectMachineInfo.hl|number:4}}</div>
+                                    <div class="col col-20" align="right">{{projectMachineInfo.je|number:2}}</div>
+                                </div>
+                            </ion-scroll>
+                        </span>
+                        <!-- 项目特征 -->
+                        <span style="display: none">
+                            <legend>工程内容</legend>
+                            <div style="padding-left: 15px; min-height: 20px">{{gcnr}}</div>
+                            <legend>计算规则</legend>
+                            <div style="padding-left: 15px; min-height: 20px">{{jsgz}}</div>
+                            <legend>描述后项目特征</legend>
+                            <div style="padding-left: 15px; min-height: 20px">{{mshxmtz}}</div>
+                        </span>
+                        <!-- 类别设置 -->
+                        <span style="display: none">
+                            <ion-scroll zooming="true" direction="xy" style="height: 200px">
+                                <div class="row header ">
+                                    <div class="col col-10"  align="center">编号</div>
+                                    <div class="col col-40"  align="center">类别名称</div>
+                                    <div class="col col-10"  align="center">建筑类</div>
+                                    <div class="col col-20"  align="center" ng-repeat="lb in lbs">{{lb}}</div>
+                                </div>
+                                <div class="row" ng-repeat="ratetableInfo in ratetableInfos">
+                                    <div class="col col-10" align="center">{{ratetableInfo.xh}}</div>
+                                    <div class="col col-40">{{ratetableInfo.lbmc}}</div>
+                                    <div class="col col-10" align="center">
+                                        <label class="ion-ios-checkmark-outline"
+                                               ng-if="ratetableInfo.jzl == '1'"></label>
+                                        <label class="ion-ios-circle-outline" ng-if="ratetableInfo.jzl == '0'"></label>
+                                    </div>
+                                    <div class="col col-20" align="right" ng-repeat="i in xCount">{{ratetableInfo['x' + i]}}</div>
+                                </div>
+                            </ion-scroll>
+                        </span>
+                        <!-- 工程量公式 -->
+                        <span style="display: none">
+                            <ion-scroll zooming="true" direction="xy" style="height: 200px">
+                                <div class="row header ">
+                                    <div class="col col-40" align="center">分项工程名称</div>
+                                    <div class="col col-20" align="center">项目特征</div>
+                                    <div class="col col-40" align="center">计算公式</div>
+                                    <div class="col col-10" align="center">相同数</div>
+                                    <div class="col col-10" align="center">系数</div>
+                                    <div class="col col-20" align="center">工程量</div>
+                                </div>
+                                <div class="row" ng-repeat="gclgs in listGclgs">
+                                    <div class="col col-40">{{gclgs[0]}}</div>
+                                    <div class="col col-20">{{gclgs[1]}}</div>
+                                    <div class="col col-40">{{gclgs[2]}}</div>
+                                    <div class="col col-10" align="right">{{gclgs[3]}}</div>
+                                    <div class="col col-10" align="right">{{gclgs[4]}}</div>
+                                    <div class="col col-20" align="right">{{gclgs[5]}}</div>
+                                </div>
+                            </ion-scroll>
+                        </span>
+                        <!-- 计价程序 -->
+                        <span style="display: none">
+                            <ion-scroll zooming="true" direction="xy" style="height: 200px">
+                                <div class="row header ">
+                                    <div class="col col-10" align="center">编号</div>
+                                    <div class="col col-20" align="center">费用名称</div>
+                                    <div class="col col-40" align="center">建筑类工程计算公式</div>
+                                    <div class="col col-40" align="center">安装类工程计算公式</div>
+                                    <div class="col col-20" align="center">是否合计</div>
+                                    <div class="col col-20" align="center">报表输出</div>
+                                </div>
+                                <div class="row" ng-repeat="QFGSInfo in QFGSInfos">
+                                    <div class="col col-10" align="center">{{QFGSInfo.ID}}</div>
+                                    <div class="col col-20">{{QFGSInfo.FYMC}}</div>
+                                    <div class="col col-40">{{QFGSInfo.JZJSGS}}</div>
+                                    <div class="col col-40">{{QFGSInfo.AZJSGS}}</div>
+                                    <div class="col col-20" align="center">
+                                        <label class="ion-ios-checkmark-outline" ng-if="QFGSInfo.ISHJ == '1'"></label>
+                                        <label class="ion-ios-circle-outline" ng-if="QFGSInfo.ISHJ == '0'"></label>
+                                    </div>
+                                    <div class="col col-20" align="center">
+                                        <label class="ion-ios-checkmark-outline" ng-if="QFGSInfo.TYPE == '1'"></label>
+                                        <label class="ion-ios-circle-outline" ng-if="QFGSInfo.TYPE == '0'"></label>
+                                    </div>
+                                </div>
+                            </ion-scroll>
+                        </span>
+                    </div>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="措施项目">
+            <ion-view>
+                <ion-content>
+                    <ion-scroll zooming="true" direction="xy"  style="height:200px;">
+                        <div class="row header ">
+                            <div class="col col-20" align="center">序号</div>
+                            <div class="col col-40" align="center">项目名称</div>
+                            <div class="col col-10" align="center">单位</div>
+                            <div class="col col-40" align="center">计算公式</div>
+                            <div class="col col-20" align="center">基数</div>
+                            <div class="col col-10" align="center">费率(%)</div>
+                            <div class="col col-20" align="center">费率范围</div>
+                            <div class="col col-20" align="center">合计</div>
+                            <!--<div class="col col-10" align="center">包含</div>-->
+                            <!--<div class="col col-10" align="center">甲供</div>-->
+                            <div class="col col-20" align="center">文明费</div>
+                        </div>
+                        <div class="row" ng-repeat="csInfo in csInfos">
+                            <div class="col col-20" align="center">{{csInfo.measureXh}}</div>
+                            <div class="col col-40">{{csInfo.measureName}}</div>
+                            <div class="col col-10">{{csInfo.measureDw}}</div>
+                            <div class="col col-40">{{csInfo.measureJsgs}}</div>
+                            <div class="col col-20" align="right">{{csInfo.measureBase|number:2}}</div>
+                            <div class="col col-10" align="right">{{csInfo.measureFee}}</div>
+                            <div class="col col-20">{{csInfo.flfw}}</div>
+                            <div class="col col-20" align="right">{{csInfo.measureSum|number:2}}</div>
+                            <!--<div class="col col-10">{{csInfo.measureBh}}</div>-->
+                            <!--<div class="col col-10">{{csInfo.measureJg}}</div>-->
+                            <div class="col col-20" align="right">{{csInfo.measureWmf|number:2}}</div>
+                        </div>
+                    </ion-scroll>
+                    <div style="background: #f7f7f7; padding-top:5px; padding-left: 6px"><label class="ion-android-apps"></label></div>
+                    <ion-scroll zooming="true" direction="xy" style="height: 200px">
+                        <div class="row header ">
+                            <div class="col col-10">序号</div>
+                            <div class="col col-40">名称</div>
+                            <div class="col col-10">结果</div>
+                        </div>
+                        <div class="row" ng-repeat="cs1blInfo in cs1blInfos">
+                            <div class="col col-10">{{cs1blInfo.recNo}}</div>
+                            <div class="col col-40">{{cs1blInfo.varName}}</div>
+                            <div class="col col-10" align="right">{{cs1blInfo.varResult|number:2}}</div>
+                        </div>
+                    </ion-scroll>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="其它项目">
+            <ion-view>
+                <ion-content>
+                    <ion-scroll zooming="true" direction="xy" style="height: 300px">
+                        <div class="row header ">
+                            <div class="col col-10"></div>
+                            <div class="col col-10" align="center">序号</div>
+                            <div class="col col-40" align="center">项目名称</div>
+                            <div class="col col-10" align="center">单位</div>
+                            <div class="col col-20" align="center">计算公式</div>
+                            <div class="col col-10" align="center">基数</div>
+                            <div class="col col-10" align="center">费率(%)</div>
+                            <div class="col col-20" align="center">金额</div>
+                            <div class="col col-10" align="center">甲供</div>
+                            <div class="col col-40" align="center">备注</div>
+                        </div>
+                        <div class="row" ng-repeat="(qtInfoIndex, qtInfo) in qtInfos" ng-click="getQTDetailInfo(qtInfo)">
+                            <div class="col col-10">{{qtInfoIndex+1}}</div>
+                            <div class="col col-10">{{qtInfo.id}}</div>
+                            <div class="col col-40">{{qtInfo.name}}</div>
+                            <div class="col col-10">{{qtInfo.dw}}</div>
+                            <div class="col col-20">{{qtInfo.jsgs}}</div>
+                            <div class="col col-10" align="right">{{qtInfo.js}}</div>
+                            <div class="col col-10" align="right">{{qtInfo.fl}}</div>
+                            <div class="col col-20" align="right">{{qtInfo.je|number:2}}</div>
+                            <div class="col col-10" align="center">
+                                <label class="ion-ios-checkmark-outline" ng-if="qtInfo.jg == '1'"></label>
+                                <label class="ion-ios-circle-outline" ng-if="qtInfo.jg == '0'"></label>
+                            </div>
+                            <div class="col col-40">{{qtInfo.bz}}</div>
+                        </div>
+                    </ion-scroll>
+                    <div class="button-bar bar-stable" style="margin-top: 3px"></div>
+                    <div id="qtDetail">
+                        <!-- 暂列金额 -->
+                        <span ng-show="zljemxbInfos.length > 0">
+                            <div class="row header ">
+                                <div class="col col-10" align="center">序号</div>
+                                <div class="col col-10" align="center">项目名称</div>
+                                <div class="col col-10" align="center">单位</div>
+                                <div class="col col-10" align="center">数量</div>
+                                <div class="col col-10" align="center">计算公式</div>
+                                <div class="col col-10" align="center">单价</div>
+                                <div class="col col-10" align="center">金额(元)</div>
+                                <div class="col col-10" align="center">备注</div>
+                            </div>
+                            <div class="row" ng-repeat="zljemxbInfo in zljemxbInfos">
+                                <div class="col col-10">{{zljemxbInfo.xh}}</div>
+                                <div class="col col-10">{{zljemxbInfo.mc}}</div>
+                                <div class="col col-10">{{zljemxbInfo.dw}}</div>
+                                <div class="col col-10" align="right">{{zljemxbInfo.sl}}</div>
+                                <div class="col col-10">{{zljemxbInfo.jsgs}}</div>
+                                <div class="col col-10" align="right">{{zljemxbInfo.dj|number:2}}</div>
+                                <div class="col col-10" align="right">{{zljemxbInfo.je|number:2}}</div>
+                                <div class="col col-40">{{zljemxbInfo.bz}}</div>
+                            </div>
+                        </span>
+                        <!-- 专业工程估价 -->
+                        <span ng-show="zygczgjInfos.length > 0">
+                            <div class="row header ">
+                                <div class="col col-10" align="center">序号</div>
+                                <div class="col col-10" align="center">项目名称</div>
+                                <div class="col col-10" align="center">单位</div>
+                                <div class="col col-10" align="center">数量</div>
+                                <div class="col col-10" align="center">单价</div>
+                                <div class="col col-10" align="center">金额(元)</div>
+                                <div class="col col-10" align="center">工程内容</div>
+                                <div class="col col-10" align="center">备注</div>
+                            </div>
+                            <div class="row" ng-repeat="zygczgjInfo in zygczgjInfos">
+                                <div class="col col-10">{{zygczgjInfo.xh}}</div>
+                                <div class="col col-10">{{zygczgjInfo.mc}}</div>
+                                <div class="col col-10">{{zygczgjInfo.dw}}</div>
+                                <div class="col col-10" align="right">{{zygczgjInfo.sl}}</div>
+                                <div class="col col-10" align="right">{{zygczgjInfo.dj|number:2}}</div>
+                                <div class="col col-10" align="right">{{zygczgjInfo.je|number:2}}</div>
+                                <div class="col col-10">{{zygczgjInfo.gcnr}}</div>
+                                <div class="col col-10">{{zygczgjInfo.bz}}</div>
+                            </div>
+                        </span>
+                        <!-- 计日工 -->
+                        <span ng-show="jrgInfos.length > 0">
+                            <div class="row header ">
+                                <div class="col col-10" align="center">编号</div>
+                                <div class="col col-10" align="center">项目名称</div>
+                                <div class="col col-10" align="center">类型</div>
+                                <div class="col col-10" align="center">单位</div>
+                                <div class="col col-10" align="center">数量</div>
+                                <div class="col col-10" align="center">单价</div>
+                                <div class="col col-10" align="center">合价(元)</div>
+                            </div>
+                            <div class="row" ng-repeat="jrgInfo in jrgInfos">
+                                <div class="col col-10">{{jrgInfo.bh}}</div>
+                                <div class="col col-10">{{jrgInfo.mc}}</div>
+                                <div class="col col-10">{{jrgInfo.type}}</div>
+                                <div class="col col-10">{{jrgInfo.dw}}</div>
+                                <div class="col col-10" align="right">{{jrgInfo.sl}}</div>
+                                <div class="col col-10" align="right">{{jrgInfo.dj|number:2}}</div>
+                                <div class="col col-10" align="right">{{jrgInfo.hj|number:2}}</div>
+                            </div>
+                        </span>
+                        <!-- 总承包服务费 -->
+                        <span ng-show="zcbfwfInfos.length > 0">
+                            <div class="row header ">
+                                <div class="col col-10" align="center">序号</div>
+                                <div class="col col-10" align="center">项目名称</div>
+                                <div class="col col-10" align="center">服务内容</div>
+                                <div class="col col-10" align="center">计算基础</div>
+                                <div class="col col-10" align="center">项目价值</div>
+                                <div class="col col-10" align="center">费率(%)</div>
+                                <div class="col col-10" align="center">金额(元)</div>
+                            </div>
+                            <div class="row" ng-repeat="zcbfwfInfo in zcbfwfInfos">
+                                <div class="col col-10">{{zcbfwfInfo.xh}}</div>
+                                <div class="col col-10">{{zcbfwfInfo.mc}}</div>
+                                <div class="col col-10">{{zcbfwfInfo.nr}}</div>
+                                <div class="col col-10">{{zcbfwfInfo.jsjc}}</div>
+                                <div class="col col-10">{{zcbfwfInfo.xmjz}}</div>
+                                <div class="col col-10" align="right">{{zcbfwfInfo.fl}}</div>
+                                <div class="col col-10" align="right">{{zcbfwfInfo.je|number:2}}</div>
+                            </div>
+                        </span>
+
+                    </div>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="调市场价">
+            <ion-view>
+                <ion-content>
+                    <ion-scroll zooming="true" direction="xy"  style="height:300px;">
+                        <div class="row header ">
+                            <div class="col col-10" align="center">暂估</div>
+                            <div class="col col-10" align="center">打印</div>
+                            <div class="col col-10" align="center">甲供</div>
+                            <div class="col col-20" align="center">编码</div>
+                            <div class="col col-40" align="center">工料机名称</div>
+                            <div class="col col-10" align="center">单位</div>
+                            <div class="col col-20" align="center">数量</div>
+                            <div class="col col-20" align="center">单价</div>
+                            <div class="col col-20" align="center">含税价</div>
+                            <div class="col col-10" align="center">采保(%)</div>
+                            <div class="col col-10" align="center">税率(%)</div>
+                            <div class="col col-20" align="center">除税价</div>
+                            <div class="col col-20" align="center">金额</div>
+                            <div class="col col-20" align="center">风险系数(%)</div>
+                            <div class="col col-20" align="center">基准单价</div>
+                            <div class="col col-20" align="center">规格型号</div>
+                            <div class="col col-20" align="center">供应厂商</div>
+                            <div class="col col-20" align="center">送货地点</div>
+                            <div class="col col-20" align="center">交货方式</div>
+                        </div>
+                        <div class="row" ng-repeat="gljfjbInfo in gljfjbInfos">
+                            <div class="col col-10" align="center">
+                                <label class="ion-ios-checkmark-outline" ng-if="gljfjbInfo.zg == '1'"></label>
+                                <label class="ion-ios-circle-outline" ng-if="gljfjbInfo.zg == '0'"></label>
+                            </div>
+                            <div class="col col-10" align="center">
+                                <label class="ion-ios-checkmark-outline" ng-if="gljfjbInfo.dy == '1'"></label>
+                                <label class="ion-ios-circle-outline" ng-if="gljfjbInfo.dy == '0'"></label>
+                            </div>
+                            <div class="col col-10" align="center">
+                                <label class="ion-ios-checkmark-outline" ng-if="gljfjbInfo.jg == '1'"></label>
+                                <label class="ion-ios-circle-outline" ng-if="gljfjbInfo.jg == '0'"></label>
+                            </div>
+                            <div class="col col-20">{{gljfjbInfo.bm}}</div>
+                            <div class="col col-40">{{gljfjbInfo.gljmc}}</div>
+                            <div class="col col-10" align="center">{{gljfjbInfo.dw}}</div>
+                            <div class="col col-20" align="right">{{gljfjbInfo.sl|number:4}}</div>
+                            <div class="col col-20" align="right">{{gljfjbInfo.dj|number:2}}</div>
+                            <div class="col col-20" align="right">{{gljfjbInfo.hsj|number:2}}</div>
+                            <div class="col col-10" align="right">{{gljfjbInfo.cb}}</div>
+                            <div class="col col-10" align="right">{{gljfjbInfo.taxrate}}</div>
+                            <div class="col col-20" align="right">{{gljfjbInfo.csj|number:2}}</div>
+                            <div class="col col-20" align="right">{{gljfjbInfo.je|number:2}}</div>
+                            <div class="col col-20" align="right">{{gljfjbInfo.fxxs}}</div>
+                            <div class="col col-20" align="right">{{gljfjbInfo.jzdj|number:2}}</div>
+                            <div class="col col-20">{{gljfjbInfo.ggxh}}</div>
+                            <div class="col col-20">{{gljfjbInfo.gycs}}</div>
+                            <div class="col col-20">{{gljfjbInfo.shdd}}</div>
+                            <div class="col col-20">{{gljfjbInfo.jhfs}}</div>
+                        </div>
+                    </ion-scroll>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="取费">
+            <ion-view>
+                <ion-content>
+                    <ion-scroll zooming="true" direction="xy"  style="height:200px;">
+                        <div class="row header ">
+                            <div class="col col-10"></div>
+                            <div class="col col-10" align="center">编号</div>
+                            <div class="col col-40" align="center">费用名称</div>
+                            <div class="col col-40" align="center">计算公式</div>
+                            <div class="col col-20" align="center">基数</div>
+                            <div class="col col-10" align="center">费率(%)</div>
+                            <div class="col col-20" align="center">计算结果</div>
+                            <div class="col col-20" align="center">是否总价</div>
+                            <div class="col col-10" align="center">甲供</div>
+                            <div class="col col-20" align="center">规税编号</div>
+                        </div>
+                        <div class="row" ng-repeat="(summaryInfoIndex, summaryInfo) in summaryInfos">
+                            <div class="col col-10" align="center">{{summaryInfoIndex+1}}</div>
+                            <div class="col col-10" align="center">{{summaryInfo.FEEXH}}</div>
+                            <div class="col col-40">{{summaryInfo.FEENAME}}</div>
+                            <div class="col col-40">{{summaryInfo.FEECALC}}</div>
+                            <div class="col col-20" align="right">{{summaryInfo.FEEBASE|number:2}}</div>
+                            <div class="col col-10" align="right">{{summaryInfo.FEERATE}}</div>
+                            <div class="col col-20" align="right">{{summaryInfo.FEERESULT|number:2}}</div>
+                            <div class="col col-20" align="center">
+                                <label class="ion-ios-checkmark-outline" ng-if="summaryInfo.ISSHOW == '1'"></label>
+                                <label class="ion-ios-circle-outline" ng-if="summaryInfo.ISSHOW == '0'"></label>
+                            </div>
+                            <div class="col col-10" align="center">
+                                <label class="ion-ios-checkmark-outline" ng-if="summaryInfo.FEEJG == '1'"></label>
+                                <label class="ion-ios-circle-outline" ng-if="summaryInfo.FEEJG == '0'"></label>
+                            </div>
+                            <div class="col col-20">{{summaryInfo.FEEREMARK}}</div>
+                        </div>
+                    </ion-scroll>
+                    <div style="background: #f7f7f7; padding-top:5px; padding-left: 6px"><label
+                            class="ion-android-apps"></label></div>
+                    <ion-scroll zooming="true" direction="xy" style="height: 200px">
+                        <div class="row header ">
+                            <div class="col col-10">序号</div>
+                            <div class="col col-40">名称</div>
+                            <div class="col col-20">计算结果</div>
+                        </div>
+                        <div class="row" ng-repeat="summaryBLInfo in summaryBLInfos">
+                            <div class="col col-10">{{summaryBLInfo.recNo}}</div>
+                            <div class="col col-40">{{summaryBLInfo.varName}}</div>
+                            <div class="col col-20" align="right">{{summaryBLInfo.varResult|number:2}}</div>
+                        </div>
+                    </ion-scroll>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+    </ion-tabs>
+</ion-view>

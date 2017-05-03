@@ -1,0 +1,19 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-energized">
+        <h1 class="title">{{'LanguageModalTitle'|translate}}</h1>
+        <div class="buttons">
+            <button class="button" ng-click="closeModal()">{{'ButtonCancel'|translate}}</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="item in languageConfigData">
+                <label id="language_{{item.id}}" class="item item-icon-right" ng-click="changeLanguage('{{item.id}}','{{item.name}}')">
+                    <span>{{item.description}}</span>
+                    <span class="item-note langSelect padding-right"></span>
+                    <i class="icon ion-ios-arrow-right" ></i>
+                </label>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-modal-view>

@@ -1,0 +1,90 @@
+<ion-view hide-nav-bar="true" hide-tabs="true" class="approval_details">
+    <!--顶部栏目 开始-->
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div class="buttons">
+            <button class="button icon button-clear ion-ios-arrow-back" ng-click="goBack()"></button>
+        </div>
+        <h1 class="title" ng-if="isData(myApprovalData.itemCode)">费用详情</h1>
+        <h1 class="title" ng-if="!isData(myApprovalData.itemCode)">资料详情</h1>
+    </ion-header-bar>
+    <!--主内容区域栏目 开始-->
+    <ion-content class="has-header" padding="false">
+        <div class="list">
+
+            <label class="item">
+                <span>工程名称</span>
+                <span class="item-note">{{myApprovalData.projectName}}</span>
+            </label>
+            <label class="item">
+                <span ng-if="isData(myApprovalData.itemCode)">费用类型</span>
+                <span ng-if="!isData(myApprovalData.itemCode)">资料类型</span>
+                <span class="item-note">{{myApprovalData.costType}}</span>
+            </label>
+            <label class="item">
+                <span>标段</span>
+                <span class="item-note">{{myApprovalData.sectionName}}</span>
+            </label>
+            <label class="item">
+                <span>名称</span>
+                <span class="item-note">{{myApprovalData.dataName}}</span>
+            </label>
+        </div>
+        <div class="list" ng-if="isData(myApprovalData.itemCode)">
+            <label class="item">
+                <span>单位</span>
+                <span class="item-note">{{myApprovalData.unit}}</span>
+            </label>
+            <label class="item">
+                <span>数量</span>
+                <span class="item-note">{{myApprovalData.count}}</span>
+            </label>
+            <label class="item">
+                <span>单价</span>
+                <span class="item-note">{{myApprovalData.price}}</span>
+            </label>
+            <label class="item">
+                <span>金额</span>
+                <span class="item-note">{{myApprovalData.money}}</span>
+            </label>
+            <label class="item">
+                <span>规格型号</span>
+                <span class="item-note">{{myApprovalData.specifications}}</span>
+            </label>
+        </div>
+        <div class="list">
+            <label class="item">
+                <span>备注说明</span>
+                <span class="item-note">{{myApprovalData.remark}}</span>
+            </label>
+            <label class="item">
+                <span>登记时间</span>
+                <span class="item-note">{{myApprovalData.creatTime}}</span>
+            </label>
+        </div>
+        <div class="list">
+            <label class="item">
+                <span>审批状态</span>
+                <span class="item-note" style="color: #e42112">{{myApprovalData.approvedStatusName}}</span>
+            </label>
+            <label class="item">
+                <span>当前审批人</span>
+                <span class="item-note">{{myApprovalData.currentApprovedUser}}</span>
+            </label>
+        </div>
+        <div class="list infoPreview" ng-show="fileList.length > 0">
+            <dl class="takePic">
+                <dt>附件</dt>
+                <dd class="picsArea clearfix">
+                    <ul id="medicalRecord" ng-repeat="_file in fileList">
+                        <li class="pics">
+                            <img ng-if="_isIOS" src="{{_file.sourceFilePath}}" fileName="{{_file.fileName}}" ng-click="preViewFile(_file.sourceFilePath, $event)">
+                            <img ng-if="!_isIOS" src="{{_file.sourceFilePath}}" fileName="{{_file.fileName}}" ng-click="showBigImage(_file.sourceFilePath)">
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </ion-content>
+</ion-view>
+
+

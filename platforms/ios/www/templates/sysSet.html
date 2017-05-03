@@ -1,0 +1,21 @@
+<ion-view hide-nav-bar="true" class="sys_set">
+  <!--顶部栏目 开始-->
+  <ion-header-bar align-title="center" class="bar-positive">
+    <h1 class="title">设置</h1>
+  </ion-header-bar>
+  <!--主内容区域栏目 开始-->
+  <ion-content class="has-header has-tabs" padding="false">
+    <div class="list">
+      <div class="item item-icon-right" ng-click="clearCache()">
+        清除缓存
+        <i class="icon ion-ios-arrow-right"></i>
+      </div>
+      <div class="item item-icon-right" ng-click="goAboutUs()">
+        关于我们
+        <i class="icon ion-ios-arrow-right"></i>
+      </div>
+    </div>
+    <div class="button button-full button-positive"  ng-click="logout()">退出登录</div>
+  </ion-content>
+</ion-view>
+

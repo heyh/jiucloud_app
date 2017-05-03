@@ -1,0 +1,22 @@
+<ion-view hide-nav-bar="true" hide-tabs="true" class="login_area">
+    <ion-content class="has-header has-tabs" padding="false">
+        <!--登陆 开始-->
+        <div class="login_wrap">
+            <div class="logo">
+                <img src="images/gsy_logo.png"/>
+
+                <h1>氿上云管理系统</h1>
+            </div>
+            <ul class="login_from">
+                <li class=""><input type="text" class="acc" placeholder="用户名" ng-model="pageData.name"/></li>
+                <li class=""><input type="password" class="pass" placeholder="密码" ng-model="pageData.pwd"/></li>
+            </ul>
+            <div class="login_btn">
+                <input type="button" ng-click="login()" value="登录"/>
+            </div>
+            <input type="hidden" ng-model="pageData.cid" />
+        </div>
+        <!--登陆 结束-->
+    </ion-content>
+</ion-view>
+

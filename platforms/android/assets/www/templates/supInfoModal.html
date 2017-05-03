@@ -1,0 +1,14 @@
+<ion-modal-view class="">
+    <ion-header-bar class="bar bar-header bar-stable">
+      <button class="button button-clear"><span class="positive">选择标段附加信息</span></button>
+      <h1 class="title"></h1>
+      <button class="button button-clear" ng-click="closeSupInfoModal()"><i style="color:#999" class="icon ion-android-cancel"></i></button>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+        <div class="item" value="{{supInfo}}" ng-click="getSupInfo(supInfo)" ng-repeat="supInfo in pageData.supInfos">{{supInfo}}</div>
+      </div>
+    </ion-content>
+  </ion-modal-view>
+
+

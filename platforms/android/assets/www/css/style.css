@@ -1,0 +1,149 @@
+/* Add your own CSS if you like */
+*{font-family: Tahoma, Arial, Roboto, "Droid Sans", "Helvetica Neue", "Droid Sans Fallback", "Heiti SC", "Hiragino Sans GB", Simsun, sans-self !important;}
+/*登陆页面*/
+.login_area{background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #4b6ff8), color-stop(1, #7739e6));  }
+.login_area .logo{text-align: center}
+.login_area .logo img{width:80px}
+.login_area .logo h1{color:#fff;  padding: 0 0 40px 0; font-size:1.6em}
+.login_area .login_from{ width:80%; margin:0 auto;}
+.login_area .login_from input::-webkit-input-placeholder{color: #fff !important;}
+.login_area .login_from li{ width:auto; padding:0 10px;background:#7c72ee; height:50px; margin-bottom:20px; border-radius:2px;}
+.login_area .login_from li input{ width:100%; border:none; height:100%; background:transparent; color:#fff}
+.login_area .login_btn{ width:80%; height:50px; margin:0 auto;}
+.login_area .login_btn input{ width:100%; height:100%; line-height:40px; color:#fff; background:transparent; font-size:18px; border:1px solid #9379f0; letter-spacing: 10px;border-radius:2px;}
+.login_area input:active{background:#fff; color:#4b6ff8}
+
+/*工程管理页面*/
+.project_manage{background:#f4f4f4}
+.project_manage .data_collect .ion-data-collect:before{content:""; background:url(../images/data_collect.png) no-repeat; width:32px; height:32px; display:inline-block; background-size:32px 32px;}
+.project_manage .data_approval .ion-data-approval:before{content:""; background:url(../images/data_approval.png) no-repeat; width:32px; height:32px; display:inline-block; background-size:32px 32px;}
+.project_manage .data_process .ion-data-process:before{content:""; background:url(../images/data_process.png) no-repeat; width:32px; height:32px; display:inline-block; background-size:32px 32px;}
+
+/*底部导航栏*/
+.tabs-icon-top.tabs .tab-item.active{color:#4b6ff8}
+
+/*审批页面*/
+.approval{background:#f4f4f4}
+.approval .list{padding-bottom:20px;margin:10px;}
+.approval .list .item_footer .item{border-width:0; color:#8e8e8e; padding-top:6px; padding-bottom:4px; font-size:13px;}
+.approval .list .item_footer .item i.icon{font-size:24px;color:#e8e8e8}
+
+/*审批详情页面*/
+.approval_details{background:#f4f4f4}
+.approval_details .list{margin-bottom: 10px;}
+.approval_details .list input{background:transparent}
+.approval_details .mark_ins{background:transparent; border-top:0}
+.approval_details .mark_ins .item{background:#f4f4f4}
+.approval_details .mark_ins .item .item-content{background:#f4f4f4}
+.approval_details .button-gray{background:#c8c7cd;color:#fff}
+.approval_details .item-stacked-label span{font-size:12px;}
+
+/*数据详情*/
+.approval_select{width:100%; opacity: 0}
+
+/*系统设置*/
+.sys_set{background:#f4f4f4}
+
+/*时间轴*/
+.event_list { width:100%;background:url('../images/dian3.png') 20px 0 repeat-y;margin:10px 0 20px 0; }
+.event_list li { background:url('../images/jian.png') 15px -80px no-repeat;padding-left:24px; }
+.event_list li .time_box_list{border-bottom:1px solid #eee;padding:20px 0;}
+.event_list li .list_til {color:#000; font-size:16px;text-align:left;display:block;margin-left:10px;}
+
+/*消息通知*/
+.notice_msg{background:#f4f4f4}
+.notice_msg .time_box_list{background:#ebebeb;margin-left: 20px;margin-right:10px; position:relative; border-radius:4px;}
+.notice_msg .time_box_list .arrow_left{position:absolute; left:-10px; top:14px; width:0; height:0;border-right:10px solid #ebebeb;border-top:8px solid transparent; border-bottom:8px solid transparent;}
+.notice_msg .list_til{color:#666666!important;}
+.notice_msg .date_time_area{margin-left:10px;  margin-bottom:20px;padding-top:5px;}
+.notice_msg .date_time_area i{font-size:18px;color:#c7c7c7; vertical-align: middle}
+.notice_msg .date_time_area .date_time{color:#c7c7c7;vertical-align: middle;}
+.notice_msg .event_list{background: url('../images/vline.png') 20px 0 repeat-y;margin:20px 0 20px 0;}
+.notice_msg .event_list li {background: url('../images/dot.png') 15px -80px no-repeat;}
+.notice_msg .approve_btn{padding:0 20px;background:#abb9f0; border-radius:0;margin-top:10px;font-size: 16px;}
+
+/*新增数据*/
+.data_add{background:#f4f4f4}
+.data_add .list{margin-bottom: 10px;}
+/*.data_add .list label{border:none}*/
+.data_add .list label .label_til{width:75px;display:inline-block;text-align: right}
+.data_add .list .mark_ins{align-items:flex-start;}
+.data_add .add_attach{border:none;margin-top:5px;}
+.data_add .need_approval{margin-top:10px;}
+.data_add .need_approval .special_radio{width:18px;height:18px;background:url('../images/special_radio.png') no-repeat 0 -18px;display:inline-block}
+.data_add .need_approval .special_radio.active{background-position: 0 0;}
+.data_add .need_approval span{vertical-align: middle; }
+.data_add .need_approval a{padding-left:10px; font-size: 16px;vertical-align: middle;}
+.data_add .need_approval label{position: relative; left:-5px;}
+.city-picker .ionic-scroll li{text-align: center}
+
+/*上传附件页面*/
+.add_attach_modal .row{margin:40px 0 60px 0;}
+.add_attach_modal .row img{width:48px;}
+.add_attach_modal .row p{padding-top:10px; font-size: 14px;}
+.add_attach_modal .tip_area{margin:0 40px;}
+.add_attach_modal .tip_area h2{border-bottom:1px solid #e2e2e2; font-size:16px; padding:10px 0;}
+.add_attach_modal .tip_area li{color:#999}
+.add_attach_modal .bar.bar-positive{border:none;background:transparent;background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e6ebfe), color-stop(1, #fff)); }
+.add_attach_modal{background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.9, #fff), color-stop(1, #e6ebfe));}
+
+/*资料上传*/
+.infoUpload .takePic{margin:10px; border-bottom:1px solid #eee;}
+.infoUpload .takePic dt{padding:10px 0; font-weight:normal; color:#333}
+.infoUpload .takePic dd{padding-bottom: 20px;}
+.infoUpload .takePic dd ul .pics{width:100px; height:100px;margin-right:10px; margin-bottom:10px; float:left; border:1px solid #eee; background:url(../images/takePic.jpg) no-repeat center center;background-color:#fff;}
+.infoUpload .takePic dd ul .pics img{height:100px;width:100px; overflow:hidden;}
+.infoUpload .takePic dd ul .addNew{width:100px; height:100px;line-height: 100px; font-size:14px; float:left; color:#666;background:none;border:none}
+
+.pics{position:relative;}
+.pics .del_btn{position:absolute ;right:-10px; top:-10px; font-size:1.5em; z-index:9999;display:none}
+.pics.del_active .del_btn{display:block}
+
+/* 资料预览*/
+.infoPreview .takePic{margin:10px; border-bottom:1px solid #eee;}
+.infoPreview .takePic dt{padding:10px 0; font-weight:normal; color:#333}
+.infoPreview .takePic dd{padding-bottom: 20px;}
+.infoPreview .takePic dd ul .pics{width:100px; height:100px;margin-right:10px; margin-bottom:10px; float:left; border:1px solid #eee; background:url(../images/takePic.jpg) no-repeat center center;background-color:#fff;}
+.infoPreview .takePic dd ul .pics img{height:100px;width:100px; overflow:hidden;}
+.infoPreview .takePic dd ul .addNew{width:100px; height:100px;line-height: 100px; font-size:14px; float:left; color:#666;background:none;border:none}
+
+/*数据采集页面*/
+.dataCollect .list{margin:0}
+.dataCollect .card{margin:0px 10px 20px;}
+
+/*首页*/
+.project_manage .banner_area .box img{width:100%;}
+.project_manage .slider-pager{text-align: right;padding-right: 10px;}
+.project_manage .slider-pager-page.active{color:#20a7ff}
+.project_manage .nav_list .nav_list_item{text-align: center; border-radius:6px;padding:10px; margin:5px;}
+.project_manage .nav_list .nav_list_item:active{opacity:0.7}
+.project_manage .nav_list .nav_list_item:active img{-webkit-transform:scale(0.9)}
+.project_manage .nav_list .nav_list_item img{width:50%}
+.project_manage .nav_list .nav_list_item p{color:#fff; font-size:18px;}
+
+.header .col {
+    background-color: #bee9e9;
+}
+
+.col {
+    border: solid 1px #9bd9e9;
+    border-bottom-style: none;
+    border-right-style: none;
+}
+
+.col:last-child {
+    border-right: solid 1px #9bd9e9;
+}
+
+.row:last-child .col {
+    border-bottom: solid 1px #9bd9e9;
+}
+
+
+legend {
+    color: #9bd9e9;
+    font-weight: 800;
+    background: #f7f7f7;
+    font-size: 14px;
+    padding-left: 15px;
+}

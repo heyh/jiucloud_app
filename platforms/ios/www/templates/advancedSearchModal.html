@@ -1,0 +1,37 @@
+<ion-modal-view class="">
+    <ion-header-bar class="bar bar-header bar-stable">
+      <button class="button button-clear"><span class="positive">高级搜索</span></button>
+      <h1 class="title"></h1>
+      <button class="button button-clear" ng-click="closeAdvancedSearchModal()"><i style="color:#999" class="icon ion-android-cancel"></i></button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+          <label class="item item-icon-right" ng-click="openProjectModal()">
+              <span class="padding-right">工程名称</span>
+              <span class="item-note">{{pageData.advancedSearchData.projectText||'请选择工程'}}</span>
+              <input type="hidden" data_key="pageData.advancedSearchData.projectName" ng-model="pageData.fieldData.projectName">
+              <i class="icon ion-ios-arrow-right"></i>
+          </label>
+          <label class="item item-icon-right" ng-click="openCostsTypeModal()">
+              <span class="padding-right">费用类型</span>
+              <span class="item-note" data_key="pageData.advancedSearchData.costType">{{pageData.advancedSearchData.costType||'请选择费用'}}</span>
+              <input type="hidden" data_key="pageData.advancedSearchData.nid" ng-model="pageData.advancedSearchData.nid">
+              <i class="icon ion-ios-arrow-right"></i>
+          </label>
+          <label class="item item-icon-right" ng-click="chooseDate($event,1)">
+              <span>开始时间</span>
+              <span class="item-note" data_key="pageData.advancedSearchData.startTime" data_name="开始时间" needValidate required ng-model="pageData.advancedSearchData.startTime">{{pageData.advancedSearchData.startTime | date : 'yyyy-MM-dd'}}</span>
+              <i class="icon ion-ios-timer-outline calm" style="font-size:21px"></i>
+          </label>
+          <label class="item item-icon-right" ng-click="chooseDate($event,2)">
+              <span>结束时间</span>
+              <span class="item-note" data_key="pageData.advancedSearchData.endTime" data_name="结束时间" needValidate required ng-model="pageData.advancedSearchData.endTime">{{pageData.advancedSearchData.endTime | date : 'yyyy-MM-dd'}}</span>
+              <i class="icon ion-ios-timer-outline calm" style="font-size:21px"></i>
+          </label>
+        </div>
+        <div class="button button-full button-positive"  ng-click="advancedSearchFieldDatas()">搜索</div>
+
+
+    </ion-content>
+  </ion-modal-view>
+

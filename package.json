@@ -1,0 +1,43 @@
+{
+  "name": "jiucloud_app",
+  "version": "1.1.1",
+  "description": "jiucloud_app: An Ionic project",
+  "dependencies": {
+    "gulp": "^3.5.6",
+    "gulp-sass": "^2.0.4",
+    "gulp-concat": "^2.2.0",
+    "gulp-minify-css": "^0.3.0",
+    "gulp-rename": "^1.2.0"
+  },
+  "devDependencies": {
+    "bower": "^1.3.3",
+    "gulp-util": "^2.2.14",
+    "shelljs": "^0.3.0"
+  },
+  "cordovaPlugins": [
+    "cordova-plugin-device",
+    "cordova-plugin-console",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-statusbar",
+    "ionic-plugin-keyboard",
+    {
+      "locator": "https://github.com/wymsee/cordova-imagePicker.git",
+      "id": "cordova-plugin-image-picker"
+    },
+    {
+      "locator": "/Users/heyh/Desktop/com.ht.quicklook",
+      "id": "com.ht.quicklook"
+    },
+    "cordova-plugin-camera",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-file-transfer",
+    "cordova-plugin-app-event",
+    "cordova-plugin-appavailability",
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-screen-orientation"
+  ],
+  "cordovaPlatforms": [
+    "ios",
+    "android"
+  ]
+}

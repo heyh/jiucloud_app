@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="text/html;charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+
+    <!--
+       IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+      <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+    <!--jquery-->
+    <script src="lib/jQuery/jquery.js"></script>
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <!--angular translate-->
+    <script src="lib/ionic/js/angular/angular-translate.js"></script>
+    <script src="lib/ionic/js/angular/angular-translate-loader-static-files.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="cordova.js"></script>
+
+    <!--underscore.js-->
+    <script src="lib/underscore/underscore-min.js"></script>
+
+    <!--氿上云-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="css/wechat.css">
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+
+    <!-- Common js-->
+    <script src="js/config/BaseConfig.js"></script>
+    <script src="js/config/RouteConfig.js"></script>
+    <script src="js/config/HttpConfig.js"></script>
+    <script src="js/common/http.js"></script>
+    <script src="js/common/ConfigUtil.js"></script>
+    <script src="js/common/FileUtil.js"></script>
+    <script src="js/common/PushUtil.js"></script>
+    <script src="js/common/LocalNotificationUtil.js"></script>
+    <script src="js/common/localStorage.js"></script>
+
+    <!--controllers-->
+    <script src="js/controller/IndexController.js"></script>
+    <script src="js/controller/LoginController.js"></script>
+    <script src="js/controller/ProjectManageController.js"></script>
+    <script src="js/controller/DataCollectController.js"></script>
+    <script src="js/controller/DataDetailsController.js"></script>
+    <script src="js/controller/DataAddController.js"></script>
+    <script src="js/controller/DataEditController.js"></script>
+    <script src="js/controller/ApprovalController.js"></script>
+    <script src="js/controller/ApprovalDetailsController.js"></script>
+    <script src="js/controller/MyApprovalProcessController.js"></script>
+    <script src="js/controller/MyApprovalDetailsController.js"></script>
+    <script src="js/controller/MessageController.js"></script>
+    <script src="js/controller/SysSetController.js"></script>
+    <script src="js/controller/ProjectPriceController.js"></script>
+    <script src="js/controller/ProjectAllInfoController.js"></script>
+    <script src="js/controller/ProjectDataController.js"></script>
+    <script src="js/controller/DiscussController.js"></script>
+    <script src="js/controller/OutStorageController.js"></script>
+
+
+    <!--service-->
+    <script src="js/service/UserDeviceRelServie.js"></script>
+    <script src="js/service/LoginService.js"></script>
+    <script src="js/service/ProjectManageService.js"></script>
+    <script src="js/service/DataCollectService.js"></script>
+    <script src="js/service/DataDetailsService.js"></script>
+    <script src="js/service/DataAddService.js"></script>
+    <script src="js/service/DataEditService.js"></script>
+    <script src="js/service/ApprovalService.js"></script>
+    <script src="js/service/ApprovalDetailsService.js"></script>
+    <script src="js/service/MyApprovalProcessService.js"></script>
+    <script src="js/service/MyApprovalDetailsService.js"></script>
+    <script src="js/service/MessageService.js"></script>
+    <script src="js/service/SysSetService.js"></script>
+    <script src="js/service/ProjectPriceService.js"></script>
+    <script src="js/service/ProjectAllInfoService.js"></script>
+    <script src="js/service/ProjectDataService.js"></script>
+    <script src="js/service/DiscussService.js"></script>
+    <script src="js/service/OutStorageService.js"></script>
+
+
+</head>
+
+<body ng-app="starter" class="indexPage clearfix platform-android platform-cordova platform-webview" ng-controller="actionSheetMenu">
+<ion-nav-view>
+    <ion-tabs class="tabs-icon-top tabs-color-active-positive" ng-class="{'tabs-item-hide':$root.hideTabs}">
+        <ion-tab title="首页" icon-on="ion-ios-home" icon-off="ion-ios-home-outline" href="#/projectManage">
+        </ion-tab>
+        <ion-tab title="消息" icon-on="ion-ios-chatboxes" icon-off="ion-ios-chatboxes-outline" href="#/message">
+        </ion-tab>
+        <ion-tab title="设置" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline" href="#/sysSet">
+        </ion-tab>
+    </ion-tabs>
+</ion-nav-view>
+</body>
+</html>

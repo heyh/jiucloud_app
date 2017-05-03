@@ -1,0 +1,64 @@
+{
+  "taskTypeConfig": {
+    "data_key": "taskType",
+    "config": [
+      {
+        "data_id": "1",
+        "data_value": "病历"
+      },
+      {
+        "data_id": "2",
+        "data_value": "体检报告"
+      }
+    ]
+  },
+  "translateTypeConfig": {
+    "data_key": "translateType",
+    "config": [
+      {
+        "data_id": "1",
+        "data_value": "笔译"
+      },
+      {
+        "data_id": "2",
+        "data_value": "口译"
+      }
+    ]
+  },
+  "competitorConfig": {
+    "data_key": "competitorNum",
+    "config": [
+      {
+        "data_id": "1",
+        "data_value": "1"
+      },
+      {
+        "data_id": "2",
+        "data_value": "2"
+      }
+    ]
+  },
+  "priceLevelConfig": {
+    "data_key": "priceLevel",
+    "config": [
+      {
+        "data_id": "1",
+        "data_value": "100-500"
+      },
+      {
+        "data_id": "2",
+        "data_value": "500-1000"
+      }
+    ]
+  },
+  "languageConfig": [
+    {
+      "name": "简体中文",
+      "data_id": "zh"
+    },
+    {
+      "name": "English",
+      "data_id": "en"
+    }
+  ]
+}
