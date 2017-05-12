@@ -20,12 +20,16 @@
                 <span class="item-note">{{fieldData.costType}}</span>
             </label>
             <label class="item">
-                <span>标段</span>
+                <span>标段(属性)</span>
                 <span class="item-note">{{fieldData.sectionName}}</span>
             </label>
             <label class="item">
                 <span>名称</span>
                 <span class="item-note">{{fieldData.dataName}}</span>
+            </label>
+            <label class="item">
+                <span>规格型号(设施名称)</span>
+                <span class="item-note">{{fieldData.specifications}}</span>
             </label>
         </div>
         <div class="list" ng-if="pageData.type == 'data'">
@@ -51,10 +55,6 @@
                 <span class="item-note" ng-if="fieldData.itemCode.substring(0, 3) == '700' && !pageData.hasOnlyReadRight700 && !pageData.hasReadEditRight700">***</span>
 
             </label>
-            <label class="item">
-                <span>规格型号</span>
-                <span class="item-note">{{fieldData.specifications}}</span>
-            </label>
             <label class="item" ng-if="fieldData.itemCode.substring(0,3)== '700'">
                 <span>供应商</span>
                 <span class="item-note">{{fieldData.supplier}}</span>
@@ -62,7 +62,7 @@
         </div>
         <div class="list">
             <label class="item">
-                <span>备注说明</span>
+                <span>备注(特征)</span>
                 <span class="item-note">{{fieldData.remark}}</span>
             </label>
         </div>

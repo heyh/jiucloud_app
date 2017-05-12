@@ -32,20 +32,20 @@
 
             <div class="row header">
                 <div class="col col-40">工程名称</div>
-                <div class="col col-20">标段</div>
+                <div class="col col-20">标段(属性)</div>
                 <div class="col col-20">类型</div>
                 <div class="col col-40">名称</div>
+                <div class="col col-20">规格型号(设施名称)</div>
                 <div class="col col-20" ng-if="pageData.type == 'data'">单位</div>
                 <div class="col col-20" ng-if="pageData.type == 'data'">单价</div>
                 <div class="col col-20" ng-if="pageData.type == 'data'">数量</div>
                 <div class="col col-20" ng-if="pageData.type == 'data'">金额</div>
-                <div class="col col-20">规格类型</div>
                 <div class="col col-20">供应商</div>
                 <div class="col col-20">操作人</div>
                 <div class="col col-40">入库时间</div>
                 <div class="col col-20">审批状态</div>
                 <div class="col col-20">当前审批人</div>
-                <div class="col col-40">备注</div>
+                <div class="col col-40">备注(特征)</div>
                 <div class="col col-40">操作</div>
             </div>
             <div class="row" ng-repeat="fieldData in pageData.fieldDataList">
