@@ -16,6 +16,10 @@
                 <input type="hidden" data_key="pageData.fieldData.projectName" ng-model="pageData.fieldData.projectName">
                 <i class="icon ion-ios-arrow-right"></i>
             </label>
+            <label class="item item-input">
+                <span class="padding-right">规格型号(设施名称)</span>
+                <input class="text-right" type="text" placeholder="请输入规格型号(设施名称)" data_key="pageData.fieldData.specifications" ng-model="pageData.fieldData.specifications"/>
+            </label>
             <label class="item item-icon-right" ng-click="openCostsTypeModal()">
                 <span class="padding-right" ng-if="pageData.type == 'data'">费用类型</span>
                 <span class="padding-right" ng-if="pageData.type == 'doc'">资料类型</span>
@@ -23,19 +27,13 @@
                 <input type="hidden" data_key="pageData.fieldData.nid" ng-model="pageData.fieldData.nid">
                 <i class="icon ion-ios-arrow-right"></i>
             </label>
-            <label class="item item-icon-right" ng-click="openSectionModal()">
-                <span class="padding-right">标段(属性)</span>
-                <span class="item-note">{{pageData.fieldData.sectionName||'请选择标段(属性)'}}</span>
-                <input type="hidden" data_key="pageData.fieldData.section" ng-model="pageData.fieldData.section">
-                <i class="icon ion-ios-arrow-right"></i>
-            </label>
             <label class="item item-input">
                 <span class="padding-right">名称</span>
                 <input class="text-right" type="text" placeholder="请输入名称" data_key="pageData.fieldData.dataName" ng-model="pageData.fieldData.dataName"/>
             </label>
-            <label class="item item-input">
-                <span class="padding-right">规格型号(设施名称)</span>
-                <input class="text-right" type="text" placeholder="请输入规格型号(设施名称)" data_key="pageData.fieldData.specifications" ng-model="pageData.fieldData.specifications"/>
+            <label class="item item-input mark_ins">
+                <span class="padding-right">备注(特征)</span>
+                <textarea class="text-right" style="padding-right:24px;" placeholder="请输入备注(特征)" rows="5"  data_key="pageData.fieldData.remark" ng-model="pageData.fieldData.remark"></textarea>
             </label>
         </div>
         <div class="list" ng-if="pageData.type == 'data'">
@@ -67,9 +65,11 @@
             </label>
         </div>
         <div class="list">
-            <label class="item item-input mark_ins">
-                <span class="padding-right">备注(特征)</span>
-                <textarea class="text-right" style="padding-right:24px;" placeholder="请输入备注(特征)" rows="5"  data_key="pageData.fieldData.remark" ng-model="pageData.fieldData.remark"></textarea>
+            <label class="item item-icon-right" ng-click="openSectionModal()">
+                <span class="padding-right">标段(属性)</span>
+                <span class="item-note">{{pageData.fieldData.sectionName||'请选择标段(属性)'}}</span>
+                <input type="hidden" data_key="pageData.fieldData.section" ng-model="pageData.fieldData.section">
+                <i class="icon ion-ios-arrow-right"></i>
             </label>
         </div>
         <div class="list">
@@ -80,6 +80,7 @@
                 </label>
             </label>
         </div>
+
         <div class="list infoPreview">
             <dl class="takePic">
                 <dt>附件</dt>

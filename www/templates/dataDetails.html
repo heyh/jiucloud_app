@@ -15,23 +15,25 @@
                 <span class="item-note">{{fieldData.projectName}}</span>
             </label>
             <label class="item">
+                <span>规格型号(设施名称)</span>
+                <span class="item-note">{{fieldData.specifications}}</span>
+            </label>
+            <label class="item">
                 <span ng-if="pageData.type == 'data'">费用类型</span>
                 <span ng-if="pageData.type == 'doc'">资料类型</span>
                 <span class="item-note">{{fieldData.costType}}</span>
             </label>
-            <label class="item">
-                <span>标段(属性)</span>
-                <span class="item-note">{{fieldData.sectionName}}</span>
-            </label>
+
             <label class="item">
                 <span>名称</span>
                 <span class="item-note">{{fieldData.dataName}}</span>
             </label>
             <label class="item">
-                <span>规格型号(设施名称)</span>
-                <span class="item-note">{{fieldData.specifications}}</span>
+                <span>备注(特征)</span>
+                <span class="item-note">{{fieldData.remark}}</span>
             </label>
         </div>
+
         <div class="list" ng-if="pageData.type == 'data'">
             <label class="item">
                 <span>单位</span>
@@ -62,8 +64,8 @@
         </div>
         <div class="list">
             <label class="item">
-                <span>备注(特征)</span>
-                <span class="item-note">{{fieldData.remark}}</span>
+                <span>标段(属性)</span>
+                <span class="item-note">{{fieldData.sectionName}}</span>
             </label>
         </div>
         <div class="list">
