@@ -262,43 +262,43 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                 companyName: companyName,
                 needApproved: needApproved
             });
-
-            if(fieldData.projectName.trim() == '') {
+            debugger
+            if(fieldData.projectName == undefined || fieldData.projectName == '') {
                 $ionicLoading.show({
                     template: '工程名称不能为空',
                     duration: reqConfig.loadingDuration
                 });
                 return false;
             }
-            if(fieldData.specifications.trim() == '' && $scope.pageData.fieldData.itemCode.substring(0, 3) == '700') {
+            if(fieldData.specifications == undefined || fieldData.specifications == '' && $scope.pageData.fieldData.itemCode.substring(0, 3) == '700') {
                 $ionicLoading.show({
                     template: '规格(设施名)',
                     duration: reqConfig.loadingDuration
                 });
                 return false;
             }
-            if(fieldData.nid.trim() == '') {
+            if(fieldData.nid == undefined || fieldData.nid == '') {
                 $ionicLoading.show({
                     template: '费用类型不能为空',
                     duration: reqConfig.loadingDuration
                 });
                 return false;
             }
-            if(fieldData.dataName.trim() == '') {
+            if(fieldData.dataName == undefined || fieldData.dataName == '') {
                 $ionicLoading.show({
                     template: '名称不能为空',
                     duration: reqConfig.loadingDuration
                 });
                 return false;
             }
-            if(fieldData.unit.trim() == '') {
+            if(fieldData.unit == undefined || fieldData.unit == '') {
                 $ionicLoading.show({
                     template: '单位不能为空',
                     duration: reqConfig.loadingDuration
                 });
                 return false;
             }
-            if(fieldData.count.trim() == '') {
+            if(fieldData.count == undefined || fieldData.count == '') {
                 $ionicLoading.show({
                     template: '数量不能为空',
                     duration: reqConfig.loadingDuration
