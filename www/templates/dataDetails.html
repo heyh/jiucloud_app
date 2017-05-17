@@ -15,7 +15,7 @@
                 <span class="item-note">{{fieldData.projectName}}</span>
             </label>
             <label class="item">
-                <span>规格型号(设施名称)</span>
+                <span>规格(设施名)</span>
                 <span class="item-note">{{fieldData.specifications}}</span>
             </label>
             <label class="item">
@@ -57,7 +57,7 @@
                 <span class="item-note" ng-if="fieldData.itemCode.substring(0, 3) == '700' && !pageData.hasOnlyReadRight700 && !pageData.hasReadEditRight700">***</span>
 
             </label>
-            <label class="item" ng-if="fieldData.itemCode.substring(0,3)== '700'">
+            <label class="item" ng-if="fieldData.itemCode.substring(0,3)== '800'">
                 <span>供应商</span>
                 <span class="item-note">{{fieldData.supplier}}</span>
             </label>

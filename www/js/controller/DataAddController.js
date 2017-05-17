@@ -263,6 +263,49 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                 needApproved: needApproved
             });
 
+            if(fieldData.projectName.trim() == '') {
+                $ionicLoading.show({
+                    template: '工程名称不能为空',
+                    duration: reqConfig.loadingDuration
+                });
+                return false;
+            }
+            if(fieldData.specifications.trim() == '' && $scope.pageData.fieldData.itemCode.substring(0, 3) == '700') {
+                $ionicLoading.show({
+                    template: '规格(设施名)',
+                    duration: reqConfig.loadingDuration
+                });
+                return false;
+            }
+            if(fieldData.nid.trim() == '') {
+                $ionicLoading.show({
+                    template: '费用类型不能为空',
+                    duration: reqConfig.loadingDuration
+                });
+                return false;
+            }
+            if(fieldData.dataName.trim() == '') {
+                $ionicLoading.show({
+                    template: '名称不能为空',
+                    duration: reqConfig.loadingDuration
+                });
+                return false;
+            }
+            if(fieldData.unit.trim() == '') {
+                $ionicLoading.show({
+                    template: '单位不能为空',
+                    duration: reqConfig.loadingDuration
+                });
+                return false;
+            }
+            if(fieldData.count.trim() == '') {
+                $ionicLoading.show({
+                    template: '数量不能为空',
+                    duration: reqConfig.loadingDuration
+                });
+                return false;
+            }
+
             DataAddService.addData(fieldData).then(function (data) {
                 if($scope.pageData.imageList.length > 0) {
                     DataAddService.uploadFiles($scope.pageData.imageList, {mid: data.mid}).then(function(result) {

@@ -17,7 +17,7 @@
                 <i class="icon ion-ios-arrow-right"></i>
             </label>
             <label class="item item-input">
-                <span class="padding-right">规格型号(设施名称)</span>
+                <span class="padding-right">规格(设施名)</span>
                 <input class="text-right" type="text" placeholder="请输入规格型号(设施名称)" data_key="pageData.fieldData.specifications" ng-model="pageData.fieldData.specifications"/>
             </label>
             <label class="item item-icon-right" ng-click="openCostsTypeModal()">
@@ -59,7 +59,7 @@
                 <!--<span class="padding-right">金额</span>-->
                 <!--<span class="item-note" style="padding-right: 8px">{{pageData.fieldData.money||'0.00'|currency:'¥'}}</span>-->
             <!--</label>-->
-            <label class="item item-input" ng-if="pageData.fieldData.itemCode != null && pageData.fieldData.itemCode != '' && pageData.fieldData.itemCode.substring(0,3) == '700' ">
+            <label class="item item-input" ng-if="pageData.fieldData.itemCode != null && pageData.fieldData.itemCode != '' && pageData.fieldData.itemCode.substring(0,3) == '800' ">
                 <span class="padding-right">供应商</span>
                 <input class="text-right" type="text" placeholder="请输入供应商信息" data_key="pageData.fieldData.supplier" ng-model="pageData.fieldData.supplier"/>
             </label>
