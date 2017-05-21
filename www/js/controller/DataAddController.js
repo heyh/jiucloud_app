@@ -265,43 +265,43 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
             debugger
             if(fieldData.projectName == undefined || fieldData.projectName == '') {
                 $ionicLoading.show({
-                    template: '工程名称不能为空',
-                    duration: reqConfig.loadingDuration
+                    template: '您工程名称未填写',
+                    duration: 3000
                 });
                 return false;
             }
             if(fieldData.specifications == undefined || fieldData.specifications == '' && $scope.pageData.fieldData.itemCode.substring(0, 3) == '700') {
                 $ionicLoading.show({
-                    template: '规格(设施名)',
-                    duration: reqConfig.loadingDuration
+                    template: '你规格(设施名)未填写',
+                    duration: 3000
                 });
                 return false;
             }
             if(fieldData.nid == undefined || fieldData.nid == '') {
                 $ionicLoading.show({
-                    template: '费用类型不能为空',
-                    duration: reqConfig.loadingDuration
+                    template: '您费用类型未填写',
+                    duration: 3000
                 });
                 return false;
             }
             if(fieldData.dataName == undefined || fieldData.dataName == '') {
                 $ionicLoading.show({
-                    template: '名称不能为空',
-                    duration: reqConfig.loadingDuration
+                    template: '您名称不能未填写',
+                    duration: 3000
                 });
                 return false;
             }
             if(fieldData.unit == undefined || fieldData.unit == '') {
                 $ionicLoading.show({
-                    template: '单位不能为空',
-                    duration: reqConfig.loadingDuration
+                    template: '您单位未填写',
+                    duration: 3000
                 });
                 return false;
             }
             if(fieldData.count == undefined || fieldData.count == '') {
                 $ionicLoading.show({
-                    template: '数量不能为空',
-                    duration: reqConfig.loadingDuration
+                    template: '您数量未填写',
+                    duration: 3000
                 });
                 return false;
             }
