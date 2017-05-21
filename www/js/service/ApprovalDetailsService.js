@@ -6,10 +6,10 @@ angular.module('ApprovalDetails.services', ['util.http', 'util.localStorage'])
     .service('ApprovalDetailsService', function ($window, $q, http, localStorage, $ionicPopup, $ionicLoading, $translate, reqConfig, $interval, $log, $state, $timeout,
                                              $ionicViewSwitcher, configUtil) {
         return {
-            approvedField: function (id, approvedState, approvedOption) {
+            approvedField: function (id, approvedState, approvedOption, currentApprovedUser) {
                 var deferred = $q.defer();
                 var promise = deferred.promise;
-                var params = {id: id, approvedState: approvedState, approvedOption: approvedOption};
+                var params = {id: id, approvedState: approvedState, approvedOption: approvedOption, currentApprovedUser: currentApprovedUser};
                 http.request('/api/securi_approvedField', params)
                     .success(function (data) {
                         if (data.rspCode == '0000') {

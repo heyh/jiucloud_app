@@ -77,8 +77,14 @@
             <label class="item item-checkbox item-checkbox-right">
                 <span>需要审批</span>
                 <label class="checkbox checkbox-calm">
-                    <input type="checkbox" id="needApproved">
+                    <input type="checkbox" id="needApproved" ng-click="needApproved()">
                 </label>
+            </label>
+            <label class="item item-input item-select" style="display: none;" id="currentApprovedUserDiv">
+                <span>审批人选择</span>
+                <select data_key="{{pageData.fieldData.currentApprovedUser}}" ng-model="pageData.fieldData.currentApprovedUser" class="checkbox-calm">
+                    <option value="{{approveUser.id}}" ng-repeat="approveUser in pageData.approveUserList">{{approveUser.username}}</option>
+                </select>
             </label>
         </div>
 

@@ -4,13 +4,16 @@
 
 
 angular.module('approvalDetails.controllers', ['ApprovalDetails.services'])
-    .controller('ApprovalDetailsCtrl', function (ApprovalDetailsService, DataDetailsService, $scope, $state, $ionicModal, $ionicLoading, reqConfig, $ionicViewSwitcher, $stateParams, $ionicActionSheet, fileUtil, $ionicPlatform) {
+    .controller('ApprovalDetailsCtrl', function (ApprovalDetailsService, DataDetailsService, DataAddService, $scope, $ionicPopup, localStorage, $state, $ionicModal, $ionicLoading, reqConfig, $ionicViewSwitcher, $stateParams, $ionicActionSheet, fileUtil, $ionicPlatform) {
 
         $scope.goBack = function () {
             $ionicViewSwitcher.nextDirection('back');
             $state.go("approval");
         };
 
+        var uid = JSON.parse(localStorage.getUser())['uid'];
+        var cid = JSON.parse(localStorage.getItem('company'))['cid'];
+        $scope.ret = {currentApprovedUser: ''};
         $(function () {
             $scope._isIOS = $ionicPlatform.is('ios');
             $scope.approvalFieldData = $stateParams.approvalFieldData;
@@ -38,6 +41,10 @@ angular.module('approvalDetails.controllers', ['ApprovalDetails.services'])
         $scope.$on('$ionicView.afterEnter', function () {
             DataDetailsService.getFileList($scope.approvalFieldData.id).then(function(data) {
                 $scope.fileList = data.fileList;
+            });
+
+            DataAddService.chooseApprove(cid, uid).then(function (data) {
+                $scope.approveUserList = data.approveUserList;
             });
         });
 
@@ -93,7 +100,8 @@ angular.module('approvalDetails.controllers', ['ApprovalDetails.services'])
                             $scope._approvedField($scope.approvalFieldData.id, 2, '');
                             break;
                         case 1 :
-                            $scope._approvedField($scope.approvalFieldData.id, 8, '');
+                            $scope.chooseCurrentApprovedUser();
+                            // $scope._approvedField($scope.approvalFieldData.id, 8, '');
                             break;
                         case 2 :
                             $scope._approvedField($scope.approvalFieldData.id, 9, '');
@@ -106,8 +114,32 @@ angular.module('approvalDetails.controllers', ['ApprovalDetails.services'])
             });
         };
 
-        $scope._approvedField = function(id, approvedState, approvedOption) {
-            ApprovalDetailsService.approvedField(id, approvedState, approvedOption).then(function(data) {
+        $scope.chooseCurrentApprovedUser = function () {
+            var str = "<div class='list'>";
+            angular.forEach($scope.approveUserList, function (user) {
+               str += "<ion-radio radio-color='balanced' ng-model='ret.currentApprovedUser' ng-value=" + user.id + ">" + user.username+ "</ion-radio>";
+            });
+            str += "</div>"
+            var myPopup = $ionicPopup.show({
+                template: str,
+                title: '审批人选择',
+                scope: $scope,
+                buttons: [
+                    { text: '取消' },
+                    {
+                        text: '<b>确认</b>',
+                        type: 'button-positive'
+                    },
+                ]
+            });
+            myPopup.then(function(res) {
+                console.log('Tapped!', $scope.ret.currentApprovedUser);
+                $scope._approvedField($scope.approvalFieldData.id, 8, '', $scope.ret.currentApprovedUser);
+            });
+        }
+
+        $scope._approvedField = function(id, approvedState, approvedOption, currentApprovedUser) {
+            ApprovalDetailsService.approvedField(id, approvedState, approvedOption, currentApprovedUser).then(function(data) {
                 $ionicLoading.show({
                     template: '审批成功',
                     duration: reqConfig.loadingDuration

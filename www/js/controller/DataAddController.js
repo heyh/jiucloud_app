@@ -24,7 +24,8 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
             unitParams: [],
             imageList: [],
             sectionInfos: [],
-            supInfos: []
+            supInfos: [],
+            approveUserList: []
         };
 
         $scope.maxFieldData = '';
@@ -242,6 +243,20 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
         $scope.myFilter = function (item) {
             return item.parentCode != '';
         }
+
+        $scope.needApproved = function () {
+            // debugger;
+            var needApproved = $("ion-view[nav-view=active] #needApproved").prop("checked");
+            if (needApproved) {
+                DataAddService.chooseApprove(cid, uid).then(function (data) {
+                    $scope.pageData.approveUserList = data.approveUserList;
+                });
+                $('#currentApprovedUserDiv').show();
+            } else {
+                $('#currentApprovedUserDiv').hide();
+            }
+        }
+
 
         /**
          * 提交数据
