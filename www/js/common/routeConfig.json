@@ -42,6 +42,25 @@
     "cache": false,
     "controller": "DataAddCtrl"
   },
+  "billAdd": {
+    "url": "/billAdd",
+    "templateUrl": "templates/billAdd.html",
+    "params": {
+      "type": null
+    },
+    "cache": false,
+    "controller": "DataAddCtrl"
+  },
+  "materialAdd": {
+    "url": "/materialAdd",
+    "templateUrl": "templates/materialAdd.html",
+    "params": {
+      "type": null
+    },
+    "cache": false,
+    "controller": "DataAddCtrl"
+  },
+
   "dataEdit": {
     "url": "/dataEdit",
     "templateUrl": "templates/dataEdit.html",

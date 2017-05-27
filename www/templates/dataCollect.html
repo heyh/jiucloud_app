@@ -6,6 +6,8 @@
         </div>
         <h1 class="title" ng-if="pageData.type == 'data'">项目数据</h1>
         <h1 class="title" ng-if="pageData.type == 'doc'">项目资料</h1>
+        <h1 class="title" ng-if="pageData.type == 'bill'">清单项量</h1>
+        <h1 class="title" ng-if="pageData.type == 'material'">项目材料</h1>
     </ion-header-bar>
     <!--主内容区域栏目 开始-->
     <ion-content class="has-header has-tabs" padding="false">
@@ -29,87 +31,151 @@
         <ion-scroll zooming="true" direction="xy" style="height: {{h}}px;" >
 
             <ion-refresher pulling-text="下拉刷新" pulling-icon="ion-load-a" refreshing-text="刷新成功" refreshing-icon="ion-ios-checkmark-outline" on-refresh="refreshFieldDatas()"></ion-refresher>
-
+            <div ng-if="pageData.type == 'data' || pageData.type == 'doc'">
             <div class="row header">
                 <div class="col col-40">工程名称</div>
-                <div class="col col-20">规格型号(设施名称)</div>
-                <div class="col col-20">类型</div>
+                <div class="col col-20">标段</div>
+                <div class="col col-20">费用类型</div>
                 <div class="col col-40">名称</div>
-                <div class="col col-40">备注(特征)</div>
                 <div class="col col-20" ng-if="pageData.type == 'data'">单位</div>
                 <div class="col col-20" ng-if="pageData.type == 'data'">单价</div>
                 <div class="col col-20" ng-if="pageData.type == 'data'">数量</div>
                 <div class="col col-20" ng-if="pageData.type == 'data'">金额</div>
-                <div class="col col-20">供应商</div>
-                <div class="col col-20">标段(属性)</div>
+                <div class="col col-20">规格型号</div>
+                <div class="col col-40">备注</div>
                 <div class="col col-20">操作人</div>
-                <div class="col col-40">入库时间</div>
+                <div class="col col-40">录入时间</div>
                 <div class="col col-20">审批状态</div>
                 <div class="col col-20">当前审批人</div>
-
                 <div class="col col-40">操作</div>
             </div>
             <div class="row" ng-repeat="fieldData in pageData.fieldDataList">
-                <div ng-click="goDataDetails(fieldData)" ng-if="$odd" style="background-color:#f1f1f1" class="col col-40">{{fieldData.projectName}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$odd" style="background-color:#f1f1f1" class="col col-20">{{fieldData.specifications}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$odd" style="background-color:#f1f1f1" class="col col-20">{{fieldData.costType}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$odd" style="background-color:#f1f1f1" class="col col-40">{{fieldData.dataName}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$odd" style="background-color:#f1f1f1" class="col col-40">{{fieldData.remark}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" ng-if="$odd" style="background-color:#f1f1f1" class="col col-20">{{fieldData.unit}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" ng-if="$odd" style="background-color:#f1f1f1" class="col col-20" align="right">{{fieldData.price != '***' ? (fieldData.price | number:2) : '***'}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" ng-if="$odd" style="background-color:#f1f1f1" class="col col-20">{{fieldData.count}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" ng-if="$odd" style="background-color:#f1f1f1" class="col col-20" align="right">{{fieldData.money != '***' ? (fieldData.money | number:2) : '***'}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$odd" style="background-color:#f1f1f1" class="col col-20">{{fieldData.supplier}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$odd" style="background-color:#f1f1f1" class="col col-20">{{fieldData.sectionName}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$odd" style="background-color:#f1f1f1" class="col col-20">{{fieldData.uname}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$odd" style="background-color:#f1f1f1" class="col col-40">{{fieldData.creatTime}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if=" $odd && fieldData.needApproved == '' " style="background-color:#f1f1f1" class="col col-20">不需审批</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if=" $odd && fieldData.needApproved == '0' " style="background-color:#f1f1f1" class="col col-20">不需审批</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if=" $odd && fieldData.needApproved == '1' " style="background-color:#f1f1f1" class="col col-20"><span style="color: #ff0000">未审批</span></div>
-                <div ng-click="goDataDetails(fieldData)" ng-if=" $odd && fieldData.needApproved == '2' " style="background-color:#f1f1f1" class="col col-20">审批通过</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if=" $odd && fieldData.needApproved == '8' " style="background-color:#f1f1f1" class="col col-20"><span style="color: #ff0000">审批中</span></div>
-                <div ng-click="goDataDetails(fieldData)" ng-if=" $odd && fieldData.needApproved == '9' " style="background-color:#f1f1f1" class="col col-20"><span style="color: #ff0000">审批未通过</span></div>
+                <div ng-click="goDataDetails(fieldData)" class="col col-40">{{fieldData.projectName}}</div>
+                <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.sectionName}}</div>
+                <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.costType}}</div>
+                <div ng-click="goDataDetails(fieldData)" class="col col-40">{{fieldData.dataName}}</div>
+                <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.unit}}</div>
+                <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" class="col col-20" align="right">{{fieldData.price != '***' ? (fieldData.price | number:2) : '***'}}</div>
+                <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" class="col col-20">{{fieldData.count}}</div>
+                <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" class="col col-20" align="right">{{fieldData.money != '***' ? (fieldData.money | number:2) : '***'}}</div>
+                <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.specifications}}</div>
+                <div ng-click="goDataDetails(fieldData)" class="col col-40">{{fieldData.remark}}</div>
+                <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.uname}}</div>
+                <div ng-click="goDataDetails(fieldData)" class="col col-40">{{fieldData.creatTime}}</div>
+                <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved ==  '' " class="col col-20">不需审批</div>
+                <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '0' " class="col col-20">不需审批</div>
+                <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '1' " class="col col-20"><span style="color: #ff0000">未审批</span></div>
+                <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '2' " class="col col-20">审批通过</div>
+                <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '8' " class="col col-20"><span style="color: #ff0000">审批中</span></div>
+                <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '9' " class="col col-20"><span style="color: #ff0000">审批未通过</span></div>
+                <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.currentApprovedUser}}</div>
 
-                <div ng-click="goDataDetails(fieldData)" ng-if="$odd" style="background-color:#f1f1f1" class="col col-20">{{fieldData.currentApprovedUser}}</div>
-
-                <div ng-if="$odd" style="background-color:#f1f1f1" class="col col-40">
-                    <!--<a ng-click="goDataDetails(fieldData)" class="button button-icon icon ion-ios-paper-outline"></a>-->
+                <div class="col col-40">
                     <a ng-click="goDataEdit(fieldData)" ng-show="canEdit(fieldData)" class="button button-icon icon ion-ios-compose-outline"></a>
                     <a ng-click="delData(fieldData)" ng-show="canEdit(fieldData)" class="button button-icon icon ion-ios-trash-outline"></a>
                     <a ng-click="goDiscuss(fieldData)" class="button button-icon icon icon ion-chatbubbles"></a>
                     <a ng-click="goOutStorage(fieldData)" ng-show="canOutStorage(fieldData)" class="button button-icon icon ion-log-out"></a>
                 </div>
+            </div>
+            </div>
 
+            <div ng-if="pageData.type == 'bill' ">
+                <div class="row header">
+                    <div class="col col-40">工程名称</div>
+                    <div class="col col-20">设施名称</div>
+                    <div class="col col-20">费用类型</div>
+                    <div class="col col-40">名称</div>
+                    <div class="col col-80">项目特征</div>
+                    <div class="col col-20">单位</div>
+                    <div class="col col-20">数量</div>
+                    <div class="col col-20">预算单价</div>
+                    <div class="col col-20">预算合计</div>
+                    <div class="col col-20">审计单价</div>
+                    <div class="col col-20">审计合计</div>
+                    <div class="col col-20">工程属性</div>
+                    <div class="col col-20">操作人</div>
+                    <div class="col col-40">录入时间</div>
+                    <div class="col col-20">审批状态</div>
+                    <div class="col col-20">当前审批人</div>
+                    <div class="col col-40">操作</div>
+                </div>
+                <div class="row" ng-repeat="fieldData in pageData.fieldDataList">
+                    <div ng-click="goDataDetails(fieldData)" class="col col-40">{{fieldData.projectName}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.specifications}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.costType}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-40">{{fieldData.dataName}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-80">{{fieldData.remark}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.unit}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.count}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20" align="right">{{fieldData.price_ys | number:2}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20" align="right">{{fieldData.money_ys | number:2}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20" align="right">{{fieldData.price_sj | number:2}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20" align="right">{{fieldData.money_sj | number:2}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.sectionName}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.uname}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-40">{{fieldData.creatTime}}</div>
+                    <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved ==  '' "  class="col col-20">不需审批</div>
+                    <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '0' " class="col col-20">不需审批</div>
+                    <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '1' " class="col col-20"><span style="color: #ff0000">未审批</span></div>
+                    <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '2' " class="col col-20">审批通过</div>
+                    <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '8' " class="col col-20"><span style="color: #ff0000">审批中</span></div>
+                    <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '9' " class="col col-20"><span style="color: #ff0000">审批未通过</span></div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.currentApprovedUser}}</div>
 
+                    <div class="col col-40">
+                        <a ng-click="goDataEdit(fieldData)" ng-show="canEdit(fieldData)" class="button button-icon icon ion-ios-compose-outline"></a>
+                        <a ng-click="delData(fieldData)" ng-show="canEdit(fieldData)" class="button button-icon icon ion-ios-trash-outline"></a>
+                        <a ng-click="goDiscuss(fieldData)" class="button button-icon icon icon ion-chatbubbles"></a>
+                        <a ng-click="goOutStorage(fieldData)" ng-show="canOutStorage(fieldData)" class="button button-icon icon ion-log-out"></a>
+                    </div>
+                </div>
+            </div>
 
-                <div ng-click="goDataDetails(fieldData)" ng-if="$even" style="background-color:#ffffff" class="col col-40">{{fieldData.projectName}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$even" style="background-color:#ffffff" class="col col-20">{{fieldData.specifications}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$even" style="background-color:#ffffff" class="col col-20">{{fieldData.costType}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$even" style="background-color:#ffffff" class="col col-40">{{fieldData.dataName}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$even" style="background-color:#ffffff" class="col col-40">{{fieldData.remark}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" ng-if="$even" style="background-color:#ffffff" class="col col-20">{{fieldData.unit}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" ng-if="$even" style="background-color:#ffffff" class="col col-20" align="right">{{fieldData.price != '***' ? (fieldData.price | number:2) : '***'}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" ng-if="$even" style="background-color:#ffffff" class="col col-20">{{fieldData.count}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" ng-if="$even" style="background-color:#ffffff" class="col col-20" align="right">{{fieldData.money != '***' ? (fieldData.money | number:2) : '***'}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$even" style="background-color:#ffffff" class="col col-20">{{fieldData.supplier}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$even" style="background-color:#ffffff" class="col col-20">{{fieldData.sectionName}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$even" style="background-color:#ffffff" class="col col-20">{{fieldData.uname}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if="$even" style="background-color:#ffffff" class="col col-40">{{fieldData.creatTime}}</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if=" $even && fieldData.needApproved == '' " style="background-color:#ffffff" class="col col-20">不需审批</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if=" $even && fieldData.needApproved == '0' " style="background-color:#ffffff" class="col col-20">不需审批</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if=" $even && fieldData.needApproved == '1' " style="background-color:#ffffff" class="col col-20"><span style="color: #ff0000">未审批</span></div>
-                <div ng-click="goDataDetails(fieldData)" ng-if=" $even && fieldData.needApproved == '2' " style="background-color:#ffffff" class="col col-20">审批通过</div>
-                <div ng-click="goDataDetails(fieldData)" ng-if=" $even && fieldData.needApproved == '8' " style="background-color:#ffffff" class="col col-20"><span style="color: #ff0000">审批中</span></div>
-                <div ng-click="goDataDetails(fieldData)" ng-if=" $even && fieldData.needApproved == '9' " style="background-color:#ffffff" class="col col-20"><span style="color: #ff0000">审批未通过</span></div>
+            <div ng-if="pageData.type == 'material' ">
+                <div class="row header">
+                    <div class="col col-40">工程名称</div>
+                    <div class="col col-20">费用类型</div>
+                    <div class="col col-40">材料名称</div>
+                    <div class="col col-20">单位</div>
+                    <div class="col col-20">数量</div>
+                    <div class="col col-20">单价</div>
+                    <div class="col col-20">金额</div>
+                    <div class="col col-20">规格型号</div>
+                    <div class="col col-20">供应商</div>
+                    <div class="col col-20">备注</div>
+                    <div class="col col-20">操作人</div>
+                    <div class="col col-40">录入时间</div>
+                    <div class="col col-20">审批状态</div>
+                    <div class="col col-20">当前审批人</div>
+                    <div class="col col-40">操作</div>
+                </div>
+                <div class="row" ng-repeat="fieldData in pageData.fieldDataList" ng-class="{even: !$even, odd: !$odd}">
+                    <div ng-click="goDataDetails(fieldData)" class="col col-40">{{fieldData.projectName}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.costType}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-40">{{fieldData.dataName}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.unit}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.count}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20" align="right">{{fieldData.price | number:2}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20" align="right">{{fieldData.money | number:2}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.specifications}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.supplier}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.remark}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.uname}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-40">{{fieldData.creatTime}}</div>
+                    <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved ==  '' "  class="col col-20">不需审批</div>
+                    <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '0' " class="col col-20">不需审批</div>
+                    <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '1' " class="col col-20"><span style="color: #ff0000">未审批</span></div>
+                    <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '2' " class="col col-20">审批通过</div>
+                    <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '8' " class="col col-20"><span style="color: #ff0000">审批中</span></div>
+                    <div ng-click="goDataDetails(fieldData)" ng-if="fieldData.needApproved == '9' " class="col col-20"><span style="color: #ff0000">审批未通过</span></div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.currentApprovedUser}}</div>
 
-                <div ng-click="goDataDetails(fieldData)" ng-if="$even" style="background-color:#ffffff" class="col col-20">{{fieldData.currentApprovedUser}}</div>
-
-                <div ng-if="$even" style="background-color:#ffffff" class="col col-40">
-                    <!--<a ng-click="goDataDetails(fieldData)" class="button button-icon icon ion-ios-paper-outline"></a>-->
-                    <a ng-click="goDataEdit(fieldData)" ng-show="canEdit(fieldData)" class="button button-icon icon ion-ios-compose-outline"></a>
-                    <a ng-click="delData(fieldData)" ng-show="canEdit(fieldData)" class="button button-icon icon ion-ios-trash-outline"></a>
-                    <a ng-click="goDiscuss(fieldData)" class="button button-icon icon icon ion-chatbubbles"></a>
-                    <a ng-click="goOutStorage(fieldData)" ng-show="canOutStorage(fieldData)" class="button button-icon icon ion-log-out"></a>
+                    <div class="col col-40">
+                        <a ng-click="goDataEdit(fieldData)" ng-show="canEdit(fieldData)" class="button button-icon icon ion-ios-compose-outline"></a>
+                        <a ng-click="delData(fieldData)" ng-show="canEdit(fieldData)" class="button button-icon icon ion-ios-trash-outline"></a>
+                        <a ng-click="goDiscuss(fieldData)" class="button button-icon icon icon ion-chatbubbles"></a>
+                        <a ng-click="goOutStorage(fieldData)" ng-show="canOutStorage(fieldData)" class="button button-icon icon ion-log-out"></a>
+                    </div>
                 </div>
             </div>
 

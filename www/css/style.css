@@ -147,3 +147,10 @@ legend {
     font-size: 14px;
     padding-left: 15px;
 }
+
+.odd {
+    background-color: #f1f1f1;
+}
+.even {
+    background-color: #ffffff;
+}

@@ -285,9 +285,9 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                 });
                 return false;
             }
-            if(fieldData.specifications == undefined || fieldData.specifications == '' && $scope.pageData.fieldData.itemCode.substring(0, 3) == '700') {
+            if(fieldData.specifications != undefined && fieldData.specifications != '' && $scope.pageData.fieldData.itemCode.substring(0, 3) == '700') {
                 $ionicLoading.show({
-                    template: '你规格(设施名)未填写',
+                    template: '你设施名称未填写',
                     duration: 3000
                 });
                 return false;
@@ -301,7 +301,7 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
             }
             if(fieldData.dataName == undefined || fieldData.dataName == '') {
                 $ionicLoading.show({
-                    template: '您名称不能未填写',
+                    template: '您名称未填写',
                     duration: 3000
                 });
                 return false;

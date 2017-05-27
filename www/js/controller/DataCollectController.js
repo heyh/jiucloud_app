@@ -222,14 +222,15 @@ angular.module('dataCollect.controllers', ['DataCollect.services'])
             /** 没有权限查看是隐藏 **/
             if (data.fieldDataList.length > 0) {
                 angular.forEach(data.fieldDataList, function (item) {
-                    if (pageData.hasOutRight && item.itemCode.substring(0, 3) == '800') {
+                    if (!pageData.hasOutRight && item.itemCode.substring(0, 3) == '800') {
                         item.price = '***';
-                    } else if(item.itemCode.substring(0, 3) == '700' && (pageData.hasOnlyReadRight || pageData.hasReadEditRight)) {
+                    } else if(item.itemCode.substring(0, 3) == '700' && !pageData.hasOnlyReadRight700 && !pageData.hasReadEditRight700) {
                         item.price = '***';
                     }
-                    //item.price = item.itemCode.substring(0, 3) != '700' || pageData.hasOnlyReadRight700 || pageData.hasReadEditRight700 ? item.price : '***';
                     item.money = item.price != '***' ? (item.count * item.price).toFixed(2) : '***';
-                    //item.money = '***';
+
+                    item.money_ys = item.price_ys != '' ? (item.count * item.price_ys).toFixed(2) : '0.00';
+                    item.money_sj = item.price_sj != '' ? (item.count * item.price_sj).toFixed(2) : '0.00';
                 });
             }
 
@@ -268,7 +269,14 @@ angular.module('dataCollect.controllers', ['DataCollect.services'])
          */
         $scope.goDataAdd = function () {
             $ionicViewSwitcher.nextDirection('forward');
-            $state.go('dataAdd', {type: $scope.pageData.type});
+            if ($scope.pageData.type == 'data' || $scope.pageData.type == 'doc') {
+                $state.go('dataAdd', {type: $scope.pageData.type});
+            } else if ($scope.pageData.type == 'bill') {
+                $state.go('billAdd', {type: $scope.pageData.type});
+            } else if ($scope.pageData.type == 'material') {
+                $state.go('materialAdd', {type: $scope.pageData.type});
+            }
+
         }
 
         /**
