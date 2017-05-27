@@ -33,6 +33,26 @@
     "cache": false,
     "controller": "DataDetailsCtrl"
   },
+  "billDetails": {
+    "url": "/billDetails",
+    "templateUrl": "templates/billDetails.html",
+    "params": {
+      "fieldData": null,
+      "type": null
+    },
+    "cache": false,
+    "controller": "DataDetailsCtrl"
+  },
+  "materialDetails": {
+    "url": "/materialDetails",
+    "templateUrl": "templates/materialDetails.html",
+    "params": {
+      "fieldData": null,
+      "type": null
+    },
+    "cache": false,
+    "controller": "DataDetailsCtrl"
+  },
   "dataAdd": {
     "url": "/dataAdd",
     "templateUrl": "templates/dataAdd.html",

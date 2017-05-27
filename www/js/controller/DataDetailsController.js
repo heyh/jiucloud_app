@@ -25,6 +25,8 @@ angular.module('dataDetails.controllers', ['DataDetails.services'])
             $scope.pageData.type = $stateParams.type;
             $scope.fieldData = $stateParams.fieldData;
             $scope.fieldData.money = (parseFloat($scope.fieldData.count) * parseFloat($scope.fieldData.price)).toFixed(2);
+            $scope.fieldData.money_ys = (parseFloat($scope.fieldData.count) * parseFloat($scope.fieldData.price_ys)).toFixed(2);
+            $scope.fieldData.money_sj = (parseFloat($scope.fieldData.count) * parseFloat($scope.fieldData.price_sj)).toFixed(2);
 
             var approvedStatusName = "";
             if ($scope.fieldData.needApproved == '0') {
