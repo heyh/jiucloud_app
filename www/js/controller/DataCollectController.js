@@ -291,7 +291,13 @@ angular.module('dataCollect.controllers', ['DataCollect.services'])
          */
         $scope.goDataEdit = function (fieldData) {
             $ionicViewSwitcher.nextDirection('forward');
-            $state.go('dataEdit', {fieldData: fieldData, type: $scope.pageData.type});
+            if ($scope.pageData.type == 'data' || $scope.pageData.type == 'doc') {
+                $state.go('dataEdit', {fieldData: fieldData, type: $scope.pageData.type});
+            } else if ($scope.pageData.type == 'bill') {
+                $state.go('billEdit', {fieldData: fieldData, type: $scope.pageData.type});
+            } else if ($scope.pageData.type == 'material') {
+                $state.go('materialEdit', {fieldData: fieldData, type: $scope.pageData.type});
+            }
         }
 
 

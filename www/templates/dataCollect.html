@@ -49,12 +49,12 @@
                 <div class="col col-20">当前审批人</div>
                 <div class="col col-40">操作</div>
             </div>
-            <div class="row" ng-repeat="fieldData in pageData.fieldDataList">
+            <div class="row" ng-repeat="fieldData in pageData.fieldDataList" ng-class="{even: !$even, odd: !$odd}">
                 <div ng-click="goDataDetails(fieldData)" class="col col-40">{{fieldData.projectName}}</div>
                 <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.sectionName}}</div>
                 <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.costType}}</div>
                 <div ng-click="goDataDetails(fieldData)" class="col col-40">{{fieldData.dataName}}</div>
-                <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.unit}}</div>
+                <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" class="col col-20">{{fieldData.unit}}</div>
                 <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" class="col col-20" align="right">{{fieldData.price != '***' ? (fieldData.price | number:2) : '***'}}</div>
                 <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" class="col col-20">{{fieldData.count}}</div>
                 <div ng-click="goDataDetails(fieldData)" ng-show="pageData.type == 'data'" class="col col-20" align="right">{{fieldData.money != '***' ? (fieldData.money | number:2) : '***'}}</div>
@@ -99,7 +99,7 @@
                     <div class="col col-20">当前审批人</div>
                     <div class="col col-40">操作</div>
                 </div>
-                <div class="row" ng-repeat="fieldData in pageData.fieldDataList">
+                <div class="row" ng-repeat="fieldData in pageData.fieldDataList" ng-class="{even: !$even, odd: !$odd}">
                     <div ng-click="goDataDetails(fieldData)" class="col col-40">{{fieldData.projectName}}</div>
                     <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.specifications}}</div>
                     <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.costType}}</div>

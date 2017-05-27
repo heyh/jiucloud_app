@@ -240,47 +240,50 @@ angular.module('dataEdit.controllers', ['DataEdit.services'])
                 needApproved: needApproved
             });
 
-            if(fieldData.projectName.trim() == '') {
+            if(fieldData.projectName == '') {
                 $ionicLoading.show({
                     template: '工程名称不能为空',
                     duration: reqConfig.loadingDuration
                 });
                 return false;
             }
-            if(fieldData.specifications.trim() == '' && $scope.pageData.fieldData.itemCode.substring(0, 3) == '700') {
+            if(fieldData.specifications == '' && $scope.pageData.fieldData.itemCode.substring(0, 3) == '700') {
                 $ionicLoading.show({
                     template: '规格(设施名)',
                     duration: reqConfig.loadingDuration
                 });
                 return false;
             }
-            if(fieldData.nid.trim() == '') {
+            if(fieldData.nid == '') {
                 $ionicLoading.show({
                     template: '费用类型不能为空',
                     duration: reqConfig.loadingDuration
                 });
                 return false;
             }
-            if(fieldData.dataName.trim() == '') {
+            if(fieldData.dataName == '') {
                 $ionicLoading.show({
                     template: '名称不能为空',
                     duration: reqConfig.loadingDuration
                 });
                 return false;
             }
-            if(fieldData.unit.trim() == '') {
-                $ionicLoading.show({
-                    template: '单位不能为空',
-                    duration: reqConfig.loadingDuration
-                });
-                return false;
-            }
-            if(fieldData.count.trim() == '') {
-                $ionicLoading.show({
-                    template: '数量不能为空',
-                    duration: reqConfig.loadingDuration
-                });
-                return false;
+
+            if ($scope.pageData.fieldData.itemCode.substring(0, 3) != '000') {
+                if(fieldData.unit == '') {
+                    $ionicLoading.show({
+                        template: '单位不能为空',
+                        duration: reqConfig.loadingDuration
+                    });
+                    return false;
+                }
+                if(fieldData.count == '') {
+                    $ionicLoading.show({
+                        template: '数量不能为空',
+                        duration: reqConfig.loadingDuration
+                    });
+                    return false;
+                }
             }
 
             DataEditService.editData(fieldData).success(function (data) {

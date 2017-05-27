@@ -285,7 +285,7 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                 });
                 return false;
             }
-            if(fieldData.specifications != undefined && fieldData.specifications != '' && $scope.pageData.fieldData.itemCode.substring(0, 3) == '700') {
+            if((fieldData.specifications == undefined || fieldData.specifications == '') && $scope.pageData.fieldData.itemCode.substring(0, 3) == '700') {
                 $ionicLoading.show({
                     template: '你设施名称未填写',
                     duration: 3000
@@ -306,20 +306,24 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                 });
                 return false;
             }
-            if(fieldData.unit == undefined || fieldData.unit == '') {
-                $ionicLoading.show({
-                    template: '您单位未填写',
-                    duration: 3000
-                });
-                return false;
+
+            if ($scope.pageData.fieldData.itemCode.substring(0, 3) != '000') {
+                if(fieldData.unit == undefined || fieldData.unit == '') {
+                    $ionicLoading.show({
+                        template: '您单位未填写',
+                        duration: 3000
+                    });
+                    return false;
+                }
+                if(fieldData.count == undefined || fieldData.count == '') {
+                    $ionicLoading.show({
+                        template: '您数量未填写',
+                        duration: 3000
+                    });
+                    return false;
+                }
             }
-            if(fieldData.count == undefined || fieldData.count == '') {
-                $ionicLoading.show({
-                    template: '您数量未填写',
-                    duration: 3000
-                });
-                return false;
-            }
+
 
             DataAddService.addData(fieldData).then(function (data) {
                 if($scope.pageData.imageList.length > 0) {

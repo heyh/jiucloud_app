@@ -80,10 +80,29 @@
     "cache": false,
     "controller": "DataAddCtrl"
   },
-
   "dataEdit": {
     "url": "/dataEdit",
     "templateUrl": "templates/dataEdit.html",
+    "params": {
+      "fieldData": null,
+      "type": null
+    },
+    "cache": false,
+    "controller": "DataEditCtrl"
+  },
+  "billEdit": {
+    "url": "/billEdit",
+    "templateUrl": "templates/billEdit.html",
+    "params": {
+      "fieldData": null,
+      "type": null
+    },
+    "cache": false,
+    "controller": "DataEditCtrl"
+  },
+  "materialEdit": {
+    "url": "/materialEdit",
+    "templateUrl": "templates/materialEdit.html",
     "params": {
       "fieldData": null,
       "type": null

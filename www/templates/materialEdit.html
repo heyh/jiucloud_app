@@ -16,26 +16,18 @@
                 <input type="hidden" data_key="pageData.fieldData.projectName" ng-model="pageData.fieldData.projectName">
                 <i class="icon ion-ios-arrow-right"></i>
             </label>
-            <label class="item item-icon-right" ng-click="openSectionModal()">
-                <span class="padding-right">标段</span>
-                <span class="item-note">{{pageData.fieldData.sectionName||'请选择标段'}}</span>
-                <input type="hidden" data_key="pageData.fieldData.section" ng-model="pageData.fieldData.section">
-                <i class="icon ion-ios-arrow-right"></i>
-            </label>
             <label class="item item-icon-right" ng-click="openCostsTypeModal()">
-                <span class="padding-right" ng-if="pageData.type == 'data'">费用类型</span>
-                <span class="padding-right" ng-if="pageData.type == 'doc'">资料类型</span>
+                <span class="padding-right">费用类型</span>
                 <span class="item-note">{{pageData.fieldData.costType}}</span>
                 <input type="hidden" data_key="pageData.fieldData.nid" ng-model="pageData.fieldData.nid">
                 <i class="icon ion-ios-arrow-right"></i>
             </label>
             <label class="item item-input">
-                <span class="padding-right">名称</span>
-                <input class="text-right" type="text" placeholder="请输入名称" data_key="pageData.fieldData.dataName" ng-model="pageData.fieldData.dataName"/>
+                <span class="padding-right">材料名称</span>
+                <input class="text-right" type="text" placeholder="请输入材料名称" data_key="pageData.fieldData.dataName" ng-model="pageData.fieldData.dataName"/>
             </label>
-
         </div>
-        <div class="list" ng-if="pageData.type == 'data'">
+        <div class="list">
             <label class="item item-icon-right" ng-click="openUnitModal()">
                 <span class="padding-right">单位</span>
                 <span class="item-note" data_key="pageData.fieldData.unit">{{pageData.fieldData.unit||'请选择单位'}}</span>
@@ -53,11 +45,13 @@
                 <input ng-if="pageData.fieldData.itemCode.substring(0, 3) == '700' && !pageData.hasOnlyReadRight700 && !pageData.hasReadEditRight700" style="display: none" class="text-right" type="text" placeholder="请输入单价" data_key="pageData.fieldData.price" ng-model="pageData.fieldData.price" ng-blur="cal()"/>
                 <input ng-if="pageData.fieldData.itemCode.substring(0, 3) == '700' && !pageData.hasOnlyReadRight700 && !pageData.hasReadEditRight700" readonly="readonly" class="text-right" type="text" value = "***"/>
             </label>
-        </div>
-        <div class="list">
             <label class="item item-input">
                 <span class="padding-right">规格型号</span>
                 <input class="text-right" type="text" placeholder="请输入规格型号" data_key="pageData.fieldData.specifications" ng-model="pageData.fieldData.specifications"/>
+            </label>
+            <label class="item item-input" ng-if="pageData.fieldData.itemCode != null && pageData.fieldData.itemCode != '' && pageData.fieldData.itemCode.substring(0,3) == '800' ">
+                <span class="padding-right">供应商</span>
+                <input class="text-right" type="text" placeholder="请输入供应商" data_key="pageData.fieldData.supplier" ng-model="pageData.fieldData.supplier"/>
             </label>
             <label class="item item-input mark_ins">
                 <span class="padding-right">备注</span>
