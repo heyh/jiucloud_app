@@ -155,8 +155,8 @@
                     <div ng-click="goDataDetails(fieldData)" class="col col-40">{{fieldData.dataName}}</div>
                     <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.unit}}</div>
                     <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.count}}</div>
-                    <div ng-click="goDataDetails(fieldData)" class="col col-20" align="right">{{fieldData.price | number:2}}</div>
-                    <div ng-click="goDataDetails(fieldData)" class="col col-20" align="right">{{fieldData.money | number:2}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20" align="right">{{fieldData.price != '***' ? (fieldData.price | number:2) : '***'}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20" align="right">{{fieldData.money != '***' ? (fieldData.money | number:2) : '***'}}</div>
                     <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.specifications}}</div>
                     <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.supplier}}</div>
                     <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.remark}}</div>

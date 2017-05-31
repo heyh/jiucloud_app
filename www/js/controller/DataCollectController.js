@@ -222,7 +222,7 @@ angular.module('dataCollect.controllers', ['DataCollect.services'])
             /** 没有权限查看是隐藏 **/
             if (data.fieldDataList.length > 0) {
                 angular.forEach(data.fieldDataList, function (item) {
-                    if (!pageData.hasOutRight && item.itemCode.substring(0, 3) == '800') {
+                    if (pageData.hasOutRight && item.itemCode.substring(0, 3) == '800') {
                         item.price = '***';
                     } else if(item.itemCode.substring(0, 3) == '700' && !pageData.hasOnlyReadRight700 && !pageData.hasReadEditRight700) {
                         item.price = '***';
