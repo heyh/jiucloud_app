@@ -2,7 +2,7 @@
  * Created by heyh on 16/2/18.
  */
 angular.module('outStorage.controllers', ['OutStorage.services'])
-    .controller('OutStorageCtrl', function (OutStorageService, DataEditService, $scope, $state, $stateParams, $ionicLoading, $ionicModal, $ionicViewSwitcher, reqConfig, $log, localStorage) {
+    .controller('OutStorageCtrl', function (OutStorageService, DataEditService, DataAddService, $scope, $state, $stateParams, $ionicLoading, $ionicModal, $ionicViewSwitcher, reqConfig, $log, localStorage) {
 
         $scope.goBack = function () {
             $ionicViewSwitcher.nextDirection('back');
@@ -15,7 +15,8 @@ angular.module('outStorage.controllers', ['OutStorage.services'])
         $scope.pageData = {
             fieldData: $stateParams.fieldData,
             storageCount: 0,
-            projectInfos: []
+            projectInfos: [],
+            approveUserList: []
         }
 
         $scope.$on('$ionicView.beforeEnter', function () {
@@ -26,6 +27,10 @@ angular.module('outStorage.controllers', ['OutStorage.services'])
 
             OutStorageService.getStorageCount($scope.pageData.fieldData.id).then(function (data) {
                 $scope.pageData.storageCount = data.storageCount;
+            });
+
+            DataAddService.chooseApprove(cid, uid).then(function (data) {
+                $scope.pageData.approveUserList = data.approveUserList;
             });
         });
 

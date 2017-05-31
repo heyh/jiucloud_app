@@ -14,20 +14,16 @@
                 <span class="item-note">{{pageData.fieldData.projectName}}</span>
             </label>
             <label class="item">
-                <span>规格型号(设施名称)</span>
-                <span class="item-note">{{pageData.fieldData.specifications}}</span>
-            </label>
-            <label class="item">
                 <span>费用类型</span>
                 <span class="item-note">{{pageData.fieldData.costType}}</span>
             </label>
             <label class="item">
-                <span>名称</span>
+                <span>材料名称</span>
                 <span class="item-note">{{pageData.fieldData.dataName}}</span>
             </label>
             <label class="item">
-                <span>备注(特征)</span>
-                <span class="item-note">{{pageData.fieldData.remark}}</span>
+                <span>规格型号</span>
+                <span class="item-note">{{pageData.fieldData.specifications}}</span>
             </label>
             <label class="item">
                 <span>单位</span>
@@ -41,10 +37,6 @@
                 <span>库存数量</span>
                 <span class="item-note" style="color: #e42112">{{pageData.storageCount}}</span>
             </label>
-            <label class="item">
-                <span>标段(属性)</span>
-                <span class="item-note">{{pageData.fieldData.sectionName}}</span>
-            </label>
         </div>
 
         <div class="list">
@@ -54,11 +46,17 @@
                 <input type="hidden" data_key="pageData.fieldData.outProId" ng-model="pageData.fieldData.outProId">
                 <i class="icon ion-ios-arrow-right"></i>
             </label>
-
             <label class="item item-input">
                 <span class="padding-right">出库数量</span>
                 <input class="text-right" type="number" placeholder="请输入数量" data_key="pageData.fieldData.outCount" ng-model="pageData.fieldData.outCount"/>
             </label>
+            <label class="item item-input item-select" id="currentApprovedUserDiv">
+                <span>审批人选择</span>
+                <select data_key="{{pageData.fieldData.currentApprovedUser}}" ng-model="pageData.fieldData.currentApprovedUser" class="checkbox-calm">
+                    <option value="{{approveUser.id}}" ng-repeat="approveUser in pageData.approveUserList">{{approveUser.username}}</option>
+                </select>
+            </label>
+
         </div>
     </ion-content>
 

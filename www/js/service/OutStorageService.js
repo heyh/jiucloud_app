@@ -16,7 +16,7 @@ angular.module('OutStorage.services', ['util.http', 'util.localStorage'])
                     template: '正在提交,请稍候...',
                     duration: reqConfig.loadingDuration
                 });
-                http.request('/api/securi_saveOutFieldData', {uid:uid, outProId:fieldData.outProId, outCount: fieldData.outCount, id: fieldData.id })
+                http.request('/api/securi_saveOutFieldData', {uid:uid, outProId:fieldData.outProId, outCount: fieldData.outCount, id: fieldData.id, currentApprovedUser: fieldData.currentApprovedUser })
                     .success(function (data) {
                         if (data.rspCode == '0000') {
                             $ionicLoading.show({
