@@ -20,6 +20,7 @@ angular.module('DataCollect.services', ['util.http', 'util.localStorage'])
                     keyword: keyword,
                     advancedSearchProjectName: advancedSearchData.projectText,
                     advancedSearchCostType: advancedSearchData.costType,
+                    advancedSearchItemCode: advancedSearchData.itemCode,
                     advancedSearchStartTime: advancedSearchData.startTime,
                     advancedSearchEndTime: advancedSearchData.endTime
                 };

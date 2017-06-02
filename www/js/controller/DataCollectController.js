@@ -116,18 +116,42 @@ angular.module('dataCollect.controllers', ['DataCollect.services'])
 
         /**
          * 费用类型
-         * @param costType
+         * @param costInfo
          */
-        $scope.getCostType = function (costType) {
-            if (costType.children == undefined || costType.children.length == 0) {
-                $scope.pageData.advancedSearchData.costType = costType.name;
-                $scope.pageData.advancedSearchData.nid = costType.id;
-                $scope.pageData.advancedSearchData.itemCode = costType.itemCode;
+        $scope.getCostType = function (costInfo) {
+            if (costInfo.children == undefined || costInfo.children.length == 0) {
+                $scope.pageData.advancedSearchData.costType = costInfo.name;
+                $scope.pageData.advancedSearchData.nid = costInfo.id;
+                $scope.pageData.advancedSearchData.itemCode = costInfo.itemCode;
 
                 $scope.closeCostsTypeModal();
             } else {
-                $scope.costInfoTree = costType.children;
+                $scope.costInfoTree = costInfo.children;
             }
+        };
+
+        $ionicModal.fromTemplateUrl('templates/searchCostsTypeModal.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function (modal) {
+            $scope.searchCostsTypeModal = modal;
+        });
+        $scope.openSearchCostsTypeModal = function () {
+            $scope.costInfoTree = $scope.pageData.costInfos
+            $scope.searchCostsTypeModal.show();
+        };
+        $scope.closeSearchCostsTypeModal = function () {
+            $scope.searchCostsTypeModal.hide();
+        };
+
+        $scope.selectedCostType = function (costInfo) {
+
+            $scope.pageData.advancedSearchData.costType = costInfo.name;
+            $scope.pageData.advancedSearchData.nid = costInfo.id;
+            $scope.pageData.advancedSearchData.itemCode = costInfo.itemCode;
+
+            $scope.closeSearchCostsTypeModal();
+
         };
 
         /**
