@@ -1,6 +1,4 @@
-/**
- * Created by Stomic on 2015/12/6.
- */
+
 angular.module('httpConfig', [])
     .factory('reqConfig', function ($window) {
         var serIp = "http://gcgl.9393915.com:8080/jiucloud";
