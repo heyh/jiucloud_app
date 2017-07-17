@@ -2,7 +2,7 @@
  * Created by heyh on 16/2/18.
  */
 angular.module('login.controllers', ['Login.services'])
-    .controller('LoginCtrl', function (LoginService, $scope, $state, $ionicLoading, reqConfig, $ionicModal) {
+    .controller('LoginCtrl', function (LoginService, UserDeviceRelService, $scope, $state, $ionicLoading, reqConfig, $ionicModal) {
 
         $scope.pageData = {
             companyList: [],
@@ -37,6 +37,10 @@ angular.module('login.controllers', ['Login.services'])
                             mobile_phone: data.user.mobile_phone,
                             email: data.user.email
                         }));
+
+                        localStorage.setItem("isDTSync","0");
+                        UserDeviceRelService.addOrUpdate();
+
                         if (data.companyList.length > 1) {
                             $scope.pageData.companyList = data.companyList;
                             $scope.openCompanyModal();

@@ -43,6 +43,9 @@ app.run(function ($ionicPlatform,$rootScope,$templateCache,pushUtil) {
         //启动极光推送服务
         window.plugins.jPushPlugin.init();
 
+        //设置显示最新得条数
+        window.plugins.jPushPlugin.setLatestNotificationNum(5);
+
         //调试模式
         if ($ionicPlatform.isAndroid) {
 
@@ -83,13 +86,13 @@ app.run(function ($ionicPlatform,$rootScope,$templateCache,pushUtil) {
         }else {
 
             //IOS接收消息(APP在前台)
-            document.addEventListener("jpush.receiveNotification", pushUtil.onReceiveNotification, false);
+            document.addEventListener("jpush.receiveNotification", onReceiveNotification, false);
 
             //IOS打开消息
-            document.addEventListener("jpush.openNotification", pushUtil.onOpenNotification, false);
+            document.addEventListener("jpush.openNotification", onOpenNotification, false);
 
             //IOS接收消息(APP在后台)
-            document.addEventListener("jpush.backgoundNotification", pushUtil.onBackgroundNotification, false);
+            document.addEventListener("jpush.backgoundNotification", onBackgroundNotification, false);
 
         }
 
