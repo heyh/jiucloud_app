@@ -7,9 +7,6 @@ angular.module('util.pushUtil', ['UserDeviceRelService.services'])
             getRegistrationID: function (data) {
 
                 try {
-
-                    console.log("222 JPushPlugin:registrationID is " + data);
-
                     if (data.length == 0) {
                         window.setTimeout(getRegistrationID, 1000);
                     }else {
