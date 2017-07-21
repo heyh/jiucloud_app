@@ -13,7 +13,7 @@ angular.module('approvalDetails.controllers', ['ApprovalDetails.services'])
 
         var uid = JSON.parse(localStorage.getUser())['uid'];
         var cid = JSON.parse(localStorage.getItem('company'))['cid'];
-        $scope.ret = {currentApprovedUser: ''};
+        $scope.ret = {currentApprovedUser: '', approvedOption:''};
         $(function () {
             $scope._isIOS = $ionicPlatform.is('ios');
             $scope.approvalFieldData = $stateParams.approvalFieldData;
@@ -93,14 +93,14 @@ angular.module('approvalDetails.controllers', ['ApprovalDetails.services'])
                 buttonClicked: function (index) {
                     switch (index) {
                         case 0 :
-                            $scope._approvedField($scope.approvalFieldData.id, 2, '');
+                            $scope.chooseCurrentApprovedUser(2);
                             break;
                         case 1 :
-                            $scope.chooseCurrentApprovedUser();
+                            $scope.chooseCurrentApprovedUser(8);
                             // $scope._approvedField($scope.approvalFieldData.id, 8, '');
                             break;
                         case 2 :
-                            $scope._approvedField($scope.approvalFieldData.id, 9, '');
+                            $scope.chooseCurrentApprovedUser(9);
                             break;
                         default :
                             break;
@@ -110,34 +110,44 @@ angular.module('approvalDetails.controllers', ['ApprovalDetails.services'])
             });
         };
 
-        $scope.chooseCurrentApprovedUser = function () {
+        $scope.chooseCurrentApprovedUser = function (approvedState) {
             var str = "<div class='list'>";
-            angular.forEach($scope.approveUserList, function (user) {
-               str += "<ion-radio radio-color='balanced' ng-model='ret.currentApprovedUser' ng-value=" + user.id + ">" + user.username+ "</ion-radio>";
-            });
-            str += "</div>"
+                str += '<div >';
+                str += '<textarea class="text-left" rows="3" ng-model= "ret.approvedOption" placeholder="审批意见"></textarea>';
+                str += '</div>';
+                str += '<br/>';
+                str += '<div ng-if="' + approvedState + '==8">';
+                angular.forEach($scope.approveUserList, function (user) {
+                    str += "<ion-radio  ng-model='ret.currentApprovedUser' ng-value=" + user.id + ">" + user.username+ "</ion-radio>";
+                });
+                str += '</div>';
+                str += "</div>";
             var myPopup = $ionicPopup.show({
                 template: str,
-                title: '审批人选择',
+                title: '',
                 scope: $scope,
                 buttons: [
-                    { text: '取消' },
+                    {
+                        text: '取消'
+                    },
                     {
                         text: '<b>确认</b>',
-                        type: 'button-positive'
+                        type: 'button-positive',
+                        onTap: function (res) {
+                            console.log('approvedOption:', $scope.ret.approvedOption);
+                            console.log('currentApprovedUser:', $scope.ret.currentApprovedUser);
+                            $scope._approvedField($scope.approvalFieldData.id, approvedState, $scope.ret.approvedOption, $scope.ret.currentApprovedUser);
+
+                        }
                     },
                 ]
-            });
-            myPopup.then(function(res) {
-                console.log('Tapped!', $scope.ret.currentApprovedUser);
-                $scope._approvedField($scope.approvalFieldData.id, 8, '', $scope.ret.currentApprovedUser);
             });
         }
 
         $scope._approvedField = function(id, approvedState, approvedOption, currentApprovedUser) {
             ApprovalDetailsService.approvedField(id, approvedState, approvedOption, currentApprovedUser).then(function(data) {
                 $ionicLoading.show({
-                    template: '审批成功',
+                    template: '操作成功',
                     duration: reqConfig.loadingDuration
                 });
                 setTimeout(function(){
