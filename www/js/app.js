@@ -38,25 +38,26 @@ app.run(function ($ionicPlatform, $rootScope, $templateCache, pushUtil) {
 
 
         //启动极光推送服务
-        window.plugins.jPushPlugin.init();
+        if(window.plugins && window.plugins.jPushPlugin) {
+            window.plugins.jPushPlugin.init();
 
-        //调试模式
-        if ($ionicPlatform.isAndroid) {
+            //调试模式
+            if ($ionicPlatform.isAndroid) {
 
-            window.plugins.jPushPlugin.setDebugMode(true);
-            window.plugins.jPushPlugin.setStatisticsOpen(true);
-        } else {
-            window.plugins.jPushPlugin.setDebugModeFromIos();
-            window.plugins.jPushPlugin.setApplicationIconBadgeNumber(0);
+                window.plugins.jPushPlugin.setDebugMode(true);
+                window.plugins.jPushPlugin.setStatisticsOpen(true);
+            } else {
+                window.plugins.jPushPlugin.setDebugModeFromIos();
+                window.plugins.jPushPlugin.setApplicationIconBadgeNumber(0);
+            }
+
+            //获取RegistrationID
+            getRegistrationID();
+
+            document.addEventListener("jpush.receiveNotification", pushUtil.onReceiveNotification, false);
+            document.addEventListener("jpush.openNotification", pushUtil.onOpenNotification, false);
+            document.addEventListener("jpush.backgoundNotification", pushUtil.onBackgroundNotification, false);
         }
-
-        //获取RegistrationID
-        getRegistrationID();
-
-        document.addEventListener("jpush.receiveNotification", pushUtil.onReceiveNotification, false);
-        document.addEventListener("jpush.openNotification", pushUtil.onOpenNotification, false);
-        document.addEventListener("jpush.backgoundNotification", pushUtil.onBackgroundNotification, false);
-
         // 极光推送业务结束
     });
 
