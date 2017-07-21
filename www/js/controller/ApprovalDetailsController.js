@@ -88,7 +88,7 @@ angular.module('approvalDetails.controllers', ['ApprovalDetails.services'])
                 ],
                 cancelText: '取消',
                 cancel: function () {
-                    return true;
+                    return false;
                 },
                 buttonClicked: function (index) {
                     switch (index) {
