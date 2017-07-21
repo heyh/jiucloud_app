@@ -2,7 +2,7 @@
  * Created by Stomic on 15/12/23.
  */
 angular.module('util.pushUtil', ['UserDeviceRelService.services'])
-    .factory('pushUtil', function ($log, $ionicPlatform, UserDeviceRelService, localStorage) {
+    .factory('pushUtil', function ($log, $ionicPlatform, UserDeviceRelService, localStorage,$state, $ionicViewSwitcher) {
         return {
             getRegistrationID: function (data) {
 
@@ -26,6 +26,11 @@ angular.module('util.pushUtil', ['UserDeviceRelService.services'])
                 }
                 window.plugins.jPushPlugin.setApplicationIconBadgeNumber(0);
                 window.plugins.jPushPlugin.setBadge(0);
+
+                if (localStorage.getUser()) {
+                    $ionicViewSwitcher.nextDirection('forward');
+                    $state.go('approval');
+                }
             },
 
             onReceiveNotification: function (event) {
