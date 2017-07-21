@@ -8,29 +8,6 @@
     </ion-header-bar>
     <!--主内容区域栏目 开始-->
     <ion-content class="has-header has-tabs" padding="false">
-        <!-- <div class="list">
-             <div class="item data_collect item-icon-left item-icon-right" ng-click="goDataCollect('data')">
-                 <i class="icon ion-data-collect"></i>
-                 数据采集
-                 <i class="icon ion-ios-arrow-right"></i>
-             </div>
-             <div class="item data_collect item-icon-left item-icon-right" ng-click="goDataCollect('doc')">
-                 <i class="icon ion-data-collect"></i>
-                 资料采集
-                 <i class="icon ion-ios-arrow-right"></i>
-             </div>
-             <div class="item data_approval item-icon-left item-icon-right" ng-click="goApproval()">
-                 <i class="icon ion-data-approval"></i>
-                 数据审批
-                 <i class="icon ion-ios-arrow-right"></i>
-             </div>
-             <div class="item data_process item-icon-left item-icon-right" ng-click="goApprovalProcess()">
-                 <i class="icon ion-data-process"></i>
-                 审批进度
-                 <i class="icon ion-ios-arrow-right"></i>
-             </div>
-         </div>-->
-
         <ion-slide-box active-slide="bannerSlide" does-continue="true" delegate-handle="slideimgs" slide-interval="4000" auto-play="true" class="banner_area" style="height: 200px">
             <ion-slide ng-repeat="ad in ads track by $index">
                 <div class="box"><img ng-src="{{ad._fileUrl}}"/></div>
@@ -73,7 +50,7 @@
                     <div class="nav_list_item" style="background:#1dd2e2">
                         <img src="images/dataApprove.png"/>
 
-                        <p class="text-center">数据审批</p>
+                        <p class="text-center">领导审批</p>
                     </div>
                 </div>
                 <div class="col col-33" ng-click="goApprovalProcess()">
