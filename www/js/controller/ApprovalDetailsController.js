@@ -34,10 +34,6 @@ angular.module('approvalDetails.controllers', ['ApprovalDetails.services'])
             $scope.approvalFieldData.approvedStatusName = approvedStatus;
         });
 
-        $scope.isData = function (itemCode) {
-            return itemCode.substring(0, 3) != '000' && itemCode.substring(0, 3) <= 900;
-        };
-
         $scope.$on('$ionicView.afterEnter', function () {
             DataDetailsService.getFileList($scope.approvalFieldData.id).then(function(data) {
                 $scope.fileList = data.fileList;

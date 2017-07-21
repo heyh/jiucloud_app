@@ -62,6 +62,24 @@ angular.module('approval.controllers', ['Approval.services'])
             } else {
                 $scope.pageData.moreData = false;
             }
+
+            angular.forEach(data.approvalFieldDataList, function (item) {
+                var prefixItemCode = item.itemCode.substring(0, 3);
+
+                if (prefixItemCode == '000' || prefixItemCode > 900) {  // 资料
+                    item.fieldDataTypeName = '项目资料';
+                    item.fieldDataTypeCode = 'doc';
+                } else if (prefixItemCode == '700') {                   // 清单
+                    item.fieldDataTypeName = '清单项量';
+                    item.fieldDataTypeCode = 'bill';
+                } else if (prefixItemCode == '800') {                   // 材料
+                    item.fieldDataTypeName = '项目材料';
+                    item.fieldDataTypeCode = 'material';
+                } else{                                                 // 数据
+                    item.fieldDataTypeName = '项目数据';
+                    item.fieldDataTypeCode = 'data';
+                }
+            });
             if (refresh) {
                 $scope.pageData.approvalFieldDataList = data.approvalFieldDataList;
             } else {
