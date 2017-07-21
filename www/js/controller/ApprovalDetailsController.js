@@ -97,7 +97,6 @@ angular.module('approvalDetails.controllers', ['ApprovalDetails.services'])
                             break;
                         case 1 :
                             $scope.chooseCurrentApprovedUser(8);
-                            // $scope._approvedField($scope.approvalFieldData.id, 8, '');
                             break;
                         case 2 :
                             $scope.chooseCurrentApprovedUser(9);
