@@ -97,6 +97,18 @@ angular.module('myApprovalProcess.controllers', ['MyApprovalProcess.services'])
                 item.money_ys = item.price_ys != '' ? (item.count * item.price_ys).toFixed(2) : '0.00';
                 item.money_sj = item.price_sj != '' ? (item.count * item.price_sj).toFixed(2) : '0.00';
 
+                if (item.needApproved == '0') {
+                    item.approvedStatus = "不需审批";
+                } else if (item.needApproved == '1') {
+                    item.approvedStatus = "未审批";
+                } else if (item.needApproved == '2') {
+                    item.approvedStatus = "审批通过";
+                } else if (item.needApproved == '8') {
+                    item.approvedStatus = "审批中";
+                } else if (item.needApproved == '9') {
+                    item.approvedStatus = "审批未通过";
+                }
+
             });
 
             if (refresh) {

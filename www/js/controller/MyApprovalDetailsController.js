@@ -15,20 +15,6 @@ angular.module('myApprovalDetails.controllers', ['MyApprovalDetails.services'])
             $scope._isIOS = $ionicPlatform.is('ios');
             $scope.myApprovalData = $stateParams.myApprovalData;
             $scope.myApprovalData.money = (parseFloat($scope.myApprovalData.count) * parseFloat($scope.myApprovalData.price)).toFixed(2);
-
-            var approvedStatus = "";
-            if ($scope.myApprovalData.needApproved == '0') {
-                approvedStatus = "不需审批";
-            } else if ($scope.myApprovalData.needApproved == '1') {
-                approvedStatus = "未审批";
-            } else if ($scope.myApprovalData.needApproved == '2') {
-                approvedStatus = "审批通过";
-            } else if ($scope.myApprovalData.needApproved == '8') {
-                approvedStatus = "审批中";
-            } else if ($scope.myApprovalData.needApproved == '9') {
-                approvedStatus = "审批未通过";
-            }
-            $scope.myApprovalData.approvedStatusName = approvedStatus;
         });
 
         $scope.isData = function (itemCode) {

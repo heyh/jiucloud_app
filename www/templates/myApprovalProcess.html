@@ -11,17 +11,39 @@
         <ion-refresher pulling-text="下拉刷新..." on-refresh="refreshMyApprovalDatas()"></ion-refresher>
         <div class="list card" ng-repeat="myApprovalData in pageData.myApprovalDataList" on-finish-render-filters>
             <div class="item" ng-click="goMyApprovalDetails(myApprovalData)">
+
+                <!--<div class="item item-text-wrap">-->
+                    <!--{{myApprovalData.projectName}}-->
+                <!--</div>-->
+                <!--<div class="item item-icon-left" href="#">-->
+                    <!--<i class="icon ion-ios-keypad-outline"></i>-->
+                    <!--{{approvalFieldData.fieldDataTypeName}}-->
+                <!--</div>-->
+                <!--<div class="item item-icon-left" href="#">-->
+                    <!--<i class="icon ion-laptop"></i>-->
+                    <!--{{approvalFieldData.dataName}}-->
+                <!--</div>-->
+
+                <!--<div class="item item-icon-left" href="#">-->
+                    <!--<i class="icon ion-ios-clock-outline"></i>-->
+                    <!--{{approvalFieldData.creatTime}}-->
+                <!--</div>-->
+
                 <div class="item item-text-wrap">
                     {{myApprovalData.projectName}}
                 </div>
                 <div class="item_footer">
                     <div class="item item-icon-left" href="#">
-                        <i class="icon ion-ios-briefcase"></i>
-                        {{myApprovalData.dataName}}
+                        <i class="icon ion-ios-keypad-outline"></i>
+                        {{myApprovalData.fieldDataTypeName}}
+                    </div>
+                    <div class="item item-icon-left" href="#">
+                        <i class="icon ion-laptop"></i>
+                        {{myApprovalData.dataName}} - {{myApprovalData.creatTime}}
                     </div>
                     <div class="item item-icon-left" href="#">
                         <i class="icon ion-ios-clock-outline"></i>
-                        {{myApprovalData.creatTime}}
+                        {{myApprovalData.approvedStatus}}
                     </div>
                 </div>
             </div>
