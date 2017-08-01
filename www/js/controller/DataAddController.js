@@ -25,7 +25,8 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
             imageList: [],
             sectionInfos: [],
             supInfos: [],
-            approveUserList: []
+            approveUserList: [],
+            defaultApprovedUser: ''
         };
 
         $scope.maxFieldData = '';
@@ -48,6 +49,13 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
 
                     $scope.pageData.fieldData.sectionName = data.sectionName;
                     $scope.pageData.fieldData.section = data.maxFieldData.section;
+
+                    if (data.firstLevelParentDepartment != null && data.firstLevelParentDepartment != '') {
+                        $scope.pageData.fieldData.needApproved = true;
+                        $scope.needApproved();
+                        $scope.pageData.fieldData.currentApprovedUser = data.firstLevelParentDepartment;
+                    }
+
 
                     getSectionInfos(cid, uid, $scope.pageData.fieldData.projectName);
 
@@ -245,9 +253,8 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
         }
 
         $scope.needApproved = function () {
-            // debugger;
-            var needApproved = $("ion-view[nav-view=active] #needApproved").prop("checked");
-            if (needApproved) {
+            // var needApproved = $("ion-view[nav-view=active] #needApproved").prop("checked");
+            if ($scope.pageData.fieldData.needApproved) {
                 DataAddService.chooseApprove(cid, uid).then(function (data) {
                     $scope.pageData.approveUserList = data.approveUserList;
                 });
@@ -277,7 +284,7 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                 companyName: companyName,
                 needApproved: needApproved
             });
-            debugger
+
             if(fieldData.projectName == undefined || fieldData.projectName == '') {
                 $ionicLoading.show({
                     template: '您工程名称未填写',

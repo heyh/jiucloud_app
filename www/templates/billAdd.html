@@ -81,7 +81,7 @@
             <label class="item item-input item-select" style="display: none;" id="currentApprovedUserDiv">
                 <span>审批人选择</span>
                 <select data_key="{{pageData.fieldData.currentApprovedUser}}" ng-model="pageData.fieldData.currentApprovedUser" class="checkbox-calm">
-                    <option value="{{approveUser.id}}" ng-repeat="approveUser in pageData.approveUserList">{{approveUser.username}}</option>
+                    <option selected="pageData.fieldData.currentApprovedUser == approveUser.id" value="{{approveUser.id}}" ng-repeat="approveUser in pageData.approveUserList">{{approveUser.username}}</option>
                 </select>
             </label>
         </div>
