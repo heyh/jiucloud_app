@@ -100,6 +100,10 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                 $scope.pageData.fieldData.itemCode = costType.itemCode;
 
                 $scope.closeCostsTypeModal();
+
+                if (costType.name.indexOf('（') && costType.name.indexOf('）')) {
+                    $scope.pageData.fieldData.unit = costType.name.substring(costType.name.indexOf("（")+1,costType.name.indexOf("）"));
+                }
             } else {
                 $scope.costInfoTree = costType.children;
             }
