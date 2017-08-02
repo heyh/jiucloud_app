@@ -98,11 +98,14 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                 $scope.pageData.fieldData.costType = costType.name;
                 $scope.pageData.fieldData.nid = costType.id;
                 $scope.pageData.fieldData.itemCode = costType.itemCode;
-                $scope.pageData.fieldData.dataName = costType.name;
+
                 $scope.closeCostsTypeModal();
 
                 if (costType.name.indexOf('（') && costType.name.indexOf('）')) {
+                    $scope.pageData.fieldData.dataName = costType.name.substring(0, costType.name.indexOf("（"));
                     $scope.pageData.fieldData.unit = costType.name.substring(costType.name.indexOf("（")+1,costType.name.indexOf("）"));
+                } else {
+                    $scope.pageData.fieldData.dataName = costType.name;
                 }
             } else {
                 $scope.costInfoTree = costType.children;
