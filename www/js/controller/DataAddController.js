@@ -98,7 +98,7 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                 $scope.pageData.fieldData.costType = costType.name;
                 $scope.pageData.fieldData.nid = costType.id;
                 $scope.pageData.fieldData.itemCode = costType.itemCode;
-
+                $scope.pageData.fieldData.dataName = costType.name;
                 $scope.closeCostsTypeModal();
 
                 if (costType.name.indexOf('（') && costType.name.indexOf('）')) {
