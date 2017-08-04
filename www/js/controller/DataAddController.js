@@ -26,11 +26,12 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
             sectionInfos: [],
             supInfos: [],
             approveUserList: [],
-            defaultApprovedUser: ''
+            defaultApprovedUser: '',
+            features:[]
         };
 
         $scope.maxFieldData = '';
-
+        $(".featureTableNew").html('');
         /**
          * 页面初始化参数
          */
@@ -70,6 +71,13 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
             DataAddService.getCostInfos(uid, cid, $scope.pageData.type).then(function (data) {
                 $scope.costInfoTree = $scope.pageData.costInfos = data.costInfos;
             });
+
+            if ($scope.pageData.type == 'bill') {
+                DataAddService.getFeatures(cid).then(function (data) {
+                    $scope.pageData.features = data.features;
+                });
+            }
+
         });
 
         /**
@@ -239,6 +247,68 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
             $scope.closeUnitModal();
         };
 
+        $ionicModal.fromTemplateUrl('templates/featureModal.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function (modal) {
+            $scope.featureModal = modal;
+        });
+        $scope.openFeatureModal = function () {
+            $scope.featureModal.show();
+        };
+        $scope.closeFeatureModal = function () {
+            $scope.featureModal.hide();
+        };
+
+        $scope.mergeFeature = function ($event) {
+            var feature = '';
+
+            angular.forEach($(".featureRow"), function (row) {
+                var features = row.getElementsByClassName("featureCol");
+                var mc = features[0].firstChild.value;
+                var count = features[1].firstChild.value;
+                var dw = features[2].firstChild.value;
+                var modifyTag = features[3].innerHTML;
+                if (mc != '' && count != '' && dw != '') {
+                    feature += mc + ":" + count + ' ' + dw + ";  ";
+                    if (modifyTag == '0') {
+                        DataAddService.addFeature(cid, mc, dw);
+                    }
+                }
+            });
+            $scope.pageData.fieldData.remark = feature;
+            $scope.closeFeatureModal();
+        }
+
+        $scope.addLine = function () {
+
+            var rowHtml =
+                '<div class="row featureRow">' +
+                    '<div class="col col-10" align="center"></div>' +
+                    '<div class="col col-30 featureCol" align="center"><input type="text" id="mc" style="width: 100px" placeholder="名称"/></div>'+
+                    '<div class="col col-30 featureCol" align="center"><input type="text" id="count" style="width: 100px" placeholder="数量"/></div>' +
+                    '<div class="col col-20 featureCol" align="center"><input type="text" id="dw" style="width: 60px" placeholder="单位"/></div>' +
+                    '<div class="featureCol" style="display: none">0</div>' +
+                    '<div class="col col-10 featureCol" align="center">' +
+                        '<button class="button button-small button-light icon ion-ios-minus-outline" ng-click="removeLine($event)"></button>' +
+                    '</div>' +
+                '</div>';
+
+            // $(".featureTableNew").html($(".featureTableNew")[0].innerHTML + rowHtml);
+            // $compile($(".featureTableNew").contents())($scope)
+
+            $compile(rowHtml)($scope).insertBefore($(".featureTableNew"));
+        }
+
+        $scope.minusLine = function (id) {
+            DataAddService.delFeature(cid, id).then(function (data) {
+                $scope.pageData.features = data.features;
+            });
+        }
+
+        $scope.removeLine = function ($event) {
+            $event.target.parentNode.parentNode.remove();
+        }
         /**
          * 计算金额
          */

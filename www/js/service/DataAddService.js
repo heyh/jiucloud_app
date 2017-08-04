@@ -297,7 +297,7 @@ angular.module('DataAdd.services', ['util.http', 'util.localStorage'])
             },
 
             /**
-             * 取最近的 projectId
+             * 审批人
              * @returns {*}
              */
             chooseApprove: function (cid, uid) {
@@ -307,6 +307,112 @@ angular.module('DataAdd.services', ['util.http', 'util.localStorage'])
                 http.request('/api/securi_chooseApprove', params)
                     .success(function (data) {
                         if (data.rspCode == '0000') {
+                            deferred.resolve(data);
+                        } else {
+                            $ionicLoading.show({
+                                template: '网络异常',
+                                duration: reqConfig.loadingDuration
+                            });
+                            deferred.reject(data);
+                        }
+                    })
+                    .error(function (data) {
+                        $ionicLoading.show({
+                            template: '网络异常',
+                            duration: reqConfig.loadingDuration
+                        });
+                        deferred.reject(data);
+                    });
+                promise.success = function (fn) {
+                    promise.then(fn);
+                    return promise;
+                };
+                promise.error = function (fn) {
+                    promise.then(null, fn);
+                    return promise;
+                };
+                return promise;
+            },
+
+            getFeatures: function (cid) {
+                var deferred = $q.defer();
+                var promise = deferred.promise;
+                var params = {cid: cid};
+                http.request('/featureController/securi_getFeatures', params)
+                    .success(function (data) {
+                        if (data.rspCode == '0000') {
+                            deferred.resolve(data);
+                        } else {
+                            $ionicLoading.show({
+                                template: '网络异常',
+                                duration: reqConfig.loadingDuration
+                            });
+                            deferred.reject(data);
+                        }
+                    })
+                    .error(function (data) {
+                        $ionicLoading.show({
+                            template: '网络异常',
+                            duration: reqConfig.loadingDuration
+                        });
+                        deferred.reject(data);
+                    });
+                promise.success = function (fn) {
+                    promise.then(fn);
+                    return promise;
+                };
+                promise.error = function (fn) {
+                    promise.then(null, fn);
+                    return promise;
+                };
+                return promise;
+            },
+
+            addFeature: function (cid, mc, dw) {
+                var deferred = $q.defer();
+                var promise = deferred.promise;
+                var params = {cid: cid, mc: mc, dw: dw};
+                http.request('/featureController/securi_addFeature', params)
+                    .success(function (data) {
+                        if (data.rspCode == '0000') {
+                            deferred.resolve(data);
+                        } else {
+                            $ionicLoading.show({
+                                template: '网络异常',
+                                duration: reqConfig.loadingDuration
+                            });
+                            deferred.reject(data);
+                        }
+                    })
+                    .error(function (data) {
+                        $ionicLoading.show({
+                            template: '网络异常',
+                            duration: reqConfig.loadingDuration
+                        });
+                        deferred.reject(data);
+                    });
+                promise.success = function (fn) {
+                    promise.then(fn);
+                    return promise;
+                };
+                promise.error = function (fn) {
+                    promise.then(null, fn);
+                    return promise;
+                };
+                return promise;
+            },
+
+            delFeature: function (cid, id) {
+                var deferred = $q.defer();
+                var promise = deferred.promise;
+                var params = {cid: cid, id: id};
+                http.request('/featureController/securi_delFeature', params)
+                    .success(function (data) {
+                        if (data.rspCode == '0000') {
+                            $ionicLoading.show({
+                                template: '删除成功',
+                                duration: reqConfig.loadingDuration
+                            });
                             deferred.resolve(data);
                         } else {
                             $ionicLoading.show({
