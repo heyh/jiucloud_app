@@ -27,7 +27,11 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
             supInfos: [],
             approveUserList: [],
             defaultApprovedUser: '',
-            features:[]
+            features:[],
+            search: {
+                mc: '',
+                dw: ''
+            }
         };
 
         $scope.maxFieldData = '';
