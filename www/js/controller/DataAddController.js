@@ -80,6 +80,10 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                 DataAddService.getFeatures(cid).then(function (data) {
                     $scope.pageData.features = data.features;
                 });
+
+                DataAddService.getLocations(cid).then(function (data) {
+                    $scope.pageData.locations = data.locations;
+                });
             }
 
         });
@@ -313,6 +317,32 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
         $scope.removeLine = function ($event) {
             $event.target.parentNode.parentNode.remove();
         }
+
+        /**
+         * 选择设施页面
+         */
+        $ionicModal.fromTemplateUrl('templates/locationModal.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function (modal) {
+            $scope.locationModal = modal;
+        });
+        $scope.openLocationModal = function () {
+            $scope.locationModal.show();
+        };
+        $scope.closeLocationModal = function () {
+            $scope.locationModal.hide();
+        };
+
+        /**
+         * 设施地点
+         * @param location
+         */
+        $scope.getLocation = function (location) {
+            $scope.pageData.fieldData.specifications = location.mc;
+            $scope.closeLocationModal();
+        };
+
         /**
          * 计算金额
          */

@@ -15,10 +15,11 @@
                 <input type="hidden" data_key="pageData.fieldData.projectName" ng-model="pageData.fieldData.projectName">
                 <i class="icon ion-ios-arrow-right"></i>
             </label>
-            <label class="item item-input">
+            <span class="item item-input item-icon-right" >
                 <span class="padding-right">设施名称</span>
-                <input class="text-right" type="text" placeholder="请输入设施名称" data_key="pageData.fieldData.specifications" ng-model="pageData.fieldData.specifications"/>
-            </label>
+                <input class="text-right" type="text" placeholder="请输入设施名称" data_key="pageData.fieldData.specifications" ng-model="pageData.fieldData.specifications" style="margin-right: 30px;"/>
+                <i class="icon ion-ios-plus-outline" ng-click="openLocationModal()"></i>
+            </span>
             <label class="item item-icon-right" ng-click="openCostsTypeModal()">
                 <span class="padding-right" >费用类型</span>
                 <span class="item-note" data_key="pageData.fieldData.costType">{{pageData.fieldData.costType||'请选择费用'}}</span>
@@ -32,13 +33,11 @@
             <label class="item item-input" ng-if="pageData.supInfos.length > 0" ng-click="openSupInfoModal()">
                 <button class="button button-light icon ion-ios-plus-outline"></button>
             </label>
-            <label class="item item-input mark_ins">
+            <span class="item item-input mark_ins item-icon-right">
                 <span class="padding-right">项目特征</span>
                 <textarea class="text-right" style="padding-right: 24px;" placeholder="请输入项目特征" rows="5" data_key="pageData.fieldData.remark" ng-model="pageData.fieldData.remark"></textarea>
-            </label>
-            <label class="item item-input" ng-click="openFeatureModal()">
-                <button class="button button-light icon ion-ios-plus-outline"></button>
-            </label>
+                <i class="icon ion-ios-plus-outline" ng-click="openFeatureModal()"></i>
+            </span>
         </div>
 
         <div class="list">

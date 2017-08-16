@@ -203,6 +203,44 @@ angular.module('DataAdd.services', ['util.http', 'util.localStorage'])
             },
 
             /**
+             * 获取设施地点
+             * @returns {*}
+             */
+            getLocations: function (cid) {
+                var deferred = $q.defer();
+                var promise = deferred.promise;
+                var params = {cid: cid};
+                http.request('/locationController/securi_getLocations', params)
+                    .success(function (data) {
+                        if (data.rspCode == '0000') {
+                            deferred.resolve(data);
+                        } else {
+                            $ionicLoading.show({
+                                template: '网络异常',
+                                duration: reqConfig.loadingDuration
+                            });
+                            deferred.reject(data);
+                        }
+                    })
+                    .error(function (data) {
+                        $ionicLoading.show({
+                            template: '网络异常',
+                            duration: reqConfig.loadingDuration
+                        });
+                        deferred.reject(data);
+                    });
+                promise.success = function (fn) {
+                    promise.then(fn);
+                    return promise;
+                };
+                promise.error = function (fn) {
+                    promise.then(null, fn);
+                    return promise;
+                };
+                return promise;
+            },
+
+            /**
              * 添加数据
              * @param fieldData
              * @returns {*}
