@@ -46,8 +46,12 @@
                 <input class="text-right" type="number" placeholder="请输入单价" data_key="pageData.fieldData.price" ng-model="pageData.fieldData.price" ng-blur="cal()"/>
             </label>
             <label class="item">
-                <span class="padding-right">金额</span>
+                <span class="padding-right">应付金额</span>
                 <span class="item-note" style="padding-right: 8px">{{pageData.fieldData.money||'0.00'|currency:'¥'}}</span>
+            </label>
+            <label class="item">
+                <span class="padding-right">实付金额</span>
+                <span class="item-note" style="padding-right: 8px">{{pageData.fieldData.payAmount||'0.00'|currency:'¥'}}</span>
             </label>
             <label class="item item-input">
                 <span class="padding-right">规格型号</span>

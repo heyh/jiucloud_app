@@ -41,8 +41,12 @@
                     <span class="item-note">{{myApprovalData.price != '***' ? (myApprovalData.price|currency:'¥') : '***'}}</span>
                 </label>
                 <label class="item">
-                    <span>金额</span>
+                    <span>应付金额</span>
                     <span class="item-note">{{myApprovalData.money != '***' ? (myApprovalData.money|currency:'¥') : '***'}}</span>
+                </label>
+                <label class="item">
+                    <span>实付金额</span>
+                    <span class="item-note">{{myApprovalData.payAmount != '***' ? (myApprovalData.payAmount|currency:'¥') : '***'}}</span>
                 </label>
             </div>
             <div class="list">

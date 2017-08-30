@@ -46,6 +46,10 @@
                 <input ng-if="pageData.fieldData.itemCode.substring(0, 3) == '700' && !pageData.hasOnlyReadRight700 && !pageData.hasReadEditRight700" readonly="readonly" class="text-right" type="text" value = "***"/>
             </label>
             <label class="item item-input">
+                <span class="padding-right">实付金额</span>
+                <input class="text-right" type="text" placeholder="请输入实付金额" data_key="pageData.fieldData.payAmount" ng-model="pageData.fieldData.payAmount"/>
+            </label>
+            <label class="item item-input">
                 <span class="padding-right">规格型号</span>
                 <input class="text-right" type="text" placeholder="请输入规格型号" data_key="pageData.fieldData.specifications" ng-model="pageData.fieldData.specifications"/>
             </label>

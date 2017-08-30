@@ -139,7 +139,8 @@
                     <div class="col col-20">单位</div>
                     <div class="col col-20">数量</div>
                     <div class="col col-20">单价</div>
-                    <div class="col col-20">金额</div>
+                    <div class="col col-20">应付金额</div>
+                    <div class="col col-20">实付金额</div>
                     <div class="col col-20">规格型号</div>
                     <div class="col col-20">供应商</div>
                     <div class="col col-20">备注</div>
@@ -157,6 +158,7 @@
                     <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.count}}</div>
                     <div ng-click="goDataDetails(fieldData)" class="col col-20" align="right">{{fieldData.price != '***' ? (fieldData.price | number:2) : '***'}}</div>
                     <div ng-click="goDataDetails(fieldData)" class="col col-20" align="right">{{fieldData.money != '***' ? (fieldData.money | number:2) : '***'}}</div>
+                    <div ng-click="goDataDetails(fieldData)" class="col col-20" align="right">{{fieldData.money | number:2}}</div>
                     <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.specifications}}</div>
                     <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.supplier}}</div>
                     <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.remark}}</div>
