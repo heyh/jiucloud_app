@@ -194,6 +194,15 @@
     },
     "cache": false,
     "controller": "OutStorageCtrl"
+  },
+  "clockingin": {
+    "url": "/clockingin",
+    "templateUrl": "templates/clockingin.html",
+    "params": {
+      "type": null
+    },
+    "cache": false,
+    "controller": "ClockinginCtrl"
   }
 }
 

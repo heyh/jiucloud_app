@@ -25,6 +25,10 @@ angular.module('projectManage.controllers', ['ProjectManage.services'])
             $state.go('projectPrice');
         }
 
+        $scope.goClockingin = function () {
+            $ionicViewSwitcher.nextDirection('forward');
+            $state.go('clockingin');
+        }
         //$scope.bannerSlide = 1;
         $scope.ads = [];
 
