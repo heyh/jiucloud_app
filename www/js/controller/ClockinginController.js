@@ -4,12 +4,24 @@
 
 
 angular.module('clockingin.controllers', ['Clockingin.services'])
-    .controller('ClockinginCtrl', function ($ionicLoading, localStorage, ClockinginService, $log, $scope, $state, $ionicModal, $ionicViewSwitcher, $stateParams) {
+    .controller('ClockinginCtrl', function ($ionicLoading, reqConfig, localStorage, ClockinginService, $log, $scope, $state, $ionicModal, $ionicViewSwitcher, $stateParams) {
 
         $scope.goBack = function () {
             $ionicViewSwitcher.nextDirection('back');
             $state.go("projectManage", {type: $stateParams.type});
         };
+
+        var uid = JSON.parse(localStorage.getUser())['uid'];
+        var cid = JSON.parse(localStorage.getItem('company'))['cid'];
+
+        $scope.pageData = {
+            position : {
+                longitude: '',
+                latitude: '',
+                address: ''
+            },
+            clockinginData: {}
+        }
 
         $scope.$on('$ionicView.afterEnter', function () {
             $ionicLoading.show({
@@ -22,8 +34,9 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
 
         $scope.getCurrentPosition = function () {
             baidumap_location.getCurrentPosition(function (result) {
-                var longitude = result.longitude;
-                var latitude = result.latitude;
+                var longitude =  $scope.pageData.position.longitude =  result.longitude;
+                var latitude = $scope.pageData.position.latitude = result.latitude;
+                $scope.pageData.position.address = result.addr;
                 showMap(longitude, latitude);
             }, function (error) {
                 $log.debug(error);
@@ -50,6 +63,21 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
                 map.openInfoWindow(infoWindow, point); //开启信息窗口
             });
         }
+
+        $scope.clockingin = function ($event, flag) {
+            $.extend($scope.pageData.clockinginData, {
+                uid: uid,
+                cid: cid,
+                longitude: $scope.pageData.position.longitude,
+                latitude: $scope.pageData.position.latitude,
+                address: $scope.pageData.position.address,
+                clockinginFlag: flag
+            });
+            ClockinginService.clockingin($scope.pageData.clockinginData).then(function (data) {
+
+                }
+            )
+        };
     });
 
 
