@@ -24,11 +24,13 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
         }
 
         $scope.$on('$ionicView.afterEnter', function () {
-            $ionicLoading.show({
-                template: '地图加载中...',
-                duration: reqConfig.loadingDuration
-            });
+
+            $ionicLoading.show({template: '地图加载中...'});
+
             $scope.getCurrentPosition();
+
+            $ionicLoading.hide();
+
         });
 
 
@@ -73,11 +75,37 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
                 address: $scope.pageData.position.address,
                 clockinginFlag: flag
             });
-            ClockinginService.clockingin($scope.pageData.clockinginData).then(function (data) {
 
+            if($scope.clockingin.address == undefined || $scope.clockingin.address == '') {
+                $ionicLoading.show({
+                    template: '没有定位到你的具体位置，请退出重试!',
+                    duration: 3000
+                });
+                return false;
+            }
+
+            ClockinginService.checkClockingin($scope.pageData.clockinginData).then(function (data) {
+                if (data.hasSame == true) {
+                    $scope.showConfirm = function() {
+                        var confirmPopup = $ionicPopup.confirm({
+                            title: '提示',
+                            template: '已有考勤记录，重新考勤?'
+                        });
+                        confirmPopup.then(function(res) {
+                            if(res) {
+                                ClockinginService.clockingin($scope.pageData.clockinginData);
+                            } else {
+                                return false;
+                            }
+                        });
+                    };
+                } else {
+                    ClockinginService.clockingin($scope.pageData.clockinginData);
                 }
-            )
+            });
         };
+
+
     });
 
 
