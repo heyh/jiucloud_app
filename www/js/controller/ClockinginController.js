@@ -25,10 +25,7 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
 
         $scope.$on('$ionicView.afterEnter', function () {
 
-            $ionicLoading.show({
-                template: '地图加载中...',
-                duration: reqConfig.loadingDuration
-            });
+            $ionicLoading.show({template: '地图加载中...'});
 
             $scope.getCurrentPosition();
 
@@ -64,6 +61,7 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
                 }
                 var infoWindow = new BMap.InfoWindow("地址:" + addrmsg, opts);  //创建信息窗口对象
                 map.openInfoWindow(infoWindow, point); //开启信息窗口
+                $ionicLoading.hide();
             });
         }
 
