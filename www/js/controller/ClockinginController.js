@@ -86,19 +86,19 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
 
             ClockinginService.checkClockingin($scope.pageData.clockinginData).then(function (data) {
                 if (data.hasSame == true) {
-                    $scope.showConfirm = function() {
-                        var confirmPopup = $ionicPopup.confirm({
-                            title: '提示',
-                            template: '已有考勤记录，重新考勤?'
-                        });
-                        confirmPopup.then(function(res) {
-                            if(res) {
-                                ClockinginService.clockingin($scope.pageData.clockinginData);
-                            } else {
-                                return false;
-                            }
-                        });
-                    };
+                    var confirmPopup = $ionicPopup.confirm({
+                        title: '提示',
+                        template: '已有考勤记录，重新考勤?',
+                        cancelText: '取消',
+                        okText: '确定'
+                    });
+                    confirmPopup.then(function(res) {
+                        if(res) {
+                            ClockinginService.clockingin($scope.pageData.clockinginData);
+                        } else {
+                            return false;
+                        }
+                    });
                 } else {
                     ClockinginService.clockingin($scope.pageData.clockinginData);
                 }
