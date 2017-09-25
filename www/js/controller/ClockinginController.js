@@ -4,7 +4,7 @@
 
 
 angular.module('clockingin.controllers', ['Clockingin.services'])
-    .controller('ClockinginCtrl', function ($ionicLoading, reqConfig, localStorage, ClockinginService, $log, $scope, $state, $ionicModal, $ionicViewSwitcher, $stateParams) {
+    .controller('ClockinginCtrl', function ($ionicLoading, reqConfig, localStorage, ClockinginService, $ionicPopup, $log, $scope, $state, $ionicModal, $ionicViewSwitcher, $stateParams) {
 
         $scope.goBack = function () {
             $ionicViewSwitcher.nextDirection('back');
