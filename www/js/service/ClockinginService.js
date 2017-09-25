@@ -17,16 +17,16 @@ angular.module('Clockingin.services', ['util.http', 'util.localStorage'])
                 http.request('/api/securi_checkClockingin', clockinginData)
                     .success(function (data) {
                         if (data.rspCode == '0000') {
-                            $ionicLoading.show({
-                                template: '处理成功',
-                                duration: reqConfig.loadingDuration
-                            });
+                            // $ionicLoading.show({
+                            //     template: '处理成功',
+                            //     duration: reqConfig.loadingDuration
+                            // });
                             deferred.resolve(data);
                         } else {
-                            $ionicLoading.show({
-                                template: '处理失败',
-                                duration: reqConfig.loadingDuration
-                            });
+                            // $ionicLoading.show({
+                            //     template: '处理失败',
+                            //     duration: reqConfig.loadingDuration
+                            // });
                             deferred.reject(data);
                         }
                     })

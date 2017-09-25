@@ -25,11 +25,12 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
 
         $scope.$on('$ionicView.afterEnter', function () {
 
-            $ionicLoading.show({template: '地图加载中...'});
+            $ionicLoading.show({
+                template: '地图加载中...',
+                duration: reqConfig.loadingDuration
+            });
 
             $scope.getCurrentPosition();
-
-            $ionicLoading.hide();
 
         });
 
@@ -76,7 +77,7 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
                 clockinginFlag: flag
             });
 
-            if($scope.clockingin.address == undefined || $scope.clockingin.address == '') {
+            if($scope.pageData.clockinginData.address == undefined || $scope.pageData.clockinginData.address == '') {
                 $ionicLoading.show({
                     template: '没有定位到你的具体位置，请退出重试!',
                     duration: 3000
