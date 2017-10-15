@@ -84,6 +84,11 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
             }
 
             ClockinginService.checkClockingin($scope.pageData.clockinginData).then(function (data) {
+
+                var clockinginTime = data.clockinginTime;
+                var clockinginStartTime = data.clockinginTime.clockinginStartTime.substring(11,19);
+                var clockinginEndTime = data.clockinginTime.clockinginEndTime.substring(11,19);
+
                 if (data.hasSame == true) {
                     var confirmPopup = $ionicPopup.confirm({
                         title: '提示',
@@ -93,18 +98,68 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
                     });
                     confirmPopup.then(function(res) {
                         if(res) {
-                            ClockinginService.clockingin($scope.pageData.clockinginData);
+                            checkClockinginTime(clockinginStartTime, clockinginStartTime, flag);
                         } else {
                             return false;
                         }
                     });
                 } else {
-                    ClockinginService.clockingin($scope.pageData.clockinginData);
+                    checkClockinginTime(clockinginStartTime, clockinginStartTime, flag);
                 }
+
+
             });
         };
 
 
+        function convertDateFromString(dateString) {
+            return new Date(dateString.replace(/-/g,"/"))
+        }
+
+        function checkClockinginTime(clockinginStartTime, clockinginStartTime, flag) {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth()+1;
+            var day = date.getDate();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
+
+            var time = convertDateFromString(year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second );
+            if (flag == '0') { // 上班
+                var strClockinginStartTime = convertDateFromString(year + '-' + month + '-' + day + ' ' + clockinginStartTime );
+                if (strClockinginStartTime < time) { // 迟到
+                    $ionicPopup.prompt({
+                        title: '事由',
+                        cancelText: '取消',
+                        okText: '确定'
+                    }).then(function(res) {
+                        $scope.pageData.clockinginData.reasonDesc = res;
+                        $scope.pageData.clockinginData.approvedState = '迟到';
+
+                        ClockinginService.clockingin($scope.pageData.clockinginData);
+                    });
+                } else {
+                    ClockinginService.clockingin($scope.pageData.clockinginData);
+                }
+            } else if (flag == '1') { // 下班
+                var strClockinginEndTime = convertDateFromString(year + '-' + month + '-' + day + ' ' + clockinginEndTime );
+                if (strClockinginEndTime > time) { // 早退
+                    $ionicPopup.prompt({
+                        title: '事由',
+                        cancelText: '取消',
+                        okText: '确定'
+                    }).then(function(res) {
+                        $scope.pageData.clockinginData.reasonDesc = res;
+                        $scope.pageData.clockinginData.approvedState = '早退';
+
+                        ClockinginService.clockingin($scope.pageData.clockinginData);
+                    });
+                } else {
+                    ClockinginService.clockingin($scope.pageData.clockinginData);
+                }
+            }
+        }
     });
 
 

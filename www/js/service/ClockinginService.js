@@ -10,10 +10,10 @@ angular.module('Clockingin.services', ['util.http', 'util.localStorage'])
             checkClockingin: function (clockinginData) {
                 var deferred = $q.defer();
                 var promise = deferred.promise;
-                $ionicLoading.show({
-                    template: '处理中,请稍候...',
-                    duration: reqConfig.loadingDuration
-                });
+                // $ionicLoading.show({
+                //     template: '处理中,请稍候...',
+                //     duration: reqConfig.loadingDuration
+                // });
                 http.request('/api/securi_checkClockingin', clockinginData)
                     .success(function (data) {
                         if (data.rspCode == '0000') {
