@@ -98,13 +98,13 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
                     });
                     confirmPopup.then(function(res) {
                         if(res) {
-                            checkClockinginTime(clockinginStartTime, clockinginStartTime, flag);
+                            checkClockinginTime(clockinginStartTime, clockinginEndTime, flag);
                         } else {
                             return false;
                         }
                     });
                 } else {
-                    checkClockinginTime(clockinginStartTime, clockinginStartTime, flag);
+                    checkClockinginTime(clockinginStartTime, clockinginEndTime, flag);
                 }
 
 
@@ -116,7 +116,7 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
             return new Date(dateString.replace(/-/g,"/"))
         }
 
-        function checkClockinginTime(clockinginStartTime, clockinginStartTime, flag) {
+        function checkClockinginTime(clockinginStartTime, clockinginEndTime, flag) {
             var date = new Date();
             var year = date.getFullYear();
             var month = date.getMonth()+1;
