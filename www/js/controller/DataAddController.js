@@ -30,7 +30,8 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
             features:[],
             search: {
                 mc: '',
-                dw: ''
+                dw: '',
+                shmc: ''
             }
         };
 

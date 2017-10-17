@@ -10,10 +10,10 @@
           <div class="item-input-inset">
               <label class="item-input-wrapper" style="background: #fff;">
                   <i class="icon ion-ios-search placeholder-icon"></i>
-                  <input type="search" ng-model="pageData.search.mc" placeholder="搜索">
+                  <input type="search" ng-model="pageData.search.shmc" placeholder="搜索">
               </label>
           </div>
-        <div class="item" value="{{location.mc}}" ng-click="getLocation(location)" ng-if="(pageData.search.mc=='' || location.mc.indexOf(pageData.search.mc)>=0)" ng-repeat="location in pageData.locations">{{location.mc}}</div>
+        <div class="item" value="{{location.mc}}" ng-click="getLocation(location)" ng-if="(pageData.search.shmc=='' || location.mc.indexOf(pageData.search.shmc)>=0)" ng-repeat="location in pageData.locations">{{location.mc}}</div>
       </div>
     </ion-content>
   </ion-modal-view>
