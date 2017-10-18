@@ -359,6 +359,7 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                 money = 0.00;
             }
             $scope.pageData.fieldData.money = money;
+            $scope.pageData.fieldData.payAmount = money;
         }
 
         $scope.myFilter = function (item) {
