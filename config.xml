@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.hx.jiucloud" version="4.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.hx.jiucloud" version="4.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>氿上云</name>
     <description>
         An Ionic Framework and Cordova project.
@@ -73,6 +73,13 @@
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
+    <engine name="android" spec="^6.2.3" />
+    <engine name="ios" spec="^4.4.0" />
+    <plugin name="cordova-plugin-baidumaplocation" spec="^3.2.0">
+        <variable name="ANDROID_KEY" value="pMv8raYWcsyPUDWcUvhYtryAqxk0Up7A" />
+        <variable name="IOS_KEY" value="X1RpBENuDsvrAvz21HyObAAH1eP6faK5" />
+        <variable name="IOS_LOCATION_DESC" value="请点击'好'以允许访问。" />
+    </plugin>
     <plugin name="jpush-phonegap-plugin" spec="file:///Users/heyh/Downloads/jpush-phonegap-plugin">
         <variable name="API_KEY" value="51da88d2b9664236817079aa" />
     </plugin>
