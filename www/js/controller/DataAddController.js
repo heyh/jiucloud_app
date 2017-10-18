@@ -29,6 +29,7 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
             defaultApprovedUser: '',
             features:[],
             search: {
+                unit: '',
                 mc: '',
                 dw: '',
                 shmc: ''

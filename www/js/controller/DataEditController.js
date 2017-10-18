@@ -24,7 +24,13 @@ angular.module('dataEdit.controllers', ['DataEdit.services'])
             fileList: [],
             imageList: [],
             hasOnlyReadRight700: JSON.stringify(rightList).indexOf("16")!=-1 && 0 != parentId,
-            hasReadEditRight700: JSON.stringify(rightList).indexOf("15")!=-1 || 0 == parentId
+            hasReadEditRight700: JSON.stringify(rightList).indexOf("15")!=-1 || 0 == parentId,
+            search: {
+                unit: '',
+                mc: '',
+                dw: '',
+                shmc: ''
+            }
         };
 
         /**

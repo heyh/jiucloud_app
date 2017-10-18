@@ -1,14 +1,21 @@
 <ion-modal-view class="">
     <ion-header-bar class="bar bar-header bar-stable">
-      <button class="button button-clear"><span class="positive">选择单位</span></button>
-      <h1 class="title"></h1>
-      <button class="button button-clear" ng-click="closeUnitModal()"><i style="color:#999" class="icon ion-android-cancel"></i></button>
+        <button class="button button-clear"><span class="positive">选择单位</span></button>
+        <h1 class="title"></h1>
+        <button class="button button-clear" ng-click="closeUnitModal()"><i style="color:#999" class="icon ion-android-cancel"></i></button>
     </ion-header-bar>
     <ion-content>
-      <div class="list">
-        <div class="item" value="{{unitParam.paramValue}}" ng-click="getUnit(unitParam)" ng-repeat="unitParam in pageData.unitParams">{{unitParam.paramValue}}</div>
-      </div>
+        <div class="list">
+            <div class="item-input-inset">
+                <label class="item-input-wrapper" style="background: #fff;">
+                    <i class="icon ion-ios-search placeholder-icon"></i>
+                    <input type="search" ng-model="pageData.search.unit" placeholder="搜索">
+                </label>
+            </div>
+            <div class="item" value="{{unitParam.paramValue}}" ng-click="getUnit(unitParam)" ng-if="(pageData.search.unit=='' || unitParam.paramValue.indexOf(pageData.search.unit)>=0)" ng-repeat="unitParam in pageData.unitParams">{{unitParam.paramValue}}
+            </div>
+        </div>
     </ion-content>
-  </ion-modal-view>
+</ion-modal-view>
 
 
