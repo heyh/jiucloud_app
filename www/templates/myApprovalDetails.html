@@ -210,6 +210,11 @@
                 <span>审批状态</span>
                 <span class="item-note" style="color: #e42112">{{myApprovalData.approvedStatus}}</span>
             </label>
+            <label ng-click="openApprovedOptionModal()" class="item item-icon-right" ng-if="myApprovalData.approvedOption != '' && myApprovalData.approvedOption != undefined && myApprovalData.approvedOption != 'undefined'">
+                <span>审批意见</span>
+                <span class="item-note">查看详情</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </label>
             <label class="item">
                 <span>当前审批人</span>
                 <span class="item-note">{{myApprovalData.currentApprovedUser}}</span>

@@ -1,0 +1,22 @@
+<ion-modal-view class="">
+    <ion-header-bar class="bar bar-header bar-stable">
+        <button class="button button-clear"><span class="positive">审批详情</span></button>
+        <button class="button button-clear" ng-click="closeApprovedOptionModal()">
+            <i style="color:#999" class="icon ion-android-cancel"></i>
+        </button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="row header ">
+            <div class="col col-10" align="center">序号</div>
+            <div class="col col-30" align="center">时间</div>
+            <div class="col col-20" align="center">审核人</div>
+            <div class="col col-40" align="center">审核意见</div>
+        </div>
+
+        <div class="row" ng-repeat="(approvedOptionsIndex, approvedOption) in myApprovalData.approvedOptions">
+            <div class="col col-10" align="center">{{approvedOptionsIndex + 1}}</div>
+            <div class="col col-30 featureCol" align="center">{{approvedOption.approvedDate}}</div>
+            <div class="col col-20 featureCol" align="center">{{approvedOption.approvedUser}}</div>
+            <div class="col col-40 featureCol" align="center">{{approvedOption.approvedOption}}</div>
+        </div>
+</ion-modal-view>
