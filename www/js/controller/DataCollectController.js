@@ -291,7 +291,7 @@ angular.module('dataCollect.controllers', ['DataCollect.services'])
         };
 
         $scope.canOutStorage = function (fieldData) {
-            return pageData.hasOutRight && fieldData.itemCode.substring(0, 3) == '800' && fieldData.count >= 0;
+            return pageData.hasOutRight && (fieldData.needApproved=='0' || fieldData.needApproved=='2') && fieldData.itemCode.substring(0, 3) == '800' && fieldData.count >= 0;
         }
 
         /**
