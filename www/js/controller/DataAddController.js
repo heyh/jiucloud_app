@@ -341,7 +341,15 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
          * @param location
          */
         $scope.getLocation = function (location) {
-            $scope.pageData.fieldData.specifications = location.mc;
+
+            var specifications = '';
+            $.each($scope.pageData.locations, function(i, location){
+                if (location.checked) {
+                    specifications += (location.mc + ',');
+                }
+            });
+            $scope.pageData.fieldData.specifications = specifications == '' ? '' : specifications.substring(0, specifications.length-1);
+            // $scope.pageData.fieldData.specifications = location.mc;
             $scope.closeLocationModal();
         };
 

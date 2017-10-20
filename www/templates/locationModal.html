@@ -13,9 +13,24 @@
                   <input type="search" ng-model="pageData.search.shmc" placeholder="搜索">
               </label>
           </div>
-        <div class="item" value="{{location.mc}}" ng-click="getLocation(location)" ng-if="(pageData.search.shmc=='' || location.mc.indexOf(pageData.search.shmc)>=0)" ng-repeat="location in pageData.locations">{{location.mc}}</div>
+
+          <ion-checkbox ng-if="(pageData.search.shmc=='' || location.mc.indexOf(pageData.search.shmc)>=0)" ng-repeat="location in pageData.locations"
+                        ng-model="location.checked"
+                        ng-checked="location.checked">
+              {{location.mc}}
+          </ion-checkbox>
+
+        <!--<div class="item" value="{{location.mc}}" ng-click="getLocation(location)" ng-if="(pageData.search.shmc=='' || location.mc.indexOf(pageData.search.shmc)>=0)" ng-repeat="location in pageData.locations">{{location.mc}}</div>-->
       </div>
     </ion-content>
+
+    <div class="bar bar-footer" style="padding:0;border-top:1px solid #ddd">
+        <div class="row" style="padding:0">
+            <button class="button button-block button-positive" style="margin:0; font-size: large"
+                    ng-click="getLocation($event)">确定
+            </button>
+        </div>
+    </div>
   </ion-modal-view>
 
 
