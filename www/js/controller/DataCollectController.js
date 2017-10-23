@@ -40,6 +40,10 @@ angular.module('dataCollect.controllers', ['DataCollect.services'])
             hasOutRight: JSON.stringify(rightList).indexOf("17")!=-1
         };
 
+        $scope.canShow = function () {
+            return pageData.type != 'material' || pageData.hasReadEditRight700;
+        }
+
         $scope.$on('$ionicView.beforeEnter', function () {
 
             $scope.pageData.type = $stateParams.type;
