@@ -79,11 +79,11 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
             });
 
             if ($scope.pageData.type == 'bill') {
-                DataAddService.getFeatures(cid).then(function (data) {
+                DataAddService.getFeatures(cid, uid).then(function (data) {
                     $scope.pageData.features = data.features;
                 });
 
-                DataAddService.getLocations(cid).then(function (data) {
+                DataAddService.getLocations(cid, uid).then(function (data) {
                     $scope.pageData.locations = data.locations;
                 });
             }
@@ -282,7 +282,7 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                 if (mc != '' && count != '' && dw != '') {
                     feature += mc + ":" + count + ' ' + dw + ";  ";
                     if (modifyTag == '0') {
-                        DataAddService.addFeature(cid, mc, dw);
+                        DataAddService.addFeature(cid, uid, mc, dw);
                     }
                 }
             });
@@ -311,7 +311,7 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
         }
 
         $scope.minusLine = function (id) {
-            DataAddService.delFeature(cid, id).then(function (data) {
+            DataAddService.delFeature(cid, uid, id).then(function (data) {
                 $scope.pageData.features = data.features;
             });
         }

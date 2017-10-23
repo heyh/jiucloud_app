@@ -206,10 +206,10 @@ angular.module('DataAdd.services', ['util.http', 'util.localStorage'])
              * 获取设施地点
              * @returns {*}
              */
-            getLocations: function (cid) {
+            getLocations: function (cid, uid) {
                 var deferred = $q.defer();
                 var promise = deferred.promise;
-                var params = {cid: cid};
+                var params = {cid: cid, uid: uid};
                 http.request('/locationController/securi_getLocations', params)
                     .success(function (data) {
                         if (data.rspCode == '0000') {
@@ -372,10 +372,10 @@ angular.module('DataAdd.services', ['util.http', 'util.localStorage'])
                 return promise;
             },
 
-            getFeatures: function (cid) {
+            getFeatures: function (cid, uid) {
                 var deferred = $q.defer();
                 var promise = deferred.promise;
-                var params = {cid: cid};
+                var params = {cid: cid, uid:uid};
                 http.request('/featureController/securi_getFeatures', params)
                     .success(function (data) {
                         if (data.rspCode == '0000') {
@@ -406,10 +406,10 @@ angular.module('DataAdd.services', ['util.http', 'util.localStorage'])
                 return promise;
             },
 
-            addFeature: function (cid, mc, dw) {
+            addFeature: function (cid, uid, mc, dw) {
                 var deferred = $q.defer();
                 var promise = deferred.promise;
-                var params = {cid: cid, mc: mc, dw: dw};
+                var params = {cid: cid, uid:uid, mc: mc, dw: dw};
                 http.request('/featureController/securi_addFeature', params)
                     .success(function (data) {
                         if (data.rspCode == '0000') {
@@ -440,10 +440,10 @@ angular.module('DataAdd.services', ['util.http', 'util.localStorage'])
                 return promise;
             },
 
-            delFeature: function (cid, id) {
+            delFeature: function (cid, uid, id) {
                 var deferred = $q.defer();
                 var promise = deferred.promise;
-                var params = {cid: cid, id: id};
+                var params = {cid: cid, uid: uid, id: id};
                 http.request('/featureController/securi_delFeature', params)
                     .success(function (data) {
                         if (data.rspCode == '0000') {
