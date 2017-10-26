@@ -50,27 +50,32 @@
                 <span class="padding-right">数量</span>
                 <input class="text-right" type="number" placeholder="请输入数量" data_key="pageData.fieldData.count" ng-model="pageData.fieldData.count" ng-blur="cal()"/>
             </label>
-            <label class="item item-input">
-                <span class="padding-right">单价</span>
-                <input class="text-right" type="number" placeholder="请输入单价" data_key="pageData.fieldData.price" ng-model="pageData.fieldData.price" ng-blur="cal()"/>
-            </label>
-            <label class="item">
-                <span class="padding-right">金额</span>
-                <span class="item-note" style="padding-right: 8px">{{pageData.fieldData.money||'0.00'|currency:'¥'}}</span>
-            </label>
+            <!--<label class="item item-input">-->
+                <!--<span class="padding-right">单价</span>-->
+                <!--<input class="text-right" type="number" placeholder="请输入单价" data_key="pageData.fieldData.price" ng-model="pageData.fieldData.price" ng-blur="cal()"/>-->
+            <!--</label>-->
+            <!--<label class="item">-->
+                <!--<span class="padding-right">金额</span>-->
+                <!--<span class="item-note" style="padding-right: 8px">{{pageData.fieldData.money||'0.00'|currency:'¥'}}</span>-->
+            <!--</label>-->
             <!--<label class="item item-input" ng-if="pageData.fieldData.itemCode != null && pageData.fieldData.itemCode != '' && pageData.fieldData.itemCode.substring(0,3) == '800' ">-->
                 <!--<span class="padding-right">供应商</span>-->
                 <!--<input class="text-right" type="text" placeholder="请输入供应商信息" data_key="pageData.fieldData.supplier" ng-model="pageData.fieldData.supplier"/>-->
             <!--</label>-->
         </div>
 
-        <div class="list">
-            <label class="item item-icon-right" ng-click="openSectionModal()">
+        <div class="list" hidden>
+            <label class="item item-input">
                 <span class="padding-right">工程属性</span>
-                <span class="item-note" data_key="pageData.fieldData.sectionName">{{pageData.fieldData.sectionName||'请选择工程属性'}}</span>
-                <input type="hidden" data_key="pageData.fieldData.section" ng-model="pageData.fieldData.section">
-                <i class="icon ion-ios-arrow-right"></i>
+                <input class="text-right" type="text" data_key="pageData.fieldData.section" ng-model="pageData.fieldData.section">
             </label>
+
+            <!--<label class="item item-icon-right" ng-click="openSectionModal()">-->
+                <!--<span class="padding-right">工程属性</span>-->
+                <!--<span class="item-note" data_key="pageData.fieldData.sectionName">{{pageData.fieldData.sectionName||'请选择工程属性'}}</span>-->
+                <!--<input type="hidden" data_key="pageData.fieldData.section" ng-model="pageData.fieldData.section">-->
+                <!--<i class="icon ion-ios-arrow-right"></i>-->
+            <!--</label>-->
         </div>
 
         <div class="list">

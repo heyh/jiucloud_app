@@ -113,6 +113,9 @@ angular.module('dataEdit.controllers', ['DataEdit.services'])
                 $scope.pageData.fieldData.itemCode = costType.itemCode;
                 $scope.closeCostsTypeModal();
             } else {
+                if (costType.itemCode.substring(0, 3) == '700') {
+                    $scope.pageData.fieldData.section = costType.name;
+                }
                 $scope.costInfoTree = costType.children;
             }
         };

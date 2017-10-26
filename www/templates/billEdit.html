@@ -45,17 +45,17 @@
                 <span class="padding-right">数量</span>
                 <input class="text-right" type="text" placeholder="请输入数量" data_key="pageData.fieldData.count" ng-model="pageData.fieldData.count" ng-blur="cal()"/>
             </label>
-            <label class="item item-input">
-                <span class="padding-right">单价</span>
-                <input ng-if="pageData.fieldData.itemCode.substring(0, 3) != '700'" class="text-right" type="text" placeholder="请输入单价" data_key="pageData.fieldData.price" ng-model="pageData.fieldData.price" ng-blur="cal()"/>
-                <input ng-if="pageData.fieldData.itemCode.substring(0, 3) == '700' && pageData.hasReadEditRight700" class="text-right" type="text" placeholder="请输入单价" data_key="pageData.fieldData.price" ng-model="pageData.fieldData.price" ng-blur="cal()"/>
-                <input readonly="readonly" ng-if="pageData.fieldData.itemCode.substring(0, 3) == '700' && pageData.hasOnlyReadRight700 && !pageData.hasReadEditRight700" class="text-right" type="text" placeholder="请输入单价" data_key="pageData.fieldData.price" ng-model="pageData.fieldData.price" ng-blur="cal()"/>
-                <input ng-if="pageData.fieldData.itemCode.substring(0, 3) == '700' && !pageData.hasOnlyReadRight700 && !pageData.hasReadEditRight700" style="display: none" class="text-right" type="text" placeholder="请输入单价" data_key="pageData.fieldData.price" ng-model="pageData.fieldData.price" ng-blur="cal()"/>
-                <input ng-if="pageData.fieldData.itemCode.substring(0, 3) == '700' && !pageData.hasOnlyReadRight700 && !pageData.hasReadEditRight700" readonly="readonly" class="text-right" type="text" value = "***"/>
+            <!--<label class="item item-input">-->
+                <!--<span class="padding-right">单价</span>-->
+                <!--<input ng-if="pageData.fieldData.itemCode.substring(0, 3) != '700'" class="text-right" type="text" placeholder="请输入单价" data_key="pageData.fieldData.price" ng-model="pageData.fieldData.price" ng-blur="cal()"/>-->
+                <!--<input ng-if="pageData.fieldData.itemCode.substring(0, 3) == '700' && pageData.hasReadEditRight700" class="text-right" type="text" placeholder="请输入单价" data_key="pageData.fieldData.price" ng-model="pageData.fieldData.price" ng-blur="cal()"/>-->
+                <!--<input readonly="readonly" ng-if="pageData.fieldData.itemCode.substring(0, 3) == '700' && pageData.hasOnlyReadRight700 && !pageData.hasReadEditRight700" class="text-right" type="text" placeholder="请输入单价" data_key="pageData.fieldData.price" ng-model="pageData.fieldData.price" ng-blur="cal()"/>-->
+                <!--<input ng-if="pageData.fieldData.itemCode.substring(0, 3) == '700' && !pageData.hasOnlyReadRight700 && !pageData.hasReadEditRight700" style="display: none" class="text-right" type="text" placeholder="请输入单价" data_key="pageData.fieldData.price" ng-model="pageData.fieldData.price" ng-blur="cal()"/>-->
+                <!--<input ng-if="pageData.fieldData.itemCode.substring(0, 3) == '700' && !pageData.hasOnlyReadRight700 && !pageData.hasReadEditRight700" readonly="readonly" class="text-right" type="text" value = "***"/>-->
 
-            </label>
+            <!--</label>-->
         </div>
-        <div class="list">
+        <div class="list" hidden >
             <label class="item item-icon-right" ng-click="openSectionModal()">
                 <span class="padding-right">工程属性</span>
                 <span class="item-note">{{pageData.fieldData.sectionName||'请选择工程属性'}}</span>

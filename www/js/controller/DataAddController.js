@@ -54,8 +54,10 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                     $scope.pageData.fieldData.projectText = data.proName;
                     $scope.pageData.fieldData.projectName = data.maxFieldData.projectName;
 
-                    $scope.pageData.fieldData.sectionName = data.sectionName;
-                    $scope.pageData.fieldData.section = data.maxFieldData.section;
+                    if ($scope.pageData.type != 'bill') {
+                        $scope.pageData.fieldData.sectionName = data.sectionName;
+                        $scope.pageData.fieldData.section = data.maxFieldData.section;
+                    }
 
                     if (data.firstLevelParentDepartment != null && data.firstLevelParentDepartment != '') {
                         $scope.pageData.fieldData.needApproved = true;
@@ -126,6 +128,10 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                     $scope.pageData.fieldData.dataName = costType.name;
                 }
             } else {
+                if (costType.itemCode.substring(0, 3) == '700') {
+                    $scope.pageData.fieldData.section = costType.name;
+                }
+
                 $scope.costInfoTree = costType.children;
             }
         };
