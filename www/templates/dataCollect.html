@@ -28,14 +28,16 @@
             </button>
         </div>
 
-        <ion-scroll zooming="true" direction="xy" style="height: {{h}}px;" >
-
+        <!--<ion-scroll zooming="true" direction="xy" style="height: {{h}}px;" >-->
+        <div style="overflow-x:auto;">
             <ion-refresher pulling-text="下拉刷新" pulling-icon="ion-load-a" refreshing-text="刷新成功" refreshing-icon="ion-ios-checkmark-outline" on-refresh="refreshFieldDatas()"></ion-refresher>
             <div ng-if="pageData.type == 'data' || pageData.type == 'doc'">
             <div class="row header">
                 <div class="col col-40">工程名称</div>
                 <div class="col col-20">标段</div>
-                <div class="col col-20">费用类型</div>
+                <!--<div class="col col-20">费用类型</div>-->
+                <div class="col col-20" ng-if="pageData.type == 'data'">费用类型</div>
+                <div class="col col-20" ng-if="pageData.type == 'doc'">资料类型</div>
                 <div class="col col-40">名称</div>
                 <div class="col col-20" ng-if="pageData.type == 'data'">单位</div>
                 <div class="col col-20" ng-if="pageData.type == 'data'">单价</div>
@@ -182,8 +184,8 @@
             </div>
 
             <ion-infinite-scroll ng-if="pageData.moreData" on-infinite="loadFieldDatasMore()" distance="1%" icon="ion-load-c"></ion-infinite-scroll>
-        </ion-scroll>
-
+        <!--</ion-scroll>-->
+        </div>
         <div ng-if="pageData.fieldDataList.length==0">
             <div ng-include="'templates/noResult.html'"></div>
         </div>

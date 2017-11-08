@@ -1,6 +1,11 @@
 <ion-modal-view class="approval dataCollect">
     <ion-header-bar class="bar bar-header bar-stable">
-        <button class="button button-clear"><span class="positive">选择费用类型</span></button>
+        <button class="button button-clear">
+            <!--<span class="positive">选择费用类型</span>-->
+            <span class="positive" ng-if="pageData.type == 'data' || pageData.type == 'bill' || pageData.type == 'material'">选择费用类型</span>
+            <span class="positive" ng-if="pageData.type == 'doc'">选择资料类型</span>
+
+        </button>
         <h1 class="title"></h1>
         <button class="button button-clear" ng-click="closeSearchCostsTypeModal()">
             <i style="color:#999" class="icon ion-android-cancel"></i>
@@ -9,9 +14,11 @@
     <ion-content>
 
         <div class="row" ng-repeat="costInfo in costInfoTree" ng-class="{even: !$even, odd: !$odd}">
-            <div class="col col-60" ng-click="getCostType(costInfo)"><span style="font-size: 16px">{{costInfo.name}}</span></div>
+            <div class="col col-60" ng-click="getCostType(costInfo)"><span
+                    style="font-size: 16px">{{costInfo.name}}</span></div>
             <div class="col col-40" align="center">
-                <button class="button-clear" ng-show="costInfo.children.length > 0" ng-click="getCostType(costInfo)" style="color:#1db1ee">
+                <button class="button-clear" ng-show="costInfo.children.length > 0" ng-click="getCostType(costInfo)"
+                        style="color:#1db1ee">
                     下一级
                 </button>
                 <button class="button-clear" ng-click="selectedCostType(costInfo)" style="color:#1db1ee">
