@@ -25,7 +25,8 @@
             <label class="item item-icon-right" ng-click="openCostsTypeModal()">
                 <span class="padding-right" ng-if="pageData.type == 'data'">费用类型</span>
                 <span class="padding-right" ng-if="pageData.type == 'doc'">资料类型</span>
-                <span class="item-note" data_key="pageData.fieldData.costType">{{pageData.fieldData.costType||'请选择费用'}}</span>
+                <span class="item-note" data_key="pageData.fieldData.costType" ng-if="pageData.type == 'data'">{{pageData.fieldData.costType||'请选择费用'}}</span>
+                <span class="item-note" data_key="pageData.fieldData.costType" ng-if="pageData.type == 'doc'">{{pageData.fieldData.costType||'请选择资料'}}</span>
                 <input type="hidden" data_key="pageData.fieldData.nid" ng-model="pageData.fieldData.nid">
                 <i class="icon ion-ios-arrow-right"></i>
             </label>
@@ -60,7 +61,7 @@
         </div>
 
         <div class="list">
-            <label class="item item-input">
+            <label class="item item-input" ng-if="pageData.type == 'data'" >
                 <span class="padding-right">规格型号</span>
                 <input class="text-right" type="text" placeholder="请输入规格型号" data_key="pageData.fieldData.specifications" ng-model="pageData.fieldData.specifications"/>
             </label>

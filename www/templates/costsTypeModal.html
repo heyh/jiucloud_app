@@ -1,6 +1,7 @@
 <ion-modal-view class="">
     <ion-header-bar class="bar bar-header bar-stable">
-      <button class="button button-clear"><span class="positive">选择费用类型</span></button>
+      <button class="button button-clear"><span class="positive" ng-if="pageData.type != 'doc'">选择费用类型</span></button>
+        <button class="button button-clear"><span class="positive" ng-if="pageData.type == 'doc'">选择资料类型</span></button>
       <h1 class="title"></h1>
       <button class="button button-clear" ng-click="closeCostsTypeModal()"><i style="color:#999" class="icon ion-android-cancel"></i></button>
     </ion-header-bar>
