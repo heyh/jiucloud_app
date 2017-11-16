@@ -2,13 +2,13 @@
  * Created by heyh on 16/2/18.
  */
 angular.module('dataCollect.controllers', ['DataCollect.services'])
-    .controller('DataCollectCtrl', function ($ionicLoading, http, $filter, $cordovaDatePicker, DataAddService, $timeout, DataCollectService, $ionicScrollDelegate, $scope, $state, $stateParams, $ionicModal, $ionicViewSwitcher, localStorage, $ionicLoading, reqConfig, $ionicPopup) {
+    .controller('DataCollectCtrl', function ($ionicLoading, http, $filter, $cordovaDatePicker, DataAddService, $timeout, DataCollectService, $ionicScrollDelegate, $scope, $state, $stateParams, $ionicModal, $ionicViewSwitcher, localStorage, $ionicLoading, reqConfig, $ionicPopup,$ionicPlatform) {
 
         $scope.goBack = function () {
             $ionicViewSwitcher.nextDirection('back');
             $state.go("projectManage");
         };
-        $scope.h=Math.min(document.documentElement.clientHeight,window.innerHeight)-53-43-68.31;
+        $scope.h=Math.min(document.documentElement.clientHeight,window.innerHeight)-53-43-68.31 - 53;
         var uid = JSON.parse(localStorage.getUser())["uid"];
         var cid = JSON.parse(localStorage.getItem("company"))["cid"];
         var rightList = new Array(JSON.parse(localStorage.getItem("right")).rightList);
@@ -58,6 +58,8 @@ angular.module('dataCollect.controllers', ['DataCollect.services'])
             });
 
             //$scope.searchFieldDatas();
+
+            $scope._isIOS = $ionicPlatform.is('ios');
         });
 
         /**
