@@ -234,6 +234,12 @@
             </dl>
         </div>
     </ion-content>
+
+    <div class="bar bar-footer" style="padding:0;border-top:1px solid #ddd" ng-show="canEdit()">
+        <div class="row" style="padding:0">
+            <button class="button button-block button-positive" style="margin:0; font-size: large" ng-click="goDataEdit($event)"><i class="icon ion-ios-compose-outline" style="margin-right:10px;"></i>修改</button>
+        </div>
+    </div>
 </ion-view>
 
 

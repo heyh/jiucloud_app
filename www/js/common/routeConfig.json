@@ -85,7 +85,8 @@
     "templateUrl": "templates/dataEdit.html",
     "params": {
       "fieldData": null,
-      "type": null
+      "type": null,
+      "page": null
     },
     "cache": false,
     "controller": "DataEditCtrl"
@@ -95,7 +96,8 @@
     "templateUrl": "templates/billEdit.html",
     "params": {
       "fieldData": null,
-      "type": null
+      "type": null,
+      "page": null
     },
     "cache": false,
     "controller": "DataEditCtrl"
@@ -105,7 +107,8 @@
     "templateUrl": "templates/materialEdit.html",
     "params": {
       "fieldData": null,
-      "type": null
+      "type": null,
+      "page": null
     },
     "cache": false,
     "controller": "DataEditCtrl"

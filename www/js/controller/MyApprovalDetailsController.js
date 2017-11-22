@@ -4,12 +4,14 @@
 
 
 angular.module('myApprovalDetails.controllers', ['MyApprovalDetails.services'])
-    .controller('MyApprovalDetailsCtrl', function (MyApprovalDetailsService, DataDetailsService, $scope, $state, $ionicModal, $ionicViewSwitcher, $stateParams, fileUtil, $ionicPlatform, $compile) {
+    .controller('MyApprovalDetailsCtrl', function (MyApprovalDetailsService, DataDetailsService, localStorage, $scope, $state, $ionicModal, $ionicViewSwitcher, $stateParams, fileUtil, $ionicPlatform, $compile) {
 
         $scope.goBack = function () {
             $ionicViewSwitcher.nextDirection('back');
             $state.go("myApprovalProcess");
         };
+
+        var uid = JSON.parse(localStorage.getUser())['uid'];
 
         $(function () {
             $scope._isIOS = $ionicPlatform.is('ios');
@@ -104,6 +106,59 @@ angular.module('myApprovalDetails.controllers', ['MyApprovalDetails.services'])
             $scope.modal.hide();
             $scope.modal.remove()
         };
+
+        $scope.canEdit = function (fieldData) {
+            var fieldData = $scope.myApprovalData;
+            return (($scope.compareDate($scope.getCurrentDate(), fieldData.creatTime.substring(0, 10)) == 0 && uid == fieldData.uid && '0' == fieldData.isLock && '2' != fieldData.needApproved)
+            || fieldData.needApproved == '9');
+        };
+
+        $scope.goDataEdit = function (fieldData) {
+            var itemCode = $scope.myApprovalData.itemCode;
+            var prefixItemCode = itemCode.substring(0, 3);
+            var type = '';
+
+            if (prefixItemCode == '000' || prefixItemCode > 900) {  // 资料
+                type = 'doc';
+            } else if (prefixItemCode == '700') {                   // 清单
+                type = 'bill';
+            } else if (prefixItemCode == '800') {                   // 材料
+                type = 'material';
+            } else {                                                // 数据
+                type = 'data';
+            }
+
+            $ionicViewSwitcher.nextDirection('forward');
+            if (type == 'data' || type == 'doc') {
+                $state.go('dataEdit', {fieldData: $scope.myApprovalData, type: type, page:'myApprovalDetails'});
+            } else if (type == 'bill') {
+                $state.go('billEdit', {fieldData: $scope.myApprovalData, type: type, page:'myApprovalDetails'});
+            } else if (type == 'material') {
+                $state.go('materialEdit', {fieldData: $scope.myApprovalData, type: type, page:'myApprovalDetails'});
+            }
+        }
+
+        // yyyy-MM-dd 日期比较
+        $scope.compareDate = function (dateA, dateB) {
+            return new Date(dateA.replace(/-/g, "/")) - new Date(dateB.replace(/-/g, "/"));
+        }
+
+        // 获取当前日期
+        $scope.getCurrentDate = function () {
+            var date = new Date();
+            var seperator = "-";
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            var currentdate = year + seperator + month + seperator + strDate;
+            return currentdate;
+        }
     });
 
 

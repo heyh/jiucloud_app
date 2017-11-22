@@ -6,7 +6,12 @@ angular.module('dataEdit.controllers', ['DataEdit.services'])
 
         $scope.goBack = function () {
             $ionicViewSwitcher.nextDirection('back');
-            $state.go("dataCollect", {type: $stateParams.type});
+            if ($stateParams.page == 'myApprovalDetails') {
+                $state.go("myApprovalProcess");
+            } else {
+                $state.go("dataCollect", {type: $stateParams.type});
+            }
+
         };
 
         var uid = JSON.parse(localStorage.getUser())['uid'];
@@ -62,7 +67,7 @@ angular.module('dataEdit.controllers', ['DataEdit.services'])
 
             $scope.cal();
 
-            var needApproved = $scope.pageData.fieldData.needApproved == '1' ? true : false;
+            var needApproved = $scope.pageData.fieldData.needApproved != '0' ? true : false;
             setTimeout(function () {
                 $("ion-view[nav-view=active] #needApproved").prop("checked", needApproved);
             }, 100);
@@ -311,7 +316,13 @@ angular.module('dataEdit.controllers', ['DataEdit.services'])
                 }
 
                 $ionicViewSwitcher.nextDirection('back');
-                $state.go("dataCollect", {type: $stateParams.type});
+                // $state.go("dataCollect", {type: $stateParams.type});
+
+                if ($stateParams.page == 'myApprovalDetails') {
+                    $state.go("myApprovalProcess");
+                } else {
+                    $state.go("dataCollect", {type: $stateParams.type});
+                }
             });
         };
 

@@ -10,7 +10,7 @@
         <h1 class="title" ng-if="pageData.type == 'material'">项目材料</h1>
     </ion-header-bar>
     <!--主内容区域栏目 开始-->
-    <ion-content class="has-header has-tabs" padding="false">
+    <ion-content class="has-header has-tabs" padding="false" overflow-scroll="true">
 
         <div class="item-input-inset">
             <label class="item-input-wrapper" style="background: #fff;">
@@ -28,7 +28,7 @@
             </button>
         </div>
 
-        <ion-scroll ng-if="_isIOS" zooming="true" direction="xy" style="height: {{h}}px;" >
+        <ion-scroll ng-if="_isIOS" zooming="true" direction="xy" style="height: 90%" >
             <ion-refresher pulling-text="下拉刷新" pulling-icon="ion-load-a" refreshing-text="刷新成功" refreshing-icon="ion-ios-checkmark-outline" on-refresh="refreshFieldDatas()"></ion-refresher>
             <div ng-if="pageData.type == 'data' || pageData.type == 'doc'">
             <div class="row header">
@@ -185,7 +185,7 @@
             <ion-infinite-scroll ng-if="pageData.moreData" on-infinite="loadFieldDatasMore()" distance="1%" icon="ion-load-c"></ion-infinite-scroll>
         </ion-scroll>
 
-        <div ng-if="!_isIOS" style="overflow-x:auto;">
+        <div ng-if="!_isIOS" style="overflow-x: auto">
             <ion-refresher pulling-text="下拉刷新" pulling-icon="ion-load-a" refreshing-text="刷新成功" refreshing-icon="ion-ios-checkmark-outline" on-refresh="refreshFieldDatas()"></ion-refresher>
             <div ng-if="pageData.type == 'data' || pageData.type == 'doc'">
                 <div class="row header">
