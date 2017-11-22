@@ -293,7 +293,8 @@ angular.module('dataCollect.controllers', ['DataCollect.services'])
          */
         $scope.canEdit = function (fieldData) {
             return (($scope.compareDate($scope.getCurrentDate(), fieldData.creatTime.substring(0, 10)) == 0 && uid == fieldData.uid && '0' == fieldData.isLock && '2' != fieldData.needApproved)
-                || (fieldData.itemCode.substring(0, 3) == '700' && pageData.hasReadEditRight700 ));
+                || (fieldData.itemCode.substring(0, 3) == '700' && pageData.hasReadEditRight700 )
+                || fieldData.needApproved == '9');
         };
 
         $scope.canOutStorage = function (fieldData) {
