@@ -86,8 +86,11 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
             ClockinginService.checkClockingin($scope.pageData.clockinginData).then(function (data) {
 
                 var clockinginTime = data.clockinginTime;
-                var clockinginStartTime = data.clockinginTime.clockinginStartTime.substring(11,19);
-                var clockinginEndTime = data.clockinginTime.clockinginEndTime.substring(11,19);
+                var clockinginStartTime = data.clockinginTime.clockinginStartTime.substring(11,19);   //上午开始
+                var clockinginEndTime = data.clockinginTime.clockinginEndTime.substring(11,19);       //下午结束
+
+                var clockinginStartTime2 = data.clockinginTime.clockinginStartTime2.substring(11,19); //上午结束
+                var clockinginEndTime2 = data.clockinginTime.clockinginEndTime2.substring(11,19);     //下午开始
 
                 if (data.hasSame == true) {
                     var confirmPopup = $ionicPopup.confirm({
@@ -98,13 +101,13 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
                     });
                     confirmPopup.then(function(res) {
                         if(res) {
-                            checkClockinginTime(clockinginStartTime, clockinginEndTime, flag);
+                            checkClockinginTime(clockinginStartTime, clockinginStartTime2, clockinginEndTime2, clockinginEndTime, flag);
                         } else {
                             return false;
                         }
                     });
                 } else {
-                    checkClockinginTime(clockinginStartTime, clockinginEndTime, flag);
+                    checkClockinginTime(clockinginStartTime, clockinginStartTime2, clockinginEndTime2, clockinginEndTime, flag);
                 }
 
 
@@ -116,7 +119,7 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
             return new Date(dateString.replace(/-/g,"/"))
         }
 
-        function checkClockinginTime(clockinginStartTime, clockinginEndTime, flag) {
+        function checkClockinginTime(clockinginStartTime, clockinginStartTime2, clockinginEndTime2, clockinginEndTime, flag) {
             var date = new Date();
             var year = date.getFullYear();
             var month = date.getMonth()+1;
@@ -126,9 +129,12 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
             var second = date.getSeconds();
 
             var time = convertDateFromString(year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second );
+            var strClockinginStartTime = convertDateFromString(year + '-' + month + '-' + day + ' ' + clockinginStartTime );
+            var strClockinginEndTime2 = convertDateFromString(year + '-' + month + '-' + day + ' ' + clockinginEndTime2 );
+            var strClockinginEndTime = convertDateFromString(year + '-' + month + '-' + day + ' ' + clockinginEndTime );
+            var strClockinginStartTime2 = convertDateFromString(year + '-' + month + '-' + day + ' ' + clockinginStartTime2 );
             if (flag == '0') { // 上班
-                var strClockinginStartTime = convertDateFromString(year + '-' + month + '-' + day + ' ' + clockinginStartTime );
-                if (strClockinginStartTime < time) { // 迟到
+                if ((strClockinginStartTime < time && time < strClockinginStartTime2) || (strClockinginEndTime2 < time && time < strClockinginEndTime)) { // 迟到
                     $ionicPopup.prompt({
                         title: '事由',
                         cancelText: '取消',
@@ -143,8 +149,8 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
                     ClockinginService.clockingin($scope.pageData.clockinginData);
                 }
             } else if (flag == '1') { // 下班
-                var strClockinginEndTime = convertDateFromString(year + '-' + month + '-' + day + ' ' + clockinginEndTime );
-                if (strClockinginEndTime > time) { // 早退
+
+                if ((strClockinginStartTime < time && time < strClockinginStartTime2) || (strClockinginEndTime2 < time && time < strClockinginEndTime)) { // 早退
                     $ionicPopup.prompt({
                         title: '事由',
                         cancelText: '取消',
