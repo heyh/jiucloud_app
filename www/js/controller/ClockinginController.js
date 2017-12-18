@@ -133,38 +133,113 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
             var strClockinginEndTime2 = convertDateFromString(year + '-' + month + '-' + day + ' ' + clockinginEndTime2 );
             var strClockinginEndTime = convertDateFromString(year + '-' + month + '-' + day + ' ' + clockinginEndTime );
             var strClockinginStartTime2 = convertDateFromString(year + '-' + month + '-' + day + ' ' + clockinginStartTime2 );
-            if (flag == '0') { // 上班
-                if ((strClockinginStartTime < time && time < strClockinginStartTime2) || (strClockinginEndTime2 < time && time < strClockinginEndTime)) { // 迟到
+            if (flag == '0') { // 上午上班
+                if (strClockinginStartTime < time && time < strClockinginStartTime2) { // 迟到
+                    $scope.pageData.clockinginData.approvedState = '迟到';
                     $ionicPopup.prompt({
                         title: '事由',
                         cancelText: '取消',
                         okText: '确定'
                     }).then(function(res) {
                         $scope.pageData.clockinginData.reasonDesc = res;
-                        $scope.pageData.clockinginData.approvedState = '迟到';
-
-                        ClockinginService.clockingin($scope.pageData.clockinginData);
+                        ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
+                            $scope.pageData.clockinginData.reasonDesc = '';
+                            $scope.pageData.clockinginData.approvedState = '';
+                        });
                     });
+                } else if(time > strClockinginStartTime2) {
+                    $ionicLoading.show({
+                        template: '已过上午下班时间，上午上班打卡无效!',
+                        duration: 3000
+                    });
+                    return ;
                 } else {
-                    ClockinginService.clockingin($scope.pageData.clockinginData);
+                    ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
+                        $scope.pageData.clockinginData.reasonDesc = '';
+                        $scope.pageData.clockinginData.approvedState = '';
+                    });
                 }
-            } else if (flag == '1') { // 下班
-
-                if ((strClockinginStartTime < time && time < strClockinginStartTime2) || (strClockinginEndTime2 < time && time < strClockinginEndTime)) { // 早退
+            } else if (flag == '1') { // 上午下班
+                if (strClockinginStartTime < time && time < strClockinginStartTime2) { // 早退
+                    $scope.pageData.clockinginData.approvedState = '早退';
                     $ionicPopup.prompt({
                         title: '事由',
                         cancelText: '取消',
                         okText: '确定'
                     }).then(function(res) {
                         $scope.pageData.clockinginData.reasonDesc = res;
-                        $scope.pageData.clockinginData.approvedState = '早退';
-
-                        ClockinginService.clockingin($scope.pageData.clockinginData);
+                        ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
+                            $scope.pageData.clockinginData.reasonDesc = '';
+                            $scope.pageData.clockinginData.approvedState = '';
+                        });
                     });
+                } else if(time < strClockinginStartTime) {
+                    $ionicLoading.show({
+                        template: '未到上午上班时间，上午下班打卡无效!',
+                        duration: 3000
+                    });
+                    return;
                 } else {
-                    ClockinginService.clockingin($scope.pageData.clockinginData);
+                    ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
+                        $scope.pageData.clockinginData.reasonDesc = '';
+                        $scope.pageData.clockinginData.approvedState = '';
+                    });
+                }
+            } else if (flag == '2') { // 下午上班
+                if (strClockinginEndTime2 < time && time < strClockinginEndTime) { // 迟到
+                    $scope.pageData.clockinginData.approvedState = '迟到';
+                    $ionicPopup.prompt({
+                        title: '事由',
+                        cancelText: '取消',
+                        okText: '确定'
+                    }).then(function(res) {
+                        $scope.pageData.clockinginData.reasonDesc = res;
+                        ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
+                            $scope.pageData.clockinginData.reasonDesc = '';
+                            $scope.pageData.clockinginData.approvedState = '';
+                        });
+                    });
+                } else if(time > strClockinginEndTime) {
+                    $ionicLoading.show({
+                        template: '已过下午下班时间，下午上班打卡无效!',
+                        duration: 3000
+                    });
+                    return ;
+                } else {
+                    ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
+                        $scope.pageData.clockinginData.reasonDesc = '';
+                        $scope.pageData.clockinginData.approvedState = '';
+                    });
+                }
+            } else if (flag == '3') { // 下午下班
+                if (strClockinginEndTime2 < time && time < strClockinginEndTime) { // 早退
+                    $scope.pageData.clockinginData.approvedState = '早退';
+                    $ionicPopup.prompt({
+                        title: '事由',
+                        cancelText: '取消',
+                        okText: '确定'
+                    }).then(function(res) {
+                        $scope.pageData.clockinginData.reasonDesc = res;
+                        ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
+                            $scope.pageData.clockinginData.reasonDesc = '';
+                            $scope.pageData.clockinginData.approvedState = '';
+                        });
+                    });
+                } else if(time < strClockinginEndTime2) {
+                    $ionicLoading.show({
+                        template: '未到下午上班时间，下午下班打卡无效!',
+                        duration: 3000
+                    });
+                    return;
+                } else {
+                    ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
+                        $scope.pageData.clockinginData.reasonDesc = '';
+                        $scope.pageData.clockinginData.approvedState = '';
+                    });
                 }
             }
+
+
         }
     });
 
