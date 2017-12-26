@@ -154,9 +154,16 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
                     });
                     return ;
                 } else {
-                    ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
-                        $scope.pageData.clockinginData.reasonDesc = '';
-                        $scope.pageData.clockinginData.approvedState = '';
+                    $ionicPopup.prompt({
+                        title: '说明',
+                        cancelText: '取消',
+                        okText: '确定'
+                    }).then(function(res) {
+                        $scope.pageData.clockinginData.reasonDesc = res;
+                        ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
+                            $scope.pageData.clockinginData.reasonDesc = '';
+                            $scope.pageData.clockinginData.approvedState = '';
+                        });
                     });
                 }
             } else if (flag == '1') { // 上午下班
@@ -180,9 +187,16 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
                     });
                     return;
                 } else {
-                    ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
-                        $scope.pageData.clockinginData.reasonDesc = '';
-                        $scope.pageData.clockinginData.approvedState = '';
+                    $ionicPopup.prompt({
+                        title: '说明',
+                        cancelText: '取消',
+                        okText: '确定'
+                    }).then(function(res) {
+                        $scope.pageData.clockinginData.reasonDesc = res;
+                        ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
+                            $scope.pageData.clockinginData.reasonDesc = '';
+                            $scope.pageData.clockinginData.approvedState = '';
+                        });
                     });
                 }
             } else if (flag == '2') { // 下午上班
@@ -206,9 +220,16 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
                     });
                     return ;
                 } else {
-                    ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
-                        $scope.pageData.clockinginData.reasonDesc = '';
-                        $scope.pageData.clockinginData.approvedState = '';
+                    $ionicPopup.prompt({
+                        title: '说明',
+                        cancelText: '取消',
+                        okText: '确定'
+                    }).then(function(res) {
+                        $scope.pageData.clockinginData.reasonDesc = res;
+                        ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
+                            $scope.pageData.clockinginData.reasonDesc = '';
+                            $scope.pageData.clockinginData.approvedState = '';
+                        });
                     });
                 }
             } else if (flag == '3') { // 下午下班
@@ -232,9 +253,16 @@ angular.module('clockingin.controllers', ['Clockingin.services'])
                     });
                     return;
                 } else {
-                    ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
-                        $scope.pageData.clockinginData.reasonDesc = '';
-                        $scope.pageData.clockinginData.approvedState = '';
+                    $ionicPopup.prompt({
+                        title: '说明',
+                        cancelText: '取消',
+                        okText: '确定'
+                    }).then(function(res) {
+                        $scope.pageData.clockinginData.reasonDesc = res;
+                        ClockinginService.clockingin($scope.pageData.clockinginData).then(function () { // 打卡
+                            $scope.pageData.clockinginData.reasonDesc = '';
+                            $scope.pageData.clockinginData.approvedState = '';
+                        });
                     });
                 }
             }
