@@ -72,8 +72,8 @@
                 <div ng-click="goDataDetails(fieldData)" class="col col-20">{{fieldData.currentApprovedUser}}</div>
 
                 <div class="col col-40">
-                    <a ng-click="goDataEdit(fieldData)" ng-show="canEdit(fieldData)" class="button button-icon icon ion-ios-compose-outline"></a>
-                    <a ng-click="delData(fieldData)" ng-show="canEdit(fieldData)" class="button button-icon icon ion-ios-trash-outline"></a>
+                    <a ng-click="goDataEdit(fieldData)" ng-show="canEdit4DataDoc(fieldData)" class="button button-icon icon ion-ios-compose-outline"></a>
+                    <a ng-click="delData(fieldData)" ng-show="canEdit4DataDoc(fieldData)" class="button button-icon icon ion-ios-trash-outline"></a>
                     <a ng-click="goDiscuss(fieldData)" class="button button-icon icon icon ion-chatbubbles"></a>
                     <a ng-click="goOutStorage(fieldData)" ng-show="canOutStorage(fieldData)" class="button button-icon icon ion-log-out"></a>
                 </div>

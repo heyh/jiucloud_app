@@ -37,7 +37,8 @@ angular.module('dataCollect.controllers', ['DataCollect.services'])
 
             hasOnlyReadRight700: JSON.stringify(rightList).indexOf("16")!=-1 && 0 != parentId,
             hasReadEditRight700: JSON.stringify(rightList).indexOf("15")!=-1 || 0 == parentId,
-            hasOutRight: JSON.stringify(rightList).indexOf("17")!=-1
+            hasOutRight: JSON.stringify(rightList).indexOf("17")!=-1,
+            hasEditDelRight: (0 == parentId)
         };
 
         $scope.canShow = function () {
@@ -295,6 +296,17 @@ angular.module('dataCollect.controllers', ['DataCollect.services'])
             return (($scope.compareDate($scope.getCurrentDate(), fieldData.creatTime.substring(0, 10)) == 0 && uid == fieldData.uid && '0' == fieldData.isLock && '2' != fieldData.needApproved)
                 || (fieldData.itemCode.substring(0, 3) == '700' && pageData.hasReadEditRight700 )
                 || fieldData.needApproved == '9');
+        };
+
+        /**
+         * 数据、资料分开
+         * @param fieldData
+         * @returns {boolean|*}
+         */
+        $scope.canEdit4DataDoc = function (fieldData) {
+            return (($scope.compareDate($scope.getCurrentDate(), fieldData.creatTime.substring(0, 10)) == 0 && uid == fieldData.uid && '0' == fieldData.isLock && '2' != fieldData.needApproved)
+            || pageData.hasEditDelRight
+            || fieldData.needApproved == '9');
         };
 
         $scope.canOutStorage = function (fieldData) {
