@@ -59,16 +59,15 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                         $scope.pageData.fieldData.section = data.maxFieldData.section;
                     }
 
-                    if (data.firstLevelParentDepartment != null && data.firstLevelParentDepartment != '') {
-                        $scope.pageData.fieldData.needApproved = true;
-                        $scope.needApproved();
-                        $scope.pageData.fieldData.currentApprovedUser = data.firstLevelParentDepartment;
-                    }
-
-
                     getSectionInfos(cid, uid, $scope.pageData.fieldData.projectName);
 
                     getSupInfo(cid, uid, $scope.pageData.fieldData.projectName, $scope.pageData.fieldData.section);
+                }
+
+                if (data.firstLevelParentDepartment != null && data.firstLevelParentDepartment != '') {
+                    $scope.pageData.fieldData.needApproved = true;
+                    $scope.needApproved();
+                    $scope.pageData.fieldData.currentApprovedUser = data.firstLevelParentDepartment;
                 }
             });
 
