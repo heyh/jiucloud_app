@@ -41,6 +41,16 @@ angular.module('approvalDetails.controllers', ['ApprovalDetails.services'])
 
             DataAddService.chooseApprove(cid, uid).then(function (data) {
                 $scope.approveUserList = data.approveUserList;
+                if ($scope.approveUserList.length == 1) {
+                    $scope.ret.currentApprovedUser = $scope.approveUserList[0].id;
+                } else if ($scope.approveUserList.length > 1) {
+                    angular.forEach($scope.approveUserList, function (user) {
+                        if (user.id == data.shenpi) {
+                            $scope.ret.currentApprovedUser = data.shenpi;
+                        }
+                    });
+                }
+
             });
         });
 
