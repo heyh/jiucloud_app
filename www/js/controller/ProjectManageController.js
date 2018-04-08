@@ -29,6 +29,12 @@ angular.module('projectManage.controllers', ['ProjectManage.services'])
             $ionicViewSwitcher.nextDirection('forward');
             $state.go('clockingin');
         }
+
+        $scope.goMaterialsApproval = function () {
+            $ionicViewSwitcher.nextDirection('forward');
+            $state.go('materialsApproval');
+        }
+
         //$scope.bannerSlide = 1;
         $scope.ads = [];
 

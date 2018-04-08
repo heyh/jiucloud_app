@@ -8,7 +8,7 @@ var app = angular.module('starter', ['ionic', 'baseConfig', 'util.localStorage',
     , 'index.controllers', 'login.controllers', 'projectManage.controllers', 'approval.controllers', 'myApprovalProcess.controllers', 'dataCollect.controllers',
     'dataAdd.controllers', 'dataEdit.controllers', 'dataDetails.controllers', 'approvalDetails.controllers', 'myApprovalDetails.controllers', 'message.controllers', 'sysSet.controllers',
     'projectPrice.controllers', 'projectAllInfo.controllers', 'projectData.controllers', 'discuss.controllers', 'outStorage.controllers',
-    'clockingin.controllers']);
+    'clockingin.controllers','materialsApproval.controllers']);
 
 app.run(function ($ionicPlatform, $rootScope, $templateCache, pushUtil) {
     $ionicPlatform.ready(function () {

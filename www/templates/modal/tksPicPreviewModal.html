@@ -6,8 +6,30 @@
 <!--</div>-->
 
 
-<div class="popover-backdrop" style="position: fixed;top: 0;left: 0;z-index: 10; width: 100%;height: 100%;" ng-click="closeModal()">
-    <img class="img-responsive" style="position: absolute;top: 10%;left: 50%;z-index: 10;display: block;margin-top: 18px;
-         margin-left: -165px;height: 420px;width: 330px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);"
-         src="{{imgUrl}}"/>
-</div>
+<!--<div class="popover-backdrop" style="position: fixed;top: 0;left: 0;z-index: 10; width: 100%;height: 100%;" ng-click="closeModal()">-->
+    <!--<ion-scroll ng-click="closeModal()" direction="xy" scrollbar-x="false" scrollbar-y="false" zooming="true" min-zoom="{{zoomMin}}" style="width: 100%; height: 100%;display:flex;align-items: center;">-->
+        <!--&lt;!&ndash;<img src="{{imgUrl}}"/>&ndash;&gt;-->
+        <!--<img class="img-responsive"-->
+        <!--style="top: 10%;display: block;margin-top: 18px;-->
+        <!--margin-left: 18%;height: 420px;width: 330px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);"-->
+        <!--src="{{imgUrl}}"/>-->
+    <!--</ion-scroll>-->
+
+<!--</div>-->
+
+<ion-scroll  direction="xy" class="msg-file" style="height:100%" zooming="true" min-zoom="1" max-zoom="2" overflow-scroll="false"  ng-click="closeModal()">
+    <img ng-src="{{imgUrl}}" style="width:100%;"/>
+</ion-scroll>
+
+<!--<div class="modal picPreviewModal tksPicPreviewModal image-modal transparent" on-swipe-down="closeModal()">-->
+    <!--<ion-slide-box on-slide-changed="slideChanged(index)" active-slide="activeSlide">-->
+        <!--<ion-slide>-->
+
+            <!--<ion-scroll ng-click="closeModal()" direction="xy" scrollbar-x="false" scrollbar-y="false"-->
+                        <!--zooming="true" min-zoom="{{zoomMin}}" style="width: 100%; height: 100%;display:flex;align-items: center;"-->
+                        <!--delegate-handle="scrollHandle{{$index}}" on-scroll="updateSlideStatus(activeSlide)" on-release="updateSlideStatus(activeSlide)" >-->
+                <!--<img src="{{imgUrl}}" width="100%"  />-->
+            <!--</ion-scroll>-->
+        <!--</ion-slide>-->
+    <!--</ion-slide-box>-->
+<!--</div>-->

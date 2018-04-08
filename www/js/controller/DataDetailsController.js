@@ -13,7 +13,7 @@ angular.module('dataDetails.controllers', ['DataDetails.services'])
 
         var rightList = new Array(JSON.parse(localStorage.getItem("right")).rightList);
         var parentId = JSON.parse(localStorage.getItem("right")).parentId;
-
+        $scope.zoomMin = 1;
         $scope.pageData = {
             type: '',
             hasOnlyReadRight700: JSON.stringify(rightList).indexOf("16")!=-1 && 0 != parentId,

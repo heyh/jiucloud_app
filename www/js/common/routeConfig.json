@@ -206,6 +206,12 @@
     },
     "cache": false,
     "controller": "ClockinginCtrl"
+  },
+  "materialsApproval": {
+    "url": "/materialsApproval",
+    "templateUrl": "templates/materialsApproval.html",
+    "cache": false,
+    "controller": "MaterialsApprovalCtrl"
   }
 }
 
