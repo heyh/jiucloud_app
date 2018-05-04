@@ -129,6 +129,7 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
             } else {
                 if (costType.itemCode.substring(0, 3) == '700') {
                     $scope.pageData.fieldData.section = costType.name;
+                    $scope.pageData.fieldData.dataName = costType.name;
                 }
 
                 $scope.costInfoTree = costType.children;
