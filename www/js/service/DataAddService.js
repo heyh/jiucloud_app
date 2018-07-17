@@ -372,10 +372,10 @@ angular.module('DataAdd.services', ['util.http', 'util.localStorage'])
                 return promise;
             },
 
-            getFeatures: function (cid, uid) {
+            getFeatures: function (cid, uid, itemCode) {
                 var deferred = $q.defer();
                 var promise = deferred.promise;
-                var params = {cid: cid, uid:uid};
+                var params = {cid: cid, uid:uid, itemCode: itemCode};
                 http.request('/featureController/securi_getFeatures', params)
                     .success(function (data) {
                         if (data.rspCode == '0000') {
@@ -406,10 +406,10 @@ angular.module('DataAdd.services', ['util.http', 'util.localStorage'])
                 return promise;
             },
 
-            addFeature: function (cid, uid, mc, dw) {
+            addFeature: function (cid, uid, mc, count, dw, itemCode) {
                 var deferred = $q.defer();
                 var promise = deferred.promise;
-                var params = {cid: cid, uid:uid, mc: mc, dw: dw};
+                var params = {cid: cid, uid:uid, mc: mc, count: count, dw: dw, itemCode: itemCode};
                 http.request('/featureController/securi_addFeature', params)
                     .success(function (data) {
                         if (data.rspCode == '0000') {

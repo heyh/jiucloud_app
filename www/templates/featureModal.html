@@ -29,7 +29,7 @@
         <div class="row featureRow" ng-if="(pageData.search.mc=='' || feature.mc.indexOf(pageData.search.mc)>=0) && (pageData.search.dw=='' || feature.dw.indexOf(pageData.search.dw)>=0 )" ng-repeat="(featureIndex, feature) in pageData.features">
             <div class="col col-10" align="center">{{featureIndex + 1}}</div>
             <div class="col col-30 featureCol" align="center"><input type="text" value="{{feature.mc}}" style="width: 100px" placeholder="名称"/></div>
-            <div class="col col-30 featureCol" align="center"><input type="text" id="count" style="width: 100px" placeholder="数量"/></div>
+            <div class="col col-30 featureCol" align="center"><input type="text" style="width: 100px" value="{{feature.count}}" placeholder="数量"/></div>
             <div class="col col-20 featureCol" align="center"><input type="text" value="{{feature.dw}}" style="width: 60px" placeholder="单位"/></div>
             <div class="featureCol" style="display: none">9</div>
             <div class="col col-10 featureCol" align="center">

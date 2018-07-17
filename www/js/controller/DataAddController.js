@@ -80,9 +80,9 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
             });
 
             if ($scope.pageData.type == 'bill') {
-                DataAddService.getFeatures(cid, uid).then(function (data) {
-                    $scope.pageData.features = data.features;
-                });
+                // DataAddService.getFeatures(cid, uid).then(function (data) {
+                //     $scope.pageData.features = data.features;
+                // });
 
                 DataAddService.getLocations(cid, uid).then(function (data) {
                     $scope.pageData.locations = data.locations;
@@ -120,16 +120,19 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
 
                 $scope.closeCostsTypeModal();
 
-                if (costType.name.indexOf('（') && costType.name.indexOf('）')) {
+                if (costType.name.indexOf('（') != -1 && costType.name.indexOf('）') != -1 ) {
                     $scope.pageData.fieldData.dataName = costType.name.substring(0, costType.name.indexOf("（"));
                     $scope.pageData.fieldData.unit = costType.name.substring(costType.name.indexOf("（")+1,costType.name.indexOf("）"));
                 } else {
                     $scope.pageData.fieldData.dataName = costType.name;
                 }
+
+                DataAddService.getFeatures(cid, uid, $scope.pageData.fieldData.itemCode).then(function (data) {
+                    $scope.pageData.features = data.features;
+                });
             } else {
                 if (costType.itemCode.substring(0, 3) == '700') {
                     $scope.pageData.fieldData.section = costType.name;
-                    $scope.pageData.fieldData.dataName = costType.name;
                 }
 
                 $scope.costInfoTree = costType.children;
@@ -288,7 +291,7 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
                 if (mc != '' && count != '' && dw != '') {
                     feature += mc + ":" + count + ' ' + dw + ";  ";
                     if (modifyTag == '0') {
-                        DataAddService.addFeature(cid, uid, mc, dw);
+                        DataAddService.addFeature(cid, uid, mc, count, dw, $scope.pageData.fieldData.itemCode);
                     }
                 }
             });
