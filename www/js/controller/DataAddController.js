@@ -285,7 +285,7 @@ angular.module('dataAdd.controllers', ['DataAdd.services'])
             angular.forEach($(".featureRow"), function (row) {
                 var features = row.getElementsByClassName("featureCol");
                 var mc = features[0].firstChild.value;
-                var count = features[1].firstChild.value;
+                var count = eval(features[1].firstChild.value);
                 var dw = features[2].firstChild.value;
                 var modifyTag = features[3].innerHTML;
                 if (mc != '' && count != '' && dw != '') {
